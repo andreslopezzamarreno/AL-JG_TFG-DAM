@@ -1,19 +1,58 @@
-<h1>LOGIN</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="wavy">
+    <span style="--i: 1">o</span>
+    <span style="--i: 2">n</span>
+    <span style="--i: 3">l</span>
+    <span style="--i: 4">y</span>
+    <span style="--i: 5">g</span>
+    <span style="--i: 6">a</span>
+    <span style="--i: 7">m</span>
+    <span style="--i: 8">e</span>
+    <span style="--i: 9">s</span>
+    <span style="--i: 10">.</span>
+    <span style="--i: 11">.</span>
+    <span style="--i: 12">.</span>
+  </div>
 
-<div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Usuario</label>
-  <input type="email" class="form-control" id="usuario" #usuario />
-</div>
-<div class="mb-3">
-  <label for="exampleFormControlInput2" class="form-label">contraseña</label>
-  <input type="password" class="form-control" id="contrasenia" #pass />
-</div>
-<div class="col-auto">
-  <button
-    type="submit"
-    class="btn btn-primary mb-3"
-    (click)="loguearse(usuario.value, pass.value)"
-  >
-    LOGIN
-  </button>
-</div>
+  <div class="form-login col-md-4 text-center">
+    <form>
+      <div class="mb-4">
+        <input
+          type="email"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          placeholder="Email:"
+          #usuario
+        />
+      </div>
+      <div class="mb-4">
+        <input
+          type="password"
+          class="form-control"
+          id="exampleInputPassword1"
+          placeholder="Password:"
+          #pass
+        />
+      </div>
+      <button
+        type="button"
+        class="btn btn-outline-light"
+        style="font-family: '8BIT WONDER', sans-serif; background-color: gray"
+        (click)="loguearse(usuario.value, pass.value)"
+      >
+        Login
+      </button>
+    </form>
+  </div>
+</body>
+</html>
+

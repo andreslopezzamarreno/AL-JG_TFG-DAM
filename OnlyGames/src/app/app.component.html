@@ -18,64 +18,15 @@
     ></script>
     <title>Document</title>
   </head>
-  <body>
-    <div class="wavy">
-      <span style="--i: 1">o</span>
-      <span style="--i: 2">n</span>
-      <span style="--i: 3">l</span>
-      <span style="--i: 4">y</span>
-      <span style="--i: 5">g</span>
-      <span style="--i: 6">a</span>
-      <span style="--i: 7">m</span>
-      <span style="--i: 8">e</span>
-      <span style="--i: 9">s</span>
-      <span style="--i: 10">.</span>
-      <span style="--i: 11">.</span>
-      <span style="--i: 12">.</span>
-    </div>
-
-    <div class="form-login col-md-4 text-center">
-      <form>
-        <div class="mb-4">
-          <input
-            type="email"
-            class="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            placeholder="Email:"
-          />
-        </div>
-        <div class="mb-4">
-          <input
-            type="password"
-            class="form-control"
-            id="exampleInputPassword1"
-            placeholder="Password:"
-          />
-        </div>
-        <button
-          type="button"
-          class="btn btn-outline-light"
-          style="font-family: '8BIT WONDER', sans-serif; background-color: gray"
-        >
-          Submit
-        </button>
-      </form>
-    </div>
+  <body >
+    <router-outlet></router-outlet>
 
     <div class="btns">
-      <button type="button" id="btn-login">Login</button>
-      <button type="button" id="btn-register">Register</button>
+      <button type="button" id="btn-login" routerLink="login">Login</button>
+      <button type="button" id="btn-register" routerLink="register">Register</button>
     </div>
   </body>
 </html>
 
-<button type="submit" class="btn btn-primary mb-3" routerLink="login">
-  LOGIN</button
-><button type="submit" class="btn btn-primary mb-3" routerLink="register">
-  REGISTROs
-</button>
 
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
+

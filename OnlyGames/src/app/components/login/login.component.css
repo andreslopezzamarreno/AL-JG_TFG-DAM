@@ -1,0 +1,83 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  display: flex;
+  justify-content: center;
+  align-items: top;
+  min-height: 100vh;
+  background: url(src\app\images\fondo_web.jpg) 0 0;
+}
+.wavy{
+  position: relative;
+  margin-top: 8%;
+}
+.wavy span {
+  font-family: '8BIT WONDER', sans-serif;
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  font-size: 5em;
+  text-transform: uppercase;
+  animation: animate 1s ease-in-out infinite;
+  animation-delay: calc(0.1s * var(--i));
+}
+@keyframes animate {
+  0%
+  {
+    transform: translateY(0px);
+  }
+  20%
+  {
+    transform: translateY(-20px);
+  }
+  40%,100%
+  {
+    transform: translateY(0px);
+  }
+}
+#btn-login{
+  position: relative;
+  font-family: '8BIT WONDER', sans-serif;
+  width: 200px;
+  height: 40px;
+  margin-right: 60px;
+  font-size: x-large;
+
+}
+
+#btn-register{
+  font-family: '8BIT WONDER', sans-serif;
+  width: 200px;
+  height: 40px;
+  font-size: x-large;
+}
+
+#btn-login:hover {
+  background-color: #bbb4b4;
+}
+
+#btn-register:hover {
+  background-color: #bbb4b4;
+}
+
+.btns{
+  position: absolute;
+  display:inline-flex;
+  margin-top: 30%;
+  padding: auto;
+}
+
+.form-login{
+  position: absolute;
+  margin-top: 18%;
+}
+
+
+
+
+
+
+
+
