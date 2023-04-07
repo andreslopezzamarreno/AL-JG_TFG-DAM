@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-login',
@@ -7,7 +7,9 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  constructor(private auth: AuthService) {}
+
+  loggedIn = false
+  constructor(private auth: AuthService,private router: Router) {}
 
   loguearse(usuario: string, pass: string) {
     this.auth
@@ -15,6 +17,7 @@ export class LoginComponent {
       .then((response) => {
         console.log(response);
         window.location.href="http://localhost:4200/menu"
+        this.router.navigate(['/menu'])
       })
       .catch((error) => console.log(error));
   }
@@ -23,5 +26,14 @@ export class LoginComponent {
     if (event.key === "Enter") {
       this.loguearse(usuario,pass)
     }
+  }
+
+  googleLogin(){
+    this.auth.loginWithGoogle()
+    .then(response => {
+      this.router.navigate(['/menu'])
+      window.location.href="http://localhost:4200/menu"
+    })
+    .catch(error => console.log(error))
   }
 }
