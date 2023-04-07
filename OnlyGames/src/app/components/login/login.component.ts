@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ export class LoginComponent {
       .login(usuario, pass)
       .then((response) => {
         console.log(response);
+        window.location.href="http://localhost:4200/menu"
       })
       .catch((error) => console.log(error));
   }
