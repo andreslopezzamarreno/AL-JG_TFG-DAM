@@ -52,14 +52,26 @@
           #pass
         />
       </div>
+      <div class="btns">
       <button
-        type="button"
-        class="btn btn-outline-light"
-        style="font-family: '8BIT WONDER', sans-serif; background-color: gray"
-        (click)="registro(usuario.value, pass.value)"
+      type="button"
+      class="btn btn-outline-light text-center mb-3 "
+      style="font-family: '8BIT WONDER', sans-serif; background-color: gray"
+      (click)="registro(usuario.value, pass.value)"
       >
-        Register
-      </button>
+      Register
+    </button>
+
+    <button
+
+      type="button"
+      class="btn btn-outline-light text-center"
+      style="font-family: '8BIT WONDER', sans-serif; background-color: #4285F4;"
+      (click)="registro(usuario.value, pass.value)"
+    >
+    Google Register
+  </button>
+  </div>
     </form>
   </div>
 </body>

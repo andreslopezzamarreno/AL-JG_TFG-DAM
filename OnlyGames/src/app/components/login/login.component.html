@@ -43,14 +43,25 @@
           #pass
         />
       </div>
-      <button
-        type="button"
-        class="btn btn-outline-light"
-        style="font-family: '8BIT WONDER', sans-serif; background-color: gray"
-        (click)="loguearse(usuario.value, pass.value)"
-      >
-        Login
-      </button>
+      <div class="btns">
+          <button
+            type="button"
+            class="btn btn-outline-light  text-center"
+            style="font-family: '8BIT WONDER', sans-serif; background-color: gray"
+            (click)="loguearse(usuario.value, pass.value)"
+          >
+            Login
+          </button>
+          <button
+
+          type="button"
+          class="btn btn-outline-light text-center mt-3"
+          style="font-family: '8BIT WONDER', sans-serif; background-color: #4285F4;"
+          (click)="loguearse(usuario.value, pass.value)"
+        >
+        Google Login
+       </button>
+      </div>
     </form>
   </div>
 </body>
