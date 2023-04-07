@@ -18,4 +18,10 @@ export class LoginComponent {
       })
       .catch((error) => console.log(error));
   }
+
+  onKeydown(event: any, usuario: string, pass: string) {
+    if (event.key === "Enter") {
+      this.loguearse(usuario,pass)
+    }
+  }
 }
