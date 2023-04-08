@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { DatabaseService } from 'src/app/services/database.service';
 import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-inicio',
@@ -13,7 +14,8 @@ export class InicioComponent {
   constructor(
     private auth: AuthService,
     private router: Router,
-    private Actroute: ActivatedRoute
+    private Actroute: ActivatedRoute,
+    private database: DatabaseService
   ) {
     Actroute.params.subscribe((cosas) => {
       this.tipo = cosas['tipo'];
@@ -49,12 +51,22 @@ export class InicioComponent {
   }
 
   registro(usuario: string, pass: string) {
-    this.auth
-      .registro(usuario, pass)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => console.log(error));
+    var gametag = (<HTMLInputElement>document.getElementById('gametag')).value;
+    console.log(gametag);
+
+    /* this.database.existeGametag(gametag); */
+
+    if (gametag != '') {
+      this.auth
+        .registro(usuario, pass)
+        .then((response) => {
+          this.database.escribirGametag(response.user.uid, gametag);
+          this.router.navigate(['/menu']);
+        })
+        .catch((error) => console.log(error));
+    } else {
+      alert('Rellena todos los campos');
+    }
   }
 
   navegar(tipo: string) {

@@ -35,16 +35,7 @@
     </div>
 
     <div class="form-login col-md-4 text-center">
-      <form>
-        <div class="mb-4" *ngIf="tipo == 'register'">
-          <input
-            type="gametag"
-            class="form-control"
-            id="gametag"
-            placeholder="GameTag:"
-            #pass
-          />
-        </div>
+      <form class="inputs">
         <div class="mb-4">
           <input
             type="email"
@@ -62,6 +53,15 @@
             id="exampleInputPassword1"
             placeholder="Password:"
             #pass
+          />
+        </div>
+        <div class="mb-4" *ngIf="tipo == 'register'">
+          <input
+            type="text"
+            class="form-control"
+            id="gametag"
+            placeholder="GameTag:"
+            #gametag
           />
         </div>
         <div class="btns" *ngIf="tipo == 'login'">

@@ -8,7 +8,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent {
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router) {
+    var currentUser = auth.currentUser();
+    console.log(currentUser);
+  }
 
   cerrarSesion() {
     this.auth

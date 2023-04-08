@@ -6,6 +6,7 @@ import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
+  { path: 'inicio', component: InicioComponent },
   { path: 'inicio/:tipo', component: InicioComponent },
   {
     path: 'menu',
