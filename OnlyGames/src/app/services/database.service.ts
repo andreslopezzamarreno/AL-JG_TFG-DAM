@@ -18,12 +18,8 @@ export class DatabaseService {
 
     get(child(dbRef, `users/`))
       .then((snapshot) => {
-        console.log(snapshot);
+        console.log(snapshot.toJSON());
 
-        for (let index = 0; index < snapshot.val().length; index++) {
-          const element = snapshot.val()[index];
-          console.log(element);
-        }
         /* if (snapshot.exists()) {
           console.log(snapshot.val());
           return false;

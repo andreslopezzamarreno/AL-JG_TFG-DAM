@@ -54,7 +54,7 @@ export class InicioComponent {
     var gametag = (<HTMLInputElement>document.getElementById('gametag')).value;
     console.log(gametag);
 
-    /* this.database.existeGametag(gametag); */
+    this.database.existeGametag(gametag);
 
     if (gametag != '') {
       this.auth
