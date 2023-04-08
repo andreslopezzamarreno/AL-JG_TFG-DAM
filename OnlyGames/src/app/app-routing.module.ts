@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { InicioComponent } from './components/inicio/inicio.component';
+import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: '', component: LoginComponent  },
-  { path: 'menu', component: MenuComponent  },
+  { path: '', component: InicioComponent },
+  { path: 'inicio/:tipo', component: InicioComponent },
+  {
+    path: 'menu',
+    component: MenuComponent,
+    ...canActivate(() => redirectUnauthorizedTo(['/inicio/login'])),
+  },
 ];
 
 @NgModule({

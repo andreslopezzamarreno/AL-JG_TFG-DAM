@@ -7,7 +7,8 @@ body{
   justify-content: center;
   align-items: top;
   min-height: 100vh;
-  background: transparent;
+  background: url(src\app\images\fondo_web.jpg) 0 0 no-repeat;
+  background-size: cover;
 }
 .wavy{
   position: relative;
@@ -37,6 +38,30 @@ body{
     transform: translateY(0px);
   }
 }
+#btn-login{
+  position: relative;
+  font-family: '8BIT WONDER', sans-serif;
+  width: 200px;
+  height: 40px;
+  margin-right: 60px;
+  font-size: x-large;
+}
+
+#btn-register{
+  font-family: '8BIT WONDER', sans-serif;
+  width: 200px;
+  height: 40px;
+  font-size: x-large;
+}
+
+#btn-login:hover {
+  background-color: #bbb4b4;
+}
+
+#btn-register:hover {
+  background-color: #bbb4b4;
+}
+
 .btns{
   display: flex;
   flex-direction: column;
@@ -44,13 +69,15 @@ body{
   margin-right: 30%;
   margin-left: 30%;
 }
+.btnes{
+  display: inline-flex;
+  padding: auto;
+}
+
 .form-login{
   position: absolute;
   margin-top: 18%;
 }
-
-
-
 
 
 
