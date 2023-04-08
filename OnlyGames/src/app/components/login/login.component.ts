@@ -16,7 +16,6 @@ export class LoginComponent {
       .login(usuario, pass)
       .then((response) => {
         console.log(response);
-        window.location.href="http://localhost:4200/menu"
         this.router.navigate(['/menu'])
       })
       .catch((error) => console.log(error));
@@ -32,7 +31,6 @@ export class LoginComponent {
     this.auth.loginWithGoogle()
     .then(response => {
       this.router.navigate(['/menu'])
-      window.location.href="http://localhost:4200/menu"
     })
     .catch(error => console.log(error))
   }
