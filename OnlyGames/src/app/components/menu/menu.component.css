@@ -8,13 +8,17 @@ p{
 }
 .menu-top{
   display: inline-flex;
+  align-content: center;
 }
 .gametag{
+  position: relative;
   font-family: '8BIT WONDER', sans-serif;
   margin: auto;
-  padding: auto;
+  padding: 15px;
 }
-
+.menu{
+  position: fixed;
+}
 /*Diseño Menu*/
 .cf:before,
 .cf:after {
@@ -33,7 +37,7 @@ p{
 .submenu {
   margin: 0;
   list-style: none;
-  padding-left: 350px;
+  padding-left: 420px;
 }
 
 .menu {
@@ -79,8 +83,8 @@ p{
 
 .submenu {
   position: absolute;
-  width: 500px;
-  margin-left: -350px;
+  width: 570px;
+  margin-left: -420px;
   transform: skewX(-25deg);
   transform-origin: left top;
   align-items: center;

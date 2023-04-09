@@ -13,7 +13,6 @@ import {
 })
 export class AuthService {
   constructor(private auth: Auth) {}
-
   loginWithGoogle() {
     return signInWithPopup(this.auth, new GoogleAuthProvider());
   }

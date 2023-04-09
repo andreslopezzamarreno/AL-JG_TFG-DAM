@@ -34,4 +34,6 @@ export class DatabaseService {
       });
     return false;
   }
+
+  // Hacer metodo para hacer una consulta y conseguir el gametag del usuario
 }

@@ -51,10 +51,10 @@ export class InicioComponent {
   }
 
   registro(usuario: string, pass: string) {
+    //Hacer consulta para esto
     var gametag = (<HTMLInputElement>document.getElementById('gametag')).value;
-    console.log(gametag);
-
     this.database.existeGametag(gametag);
+
 
     if (gametag != '') {
       this.auth
