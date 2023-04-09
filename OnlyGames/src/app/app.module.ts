@@ -8,9 +8,10 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { MenuComponent } from './components/menu/menu.component';
 import { InicioComponent } from './components/inicio/inicio.component';
+import { JuegosComponent } from './components/juegos/juegos.component';
 
 @NgModule({
-  declarations: [AppComponent, MenuComponent, InicioComponent],
+  declarations: [AppComponent, MenuComponent, InicioComponent, JuegosComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

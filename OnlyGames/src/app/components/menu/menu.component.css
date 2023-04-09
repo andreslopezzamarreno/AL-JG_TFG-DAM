@@ -1,7 +1,159 @@
 body{
-  width: 1920px;
-  height: 960px;
+  min-height: 100vh;
+  background: url(src\app\images\fondo_menu.jpg) 0 0 no-repeat;
+  background-size: cover;
 }
 p{
   margin-left: 50%;
 }
+.menu-top{
+  display: inline-flex;
+}
+.gametag{
+  font-family: '8BIT WONDER', sans-serif;
+  margin: auto;
+  padding: auto;
+}
+
+/*Diseño Menu*/
+.cf:before,
+.cf:after {
+  content: " ";
+  display: table;
+}
+
+.cf:after {
+  clear: both;
+}
+
+.cf {
+  *zoom: 1;
+}
+.menu,
+.submenu {
+  margin: 0;
+  list-style: none;
+  padding-left: 350px;
+}
+
+.menu {
+  margin: auto;
+  width: 800px;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+  width: fit-content;
+
+}
+
+.menu > li {
+  background: #34495e;
+  float: left;
+  position: relative;
+  transform: skewX(25deg);
+}
+#btn-cerrar-sesion{
+  background: #ed5c53;
+}
+#btn-cerrar-sesion a:hover{
+  font-size: 15px;
+}
+.menu a {
+  display: block;
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-family: Arial, Helvetica;
+  font-size: 14px;
+  font-family: '8BIT WONDER', sans-serif;
+}
+
+.menu li:hover {
+  background: #48C9B0;
+
+}
+
+.menu > li > a {
+  transform: skewX(-25deg);
+  padding: 1em 2em;
+}
+
+.submenu {
+  position: absolute;
+  width: 500px;
+  margin-left: -350px;
+  transform: skewX(-25deg);
+  transform-origin: left top;
+  align-items: center;
+}
+
+.submenu li {
+  background-color: #34495e;
+  position: relative;
+  overflow: hidden;
+
+}
+
+.submenu > li > a {
+  padding: 1em 2em;
+}
+
+.submenu > li::after {
+  content: '';
+  position: absolute;
+  top: -125%;
+  height: 100%;
+  width: 100%;
+  box-shadow: 0 0 50px rgba(0, 0, 0, .9);
+}
+
+.submenu > li:nth-child(odd){
+  transform: skewX(-25deg) translateX(0);
+}
+
+.submenu > li:nth-child(odd) > a {
+  transform: skewX(25deg);
+}
+
+.submenu > li:nth-child(odd)::after {
+  right: -50%;
+  transform: skewX(-25deg) rotate(3deg);
+}
+
+.submenu > li:nth-child(even){
+  transform: skewX(25deg) translateX(0);
+}
+
+.submenu > li:nth-child(even) > a {
+  transform: skewX(-25deg);
+}
+
+.submenu > li:nth-child(even)::after {
+  left: -50%;
+  transform: skewX(25deg) rotate(3deg);
+}
+
+.submenu,
+.submenu li {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.submenu li {
+  transition: .2s ease transform;
+}
+
+.menu > li:hover .submenu,
+.menu > li:hover .submenu li {
+  opacity: 1;
+  visibility: visible;
+}
+
+.menu > li:hover .submenu li:nth-child(even){
+  transform: skewX(25deg) translateX(15px);
+}
+
+.menu > li:hover .submenu li:nth-child(odd){
+  transform: skewX(-25deg) translateX(-15px);
+}
+/*Fin Menu*/
+

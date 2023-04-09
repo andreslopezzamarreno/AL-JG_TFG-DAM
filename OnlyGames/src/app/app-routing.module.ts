@@ -3,16 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { MenuComponent } from './components/menu/menu.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { JuegosComponent } from './components/juegos/juegos.component';
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
   { path: 'inicio', component: InicioComponent },
   { path: 'inicio/:tipo', component: InicioComponent },
-  {
-    path: 'menu',
-    component: MenuComponent,
-    ...canActivate(() => redirectUnauthorizedTo(['/inicio/login'])),
-  },
+  { path: 'menu', component: MenuComponent,...canActivate(() => redirectUnauthorizedTo(['/inicio/login'])),
+      children:[{path:'juegos', component: JuegosComponent}
+  ]},
 ];
 
 @NgModule({
