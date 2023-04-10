@@ -38,6 +38,7 @@ export class DatabaseService {
     return getDocs(querySnapshot);
   }
 
+  //ver si existe el gametag para que no exista dos usuarios con el mismo
   existeGametag(gametag: string) {
     const querySnapshot = query(
       collection(this.db, 'users'),

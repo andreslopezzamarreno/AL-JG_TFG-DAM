@@ -15,10 +15,11 @@ export class InicioComponent {
   constructor(
     private auth: AuthService,
     private router: Router,
-    private Actroute: ActivatedRoute,
+    private actroute: ActivatedRoute,
     private database: DatabaseService
   ) {
-    Actroute.params.subscribe((cosas) => {
+    //Para recuperar el tipo que se le pasa, si no hay tipo pasado inicia el login
+    actroute.params.subscribe((cosas) => {
       this.tipo = cosas['tipo'];
       if (this.tipo == undefined) {
         this.tipo = 'login';
@@ -26,6 +27,7 @@ export class InicioComponent {
     });
   }
 
+  //metodo de login
   loguearse(usuario: string, pass: string) {
     this.auth
       .login(usuario, pass)
@@ -35,12 +37,14 @@ export class InicioComponent {
       .catch((error) => console.log(error));
   }
 
+  //control de las pulsaciondes del teclado
   onKeydown(event: any, usuario: string, pass: string) {
     if (event.key === 'Enter') {
       this.loguearse(usuario, pass);
     }
   }
 
+  //login con google
   googleLogin() {
     this.auth
       .loginWithGoogle()
@@ -50,9 +54,9 @@ export class InicioComponent {
       .catch((error) => console.log(error));
   }
 
+  //gesitro de usuario con usuario y contraseña añadiendo ademas gametag
   registro(usuario: string, pass: string) {
     var gametag = (<HTMLInputElement>document.getElementById('gametag')).value;
-
     this.database.existeGametag(gametag).then((response) => {
       if (response.size == 0) {
         if (gametag != '') {
@@ -72,6 +76,7 @@ export class InicioComponent {
     });
   }
 
+  //metodo para hacer el cambio entre login y registro
   navegar(tipo: string) {
     this.router.navigate(['inicio', tipo]);
   }
