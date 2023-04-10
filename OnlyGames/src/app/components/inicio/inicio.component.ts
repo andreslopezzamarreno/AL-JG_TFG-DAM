@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { ActivatedRoute } from '@angular/router';
+import { Usuario } from 'src/app/utils/usuario';
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -29,7 +30,6 @@ export class InicioComponent {
     this.auth
       .login(usuario, pass)
       .then((response) => {
-        console.log(response);
         this.router.navigate(['/menu']);
       })
       .catch((error) => console.log(error));
@@ -51,22 +51,25 @@ export class InicioComponent {
   }
 
   registro(usuario: string, pass: string) {
-    //Hacer consulta para esto
     var gametag = (<HTMLInputElement>document.getElementById('gametag')).value;
-    this.database.existeGametag(gametag);
 
-
-    if (gametag != '') {
-      this.auth
-        .registro(usuario, pass)
-        .then((response) => {
-          this.database.escribirGametag(response.user.uid, gametag);
-          this.router.navigate(['/menu']);
-        })
-        .catch((error) => console.log(error));
-    } else {
-      alert('Rellena todos los campos');
-    }
+    this.database.existeGametag(gametag).then((response) => {
+      if (response.size == 0) {
+        if (gametag != '') {
+          this.auth
+            .registro(usuario, pass)
+            .then((response) => {
+              this.database.escribirGameTag(response.user.uid, gametag);
+              this.router.navigate(['/menu']);
+            })
+            .catch((error) => console.log(error));
+        } else {
+          alert('Rellena todos los campos');
+        }
+      } else {
+        alert('Ya existe un usario con ese Gametag');
+      }
+    });
   }
 
   navegar(tipo: string) {

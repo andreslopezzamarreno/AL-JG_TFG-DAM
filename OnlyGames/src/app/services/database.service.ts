@@ -1,39 +1,48 @@
 import { Injectable } from '@angular/core';
-import { getDatabase, ref, set, get, child } from 'firebase/database';
+import {
+  collection,
+  doc,
+  getFirestore,
+  query,
+  where,
+  getDocs,
+  setDoc,
+} from 'firebase/firestore';
+import { Usuario } from '../utils/usuario';
+import { user } from '@angular/fire/auth';
 @Injectable({
   providedIn: 'root',
 })
 export class DatabaseService {
-  db = getDatabase();
-
+  db = getFirestore();
   constructor() {}
 
-  escribirGametag(userId: string, nametag: string) {
-    set(ref(this.db, 'users/' + userId), nametag);
-  }
-
-  //Trminar metodo
-  existeGametag(gametag: string): boolean {
-    const dbRef = ref(getDatabase());
-
-    get(child(dbRef, `users/`))
-      .then((snapshot) => {
-        console.log(snapshot.val());
-
-        /* if (snapshot.exists()) {
-          console.log(snapshot.val());
-          return false;
-        } else {
-          console.log(snapshot);
-          return true;
-        } */
-      })
-      .catch((error) => {
-        console.error(error);
-        return false;
+  //Escribe en la base de datos --> en la coleccion users, el usuario uid-gametag
+  escribirGameTag(userId: string, gametag: string) {
+    try {
+      setDoc(doc(this.db, 'users', userId), {
+        id: userId,
+        gametag: gametag,
       });
-    return false;
+    } catch (e) {
+      console.error('Error añadiendo gameTag: ', e);
+    }
   }
 
-  // Hacer metodo para hacer una consulta y conseguir el gametag del usuario
+  //conseguir el gametag del usuario pasado
+  recuperarGameTag(id: any) {
+    const querySnapshot = query(
+      collection(this.db, 'users'),
+      where('id', '==', id)
+    );
+    return getDocs(querySnapshot);
+  }
+
+  existeGametag(gametag: string) {
+    const querySnapshot = query(
+      collection(this.db, 'users'),
+      where('gametag', '==', gametag)
+    );
+    return getDocs(querySnapshot);
+  }
 }
