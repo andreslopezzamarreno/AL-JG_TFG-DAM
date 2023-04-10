@@ -18,7 +18,7 @@ export class DatabaseService {
 
     get(child(dbRef, `users/`))
       .then((snapshot) => {
-        console.log(snapshot.toJSON());
+        console.log(snapshot.val());
 
         /* if (snapshot.exists()) {
           console.log(snapshot.val());
