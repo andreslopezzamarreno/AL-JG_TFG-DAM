@@ -34,8 +34,7 @@ export class InicioComponent {
   //metodo de login
   loguearse(usuario: string, pass: string) {
     if (usuario == '' || pass == '') {
-      this.error = true;
-      this.mensaje = 'Algun campo esta vacio';
+      this.mostrarError('Algun campo esta vacio');
     } else {
       this.auth
         .login(usuario, pass)
@@ -43,9 +42,9 @@ export class InicioComponent {
           this.router.navigate(['/menu']);
         })
         .catch((error) => {
-          this.error = true;
-          this.mensaje =
-            'Error al iniciar sesion. Asegurate de escribir bien correo y contraseña';
+          this.mostrarError(
+            'Error al iniciar sesion. Asegurate de escribir bien correo y contraseña'
+          );
           console.log(error);
         });
     }
@@ -66,8 +65,7 @@ export class InicioComponent {
         this.router.navigate(['/menu']);
       })
       .catch((error) => {
-        this.error = true;
-        this.mensaje = 'Error al iniciar sesion.';
+        this.mostrarError('Error al iniciar sesion.');
         console.log(error);
       });
   }
@@ -79,9 +77,9 @@ export class InicioComponent {
       this.database.existeGametag(gametag).then((response) => {
         if (response.size == 0) {
           if (pass.length < 6) {
-            this.error = true;
-            this.mensaje =
-              'La contraseña tiene que tener al menos 6 caracteres';
+            this.mostrarError(
+              'La contraseña tiene que tener al menos 6 caracteres'
+            );
           } else {
             this.auth
               .registro(usuario, pass)
@@ -90,24 +88,27 @@ export class InicioComponent {
                 this.router.navigate(['/menu']);
               })
               .catch((error) => {
-                this.error = true;
-                this.mensaje = 'Error al registrarse, el correo ya existe';
+                this.mostrarError('Error al registrarse, el correo ya existe');
                 console.log(error);
               });
           }
         } else {
-          this.error = true;
-          this.mensaje = 'Ya existe un usario con ese Gametag';
+          this.mostrarError('Ya existe un usario con ese Gametag');
         }
       });
     } else {
-      this.error = true;
-      this.mensaje = 'Rellena todos los campos';
+      this.mostrarError('Rellena todos los campos');
     }
   }
 
   //metodo para hacer el cambio entre login y registro
   navegar(tipo: string) {
     this.router.navigate(['inicio', tipo]);
+  }
+
+  //muestra el alert con el mensaje pasado
+  mostrarError(mensaje: string) {
+    this.error = true;
+    this.mensaje = mensaje;
   }
 }
