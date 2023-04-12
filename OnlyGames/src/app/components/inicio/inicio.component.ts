@@ -21,9 +21,9 @@ export class InicioComponent {
     private actroute: ActivatedRoute,
     private database: DatabaseService
   ) {
-    this.error = false;
     //Para recuperar el tipo que se le pasa, si no hay tipo pasado inicia el login
     actroute.params.subscribe((cosas) => {
+      this.error = false;
       this.tipo = cosas['tipo'];
       if (this.tipo == undefined) {
         this.tipo = 'login';
@@ -78,17 +78,23 @@ export class InicioComponent {
     if (usuario != '' && pass != '' && gametag != '') {
       this.database.existeGametag(gametag).then((response) => {
         if (response.size == 0) {
-          this.auth
-            .registro(usuario, pass)
-            .then((response) => {
-              this.database.escribirGameTag(response.user.uid, gametag);
-              this.router.navigate(['/menu']);
-            })
-            .catch((error) => {
-              this.error = true;
-              this.mensaje = 'Error al registrarse';
-              console.log(error);
-            });
+          if (pass.length < 6) {
+            this.error = true;
+            this.mensaje =
+              'La contraseña tiene que tener al menos 6 caracteres';
+          } else {
+            this.auth
+              .registro(usuario, pass)
+              .then((response) => {
+                this.database.escribirGameTag(response.user.uid, gametag);
+                this.router.navigate(['/menu']);
+              })
+              .catch((error) => {
+                this.error = true;
+                this.mensaje = 'Error al registrarse, el correo ya existe';
+                console.log(error);
+              });
+          }
         } else {
           this.error = true;
           this.mensaje = 'Ya existe un usario con ese Gametag';
