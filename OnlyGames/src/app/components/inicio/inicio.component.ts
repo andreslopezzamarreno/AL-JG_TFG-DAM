@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { ActivatedRoute } from '@angular/router';
 import { Usuario } from 'src/app/utils/usuario';
+import { empty, isEmpty } from 'rxjs';
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -11,6 +12,8 @@ import { Usuario } from 'src/app/utils/usuario';
 })
 export class InicioComponent {
   tipo = '';
+  error = false;
+  mensaje = '';
 
   constructor(
     private auth: AuthService,
@@ -18,6 +21,7 @@ export class InicioComponent {
     private actroute: ActivatedRoute,
     private database: DatabaseService
   ) {
+    this.error = false;
     //Para recuperar el tipo que se le pasa, si no hay tipo pasado inicia el login
     actroute.params.subscribe((cosas) => {
       this.tipo = cosas['tipo'];
@@ -29,12 +33,22 @@ export class InicioComponent {
 
   //metodo de login
   loguearse(usuario: string, pass: string) {
-    this.auth
-      .login(usuario, pass)
-      .then((response) => {
-        this.router.navigate(['/menu']);
-      })
-      .catch((error) => console.log(error));
+    if (usuario == '' || pass == '') {
+      this.error = true;
+      this.mensaje = 'Algun campo esta vacio';
+    } else {
+      this.auth
+        .login(usuario, pass)
+        .then((response) => {
+          this.router.navigate(['/menu']);
+        })
+        .catch((error) => {
+          this.error = true;
+          this.mensaje =
+            'Error al iniciar sesion. Asegurate de escribir bien correo y contraseña';
+          console.log(error);
+        });
+    }
   }
 
   //control de las pulsaciondes del teclado
@@ -51,29 +65,39 @@ export class InicioComponent {
       .then((response) => {
         this.router.navigate(['/menu']);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        this.error = true;
+        this.mensaje = 'Error al iniciar sesion.';
+        console.log(error);
+      });
   }
 
   //gesitro de usuario con usuario y contraseña añadiendo ademas gametag
   registro(usuario: string, pass: string) {
     var gametag = (<HTMLInputElement>document.getElementById('gametag')).value;
-    this.database.existeGametag(gametag).then((response) => {
-      if (response.size == 0) {
-        if (gametag != '') {
+    if (usuario != '' && pass != '' && gametag != '') {
+      this.database.existeGametag(gametag).then((response) => {
+        if (response.size == 0) {
           this.auth
             .registro(usuario, pass)
             .then((response) => {
               this.database.escribirGameTag(response.user.uid, gametag);
               this.router.navigate(['/menu']);
             })
-            .catch((error) => console.log(error));
+            .catch((error) => {
+              this.error = true;
+              this.mensaje = 'Error al registrarse';
+              console.log(error);
+            });
         } else {
-          alert('Rellena todos los campos');
+          this.error = true;
+          this.mensaje = 'Ya existe un usario con ese Gametag';
         }
-      } else {
-        alert('Ya existe un usario con ese Gametag');
-      }
-    });
+      });
+    } else {
+      this.error = true;
+      this.mensaje = 'Rellena todos los campos';
+    }
   }
 
   //metodo para hacer el cambio entre login y registro
