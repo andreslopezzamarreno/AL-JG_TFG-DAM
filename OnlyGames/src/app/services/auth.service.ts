@@ -14,6 +14,7 @@ import {
 export class AuthService {
   constructor(private auth: Auth) {}
   loginWithGoogle() {
+    //Prompt o aviso para que introduzca gametag
     return signInWithPopup(this.auth, new GoogleAuthProvider());
   }
 
