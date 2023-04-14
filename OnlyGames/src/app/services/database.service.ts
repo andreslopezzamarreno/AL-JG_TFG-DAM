@@ -46,4 +46,6 @@ export class DatabaseService {
     );
     return getDocs(querySnapshot);
   }
+
+  verJuegos() {}
 }
