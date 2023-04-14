@@ -40,10 +40,13 @@ export class InicioComponent {
         .login(usuario, pass)
         .then((response) => {
           this.router.navigate(['/menu']);
+          var gametag = (<HTMLInputElement>document.getElementById('gametag')).value;
+          this.database.escribirGameTag(response.user.uid, gametag);
+          //
         })
         .catch((error) => {
           this.mostrarError(
-            'Error al iniciar sesion. Asegurate de escribir bien correo y contraseña'
+            'Error al iniciar sesion, Asegurate de escribir bien correo y contrasena'
           );
           console.log(error);
         });
@@ -70,7 +73,7 @@ export class InicioComponent {
       });
   }
 
-  //gesitro de usuario con usuario y contraseña añadiendo ademas gametag
+  //regitro de usuario con usuario y contraseña añadiendo ademas gametag
   registro(usuario: string, pass: string) {
     var gametag = (<HTMLInputElement>document.getElementById('gametag')).value;
     if (usuario != '' && pass != '' && gametag != '') {
@@ -78,7 +81,7 @@ export class InicioComponent {
         if (response.size == 0) {
           if (pass.length < 6) {
             this.mostrarError(
-              'La contraseña tiene que tener al menos 6 caracteres'
+              'La contrasena tiene que tener al menos 6 caracteres'
             );
           } else {
             this.auth
