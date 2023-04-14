@@ -7,6 +7,7 @@ import {
   where,
   getDocs,
   setDoc,
+  getDoc,
 } from 'firebase/firestore';
 import { Usuario } from '../utils/usuario';
 import { user } from '@angular/fire/auth';
@@ -47,5 +48,17 @@ export class DatabaseService {
     return getDocs(querySnapshot);
   }
 
-  verJuegos() {}
+  verJuegos() {
+    const juegosRef = collection(this.db, 'juegos');
+    const q = query(juegosRef);
+    return getDocs(q);
+  }
+  verMisJuegos(uid: string) {
+    const querySnapshot = query(
+      collection(this.db, 'users'),
+      where('id', '==', uid)
+    );
+
+    return getDocs(querySnapshot);
+  }
 }

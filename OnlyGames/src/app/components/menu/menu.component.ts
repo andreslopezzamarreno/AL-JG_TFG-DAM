@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DatabaseService } from 'src/app/services/database.service';
 import { Usuario } from 'src/app/utils/usuario';
 
@@ -15,7 +15,8 @@ export class MenuComponent {
   constructor(
     private auth: AuthService,
     private router: Router,
-    private database: DatabaseService
+    private database: DatabaseService,
+    private actroute: ActivatedRoute
   ) {
     this.ponerGameTag();
   }
@@ -39,6 +40,10 @@ export class MenuComponent {
         this.router.navigate(['/inicio/login']);
       })
       .catch((error) => console.log(error));
+  }
+
+  navegar(tipo: string) {
+    this.router.navigate(['juegos', tipo]);
   }
 }
 

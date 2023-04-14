@@ -1,7 +1,10 @@
-import { Usuario } from './usuario';
-
-export interface Juego {
+export class Juego {
   nombre: string;
   descripcion: string;
-  clasificacion: Usuario[];
+  imagen: string;
+  constructor(nombre: string, descripcion: string, imagen: string) {
+    this.nombre = nombre;
+    this.descripcion = descripcion;
+    this.imagen = imagen;
+  }
 }

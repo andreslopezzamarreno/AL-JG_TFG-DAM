@@ -13,7 +13,7 @@ const routes: Routes = [
     path: 'menu',
     component: MenuComponent,
     ...canActivate(() => redirectUnauthorizedTo(['/inicio/login'])),
-    children: [{ path: 'juegos', component: JuegosComponent }],
+    children: [{ path: 'juegos/:tipo', component: JuegosComponent }],
   },
 ];
 
