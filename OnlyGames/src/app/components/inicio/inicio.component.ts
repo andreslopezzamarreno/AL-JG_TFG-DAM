@@ -40,7 +40,8 @@ export class InicioComponent {
         .login(usuario, pass)
         .then((response) => {
           this.router.navigate(['/menu']);
-          var gametag = (<HTMLInputElement>document.getElementById('gametag')).value;
+          var gametag = (<HTMLInputElement>document.getElementById('gametag'))
+            .value;
           this.database.escribirGameTag(response.user.uid, gametag);
           //
         })
@@ -91,8 +92,8 @@ export class InicioComponent {
                 this.router.navigate(['/menu']);
               })
               .catch((error) => {
-                this.mostrarError('Error al registrarse, el correo ya existe');
                 console.log(error);
+                this.mostrarError('Error al registrarse, el correo ya existe');
               });
           }
         } else {
