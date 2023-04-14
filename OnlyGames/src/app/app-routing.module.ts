@@ -9,9 +9,12 @@ const routes: Routes = [
   { path: '', component: InicioComponent },
   { path: 'inicio', component: InicioComponent },
   { path: 'inicio/:tipo', component: InicioComponent },
-  { path: 'menu', component: MenuComponent,...canActivate(() => redirectUnauthorizedTo(['/inicio/login'])),
-      children:[{path:'juegos', component: JuegosComponent}
-  ]},
+  {
+    path: 'menu',
+    component: MenuComponent,
+    ...canActivate(() => redirectUnauthorizedTo(['/inicio/login'])),
+    children: [{ path: 'juegos', component: JuegosComponent }],
+  },
 ];
 
 @NgModule({
