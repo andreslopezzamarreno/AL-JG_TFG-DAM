@@ -10,10 +10,11 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./juegos.component.css'],
 })
 export class JuegosComponent {
-  juegos: Juego[] = [];
   tipo: string = '';
   currentuser = this.auth.currentUser();
   todosLosJuegos: Juego[] = [];
+  juegos: Juego[] = [];
+  juegosRestantes: Juego[] = [];
 
   constructor(
     private database: DatabaseService,
@@ -23,13 +24,14 @@ export class JuegosComponent {
     actroute.params.subscribe((cosas) => {
       this.tipo = cosas['tipo'];
       console.log(this.tipo);
-      this.verJuegos();
+      this.verTodosLosJuegos();
 
       if (this.tipo == undefined) {
         this.tipo = 'misJuegos';
       }
 
       if (this.tipo == 'misJuegos') {
+        this.juegosRestantes = [];
         this.verMisJuego(this.currentuser!.uid);
       } else {
         this.juegos = this.todosLosJuegos;
@@ -37,7 +39,25 @@ export class JuegosComponent {
     });
   }
 
-  verJuegos() {
+  verMisJuego(uid: string) {
+    this.juegos = [];
+    this.juegosRestantes = [];
+    this.database.verMisJuegos(uid).then((item) => {
+      var contador = 0;
+      item.forEach((element) => {
+        element.data()['juegos'].forEach((element: any) => {
+          contador++;
+          if (element == true) {
+            this.juegos.push(this.todosLosJuegos[contador]);
+          } else {
+            this.juegosRestantes.push(this.todosLosJuegos[contador]);
+          }
+        });
+      });
+    });
+  }
+
+  verTodosLosJuegos() {
     this.todosLosJuegos = [];
     this.database.verJuegos().then((item) => {
       item.forEach((element) => {
@@ -46,22 +66,6 @@ export class JuegosComponent {
         var imagen = element.data()['imagen'];
         var juego = new Juego(nombre, descripcion, imagen);
         this.todosLosJuegos.push(juego);
-      });
-    });
-  }
-
-  verMisJuego(uid: string) {
-    this.juegos = [];
-
-    this.database.verMisJuegos(uid).then((item) => {
-      var contador = 0;
-      item.forEach((element) => {
-        element.data()['juegos'].forEach((element: any) => {
-          if (element == true) {
-            this.juegos.push(this.todosLosJuegos[contador]);
-            contador++;
-          }
-        });
       });
     });
   }
