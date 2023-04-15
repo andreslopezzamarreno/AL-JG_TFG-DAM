@@ -28,7 +28,6 @@ export class JuegosComponent {
       this.todosLosJuegos = [];
       this.juegos = [];
       this.juegosRestantes = [];
-
       this.verTodosLosJuegos(this.currentuser!.uid);
 
       if (this.tipo == undefined) {
@@ -72,22 +71,4 @@ export class JuegosComponent {
       });
     });
   }
-
-  /* verMisJuego(uid: string) {
-    this.juegos = [];
-    this.juegosRestantes = [];
-    this.database.verMisJuegos(uid).then((item) => {
-      var contador = 0;
-      item.forEach((element) => {
-        element.data()['juegos'].forEach((element: any) => {
-          contador++;
-          if (element == true) {
-            this.juegos.push(this.todosLosJuegos[contador]);
-          } else {
-            this.juegosRestantes.push(this.todosLosJuegos[contador]);
-          }
-        });
-      });
-    });
-  } */
 }
