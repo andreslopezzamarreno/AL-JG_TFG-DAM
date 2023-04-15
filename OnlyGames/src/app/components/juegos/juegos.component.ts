@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class JuegosComponent {
   tipo: string = '';
   currentuser = this.auth.currentUser();
+  todos = false;
   todosLosJuegos: Juego[] = [];
   juegos: Juego[] = [];
   juegosRestantes: Juego[] = [];
@@ -24,22 +25,55 @@ export class JuegosComponent {
     actroute.params.subscribe((cosas) => {
       this.tipo = cosas['tipo'];
       console.log(this.tipo);
-      this.verTodosLosJuegos();
+      this.todosLosJuegos = [];
+      this.juegos = [];
+      this.juegosRestantes = [];
+
+      this.verTodosLosJuegos(this.currentuser!.uid);
 
       if (this.tipo == undefined) {
         this.tipo = 'misJuegos';
       }
 
       if (this.tipo == 'misJuegos') {
-        this.juegosRestantes = [];
-        this.verMisJuego(this.currentuser!.uid);
+        this.todos = false;
       } else {
-        this.juegos = this.todosLosJuegos;
+        this.todos = true;
+        console.log(this.juegosRestantes);
       }
     });
   }
 
-  verMisJuego(uid: string) {
+  verTodosLosJuegos(uid: string) {
+    this.todosLosJuegos = [];
+    this.database.verJuegos().then((item) => {
+      item.forEach((element) => {
+        var nombre = element.data()['nombre'];
+        var descripcion = element.data()['descripcion'];
+        var imagen = element.data()['imagen'];
+        var juego = new Juego(nombre, descripcion, imagen);
+        this.todosLosJuegos.push(juego);
+      });
+    });
+
+    this.database.verMisJuegos(uid).then((item) => {
+      var contador = 0;
+
+      item.forEach((element) => {
+        element.data()['juegos'].forEach((element: any) => {
+          var juegoAct = this.todosLosJuegos[contador];
+          contador++;
+          if (element == true) {
+            this.juegos.push(juegoAct);
+          } else {
+            this.juegosRestantes.push(juegoAct);
+          }
+        });
+      });
+    });
+  }
+
+  /* verMisJuego(uid: string) {
     this.juegos = [];
     this.juegosRestantes = [];
     this.database.verMisJuegos(uid).then((item) => {
@@ -55,18 +89,5 @@ export class JuegosComponent {
         });
       });
     });
-  }
-
-  verTodosLosJuegos() {
-    this.todosLosJuegos = [];
-    this.database.verJuegos().then((item) => {
-      item.forEach((element) => {
-        var nombre = element.data()['nombre'];
-        var descripcion = element.data()['descripcion'];
-        var imagen = element.data()['imagen'];
-        var juego = new Juego(nombre, descripcion, imagen);
-        this.todosLosJuegos.push(juego);
-      });
-    });
-  }
+  } */
 }
