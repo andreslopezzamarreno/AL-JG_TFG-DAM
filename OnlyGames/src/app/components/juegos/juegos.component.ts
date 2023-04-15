@@ -62,12 +62,6 @@ export class JuegosComponent {
             contador++;
           }
         });
-
-        var nombre = element.data()['nombre'];
-        var descripcion = element.data()['descripcion'];
-        var imagen = element.data()['imagen'];
-        var juego = new Juego(nombre, descripcion, imagen);
-        this.todosLosJuegos.push(juego);
       });
     });
   }
