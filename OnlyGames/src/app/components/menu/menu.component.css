@@ -3,9 +3,7 @@ body{
   background: url(src\app\images\fondo_menu.jpg) 0 0 no-repeat;
   background-size: cover;
 }
-p{
-  margin-left: 50%;
-}
+
 .menu-top{
   display: inline-flex;
   align-content: center;
@@ -37,7 +35,7 @@ p{
 .submenu {
   margin: 0;
   list-style: none;
-  padding-left: 420px;
+  padding-left: 550px;
 }
 
 .menu {
@@ -71,6 +69,15 @@ p{
   font-family: '8BIT WONDER', sans-serif;
 }
 
+.submenu li{
+  width: max-content;
+  height: max-content;
+}
+.submenu a {
+  font-size: 12px;
+  text-align: center;
+}
+
 .menu li:hover {
   background: #48C9B0;
 
@@ -84,7 +91,7 @@ p{
 .submenu {
   position: absolute;
   width: 570px;
-  margin-left: -420px;
+  margin-left: -550px;
   transform: skewX(-25deg);
   transform-origin: left top;
   align-items: center;

@@ -57,13 +57,13 @@ body {
 }
 
 .carousel-item {
-  width: 200px;
-  height: 350px;
+  width: 300px;
+  height: 330px;
   border-radius: 20px;
   background-color: #95bcd6;
   overflow: hidden;
   margin-right: 10px;
-  margin-top: 70px;
+  margin-top: 150px;
   display: inline-block;
   cursor: pointer;
   -webkit-transition: 1000ms all;
@@ -74,13 +74,13 @@ body {
 }
 
 .carousel-item-blockGames {
-  width: 200px;
-  height: 350px;
+  width: 300px;
+  height: 300px;
   border-radius: 20px;
   background-color: #95bcd6;
   overflow: hidden;
   margin-right: 10px;
-  margin-top: 30px;
+  margin-top: 50px;
   display: inline-block;
   cursor: pointer;
   -webkit-transition: 1000ms all;
@@ -92,29 +92,33 @@ body {
 }
 
 .carousel-item:hover ~ .carousel-item {
-  -webkit-transform: translate3d(100px, 0, 0);
-  transform: translate3d(100px, 0, 0);
+  -webkit-transform: translate3d(50px, 0, 0);
+  transform: translate3d(50px, 0, 0);
 }
 
 .carousel-item-blockGames-:hover ~ .carousel-item-blockGames {
-  -webkit-transform: translate3d(100px, 0, 0);
-  transform: translate3d(100px, 0, 0);
+  -webkit-transform: translate3d(50px, 0, 0);
+  transform: translate3d(50px, 0, 0);
 }
 
 
 .carousel__container:hover .carousel-item:hover {
-  -webkit-transform: scale(1.5);
-  transform: scale(1.5);
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
   opacity: 1;
+  margin-right: 40px;
+  margin-left: 40px;
 }
 .carousel__container:hover .carousel-item-blockGames:hover {
-  -webkit-transform: scale(1.5);
-  transform: scale(1.5);
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
   opacity: 1;
+  margin-right: 40px;
+  margin-left: 40px;
 }
 
 .carousel-item__img {
-  width: 200px;
+  width: 300px;
   height: 350px;
   -o-object-fit: cover;
   object-fit: cover;
@@ -161,8 +165,15 @@ body {
   padding-top: 180px;
 }
 
-.carousel-item__details .carousel-item__details--title,
+.carousel-item__details--title,
 .carousel-item__details--subtitle {
   color: #fff;
-  margin: 5px 0;
+  margin: auto;
 }
+.carousel-item__details--title{
+  font-size: 25px;
+}
+.carousel-item__details--subtitle {
+  font-size: 13px;
+}
+
