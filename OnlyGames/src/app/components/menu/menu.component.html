@@ -20,7 +20,10 @@
   </head>
   <body>
     <div class="menu-top">
-      <p class="gametag"><img src="">{{ currentUserGameTag }}</p>
+      <p class="gametag">
+        <img src="./assets/users.png" />
+        {{ currentUserGameTag }}
+      </p>
       <ul class="menu cf">
         <li>
           <a>Juegos</a>
@@ -35,15 +38,14 @@
             </li>
           </ul>
         </li>
-        <li><a href="">Mi Perfil</a>
+        <li>
+          <a href="">Mi Perfil</a>
           <ul class="submenu">
             <li>
               <a href="" routerLink="/menu/editarPerfil">Editar perfil</a>
             </li>
             <li>
-              <a href="" routerLink="/menu/misEstadisticas"
-                >Mis Estadisticas</a
-              >
+              <a href="" routerLink="/menu/misEstadisticas">Mis Estadisticas</a>
             </li>
           </ul>
         </li>
