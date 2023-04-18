@@ -24,6 +24,7 @@ export class DatabaseService {
       setDoc(doc(this.db, 'users', userId), {
         id: userId,
         gametag: gametag,
+        juegos: [true, false, false],
       });
     } catch (e) {
       console.error('Error añadiendo gameTag: ', e);
@@ -31,34 +32,35 @@ export class DatabaseService {
   }
 
   //conseguir el gametag del usuario pasado
-  recuperarGameTag(id: any) {
+  async recuperarGameTag(id: any) {
     const querySnapshot = query(
       collection(this.db, 'users'),
       where('id', '==', id)
     );
-    return getDocs(querySnapshot);
+    return await getDocs(querySnapshot);
   }
 
   //ver si existe el gametag para que no exista dos usuarios con el mismo
-  existeGametag(gametag: string) {
+  async existeGametag(gametag: string) {
     const querySnapshot = query(
       collection(this.db, 'users'),
       where('gametag', '==', gametag)
     );
-    return getDocs(querySnapshot);
+    return await getDocs(querySnapshot);
   }
 
-  verJuegos() {
+  //carga todos losjuegos
+  async verJuegos() {
     const juegosRef = collection(this.db, 'juegos');
     const q = query(juegosRef);
-    return getDocs(q);
+    return await getDocs(q);
   }
-  verMisJuegos(uid: string) {
+
+  async verMisJuegos(uid: string) {
     const querySnapshot = query(
       collection(this.db, 'users'),
       where('id', '==', uid)
     );
-
-    return getDocs(querySnapshot);
+    return await getDocs(querySnapshot);
   }
 }

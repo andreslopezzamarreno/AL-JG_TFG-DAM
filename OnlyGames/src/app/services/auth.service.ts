@@ -18,8 +18,8 @@ export class AuthService {
     return signInWithPopup(this.auth, new GoogleAuthProvider());
   }
 
-  login(usuario: string, pass: string) {
-    return signInWithEmailAndPassword(this.auth, usuario, pass);
+  async login(usuario: string, pass: string) {
+    return await signInWithEmailAndPassword(this.auth, usuario, pass);
   }
 
   registro(usuario: string, pass: string) {
