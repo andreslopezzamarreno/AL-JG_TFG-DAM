@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DatabaseService } from 'src/app/services/database.service';
 import { Juego } from 'src/app/utils/Juego';
 import { AuthService } from 'src/app/services/auth.service';
+import { Route } from '@angular/router';
 
 @Component({
   selector: 'app-juegos',
@@ -20,7 +21,8 @@ export class JuegosComponent {
   constructor(
     private database: DatabaseService,
     private actroute: ActivatedRoute,
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router
   ) {
     actroute.params.subscribe((cosas) => {
       this.tipo = cosas['tipo'];
@@ -38,7 +40,6 @@ export class JuegosComponent {
         this.todos = false;
       } else {
         this.todos = true;
-        console.log(this.juegosRestantes);
       }
     });
   }
@@ -70,5 +71,11 @@ export class JuegosComponent {
         });
       });
     });
+  }
+
+  irJuego(tipo: string) {
+    console.log(tipo);
+
+    this.router.navigate(['menu', tipo]);
   }
 }

@@ -3,8 +3,6 @@ import {
   Auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signInWithPopup,
-  GoogleAuthProvider,
   signOut,
 } from '@angular/fire/auth';
 
@@ -13,10 +11,6 @@ import {
 })
 export class AuthService {
   constructor(private auth: Auth) {}
-  loginWithGoogle() {
-    //Prompt o aviso para que introduzca gametag
-    return signInWithPopup(this.auth, new GoogleAuthProvider());
-  }
 
   async login(usuario: string, pass: string) {
     return await signInWithEmailAndPassword(this.auth, usuario, pass);

@@ -64,7 +64,16 @@
             #gametag
           />
         </div>
-        <div class="alert alert-danger" role="alert" style="font-family: '8BIT WONDER', sans-serif; font-size: smaller; color: red;" *ngIf="error">
+        <div
+          class="alert alert-danger"
+          role="alert"
+          style="
+            font-family: '8BIT WONDER', sans-serif;
+            font-size: smaller;
+            color: red;
+          "
+          *ngIf="error"
+        >
           {{ mensaje }}
         </div>
         <div class="btns" *ngIf="tipo == 'login'">
@@ -78,17 +87,6 @@
             (click)="loguearse(usuario.value, pass.value)"
           >
             Login
-          </button>
-          <button
-            type="button"
-            class="btn btn-outline-light text-center mt-3"
-            style="
-              font-family: '8BIT WONDER', sans-serif;
-              background-color: #4285f4;
-            "
-            (click)="googleLogin()"
-          >
-            Google Login
           </button>
         </div>
         <div class="btns" *ngIf="tipo == 'register'">

@@ -9,9 +9,11 @@ import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { MenuComponent } from './components/menu/menu.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { JuegosComponent } from './components/juegos/juegos.component';
+import { FlappyBirdComponent } from './components/flappy-bird/flappy-bird.component';
+import { AjedrezComponent } from './components/ajedrez/ajedrez.component';
 
 @NgModule({
-  declarations: [AppComponent, MenuComponent, InicioComponent, JuegosComponent],
+  declarations: [AppComponent, MenuComponent, InicioComponent, JuegosComponent, FlappyBirdComponent, AjedrezComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

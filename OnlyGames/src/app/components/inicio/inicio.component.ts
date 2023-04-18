@@ -32,11 +32,11 @@ export class InicioComponent {
   }
 
   //metodo de login
-  loguearse(usuario: string, pass: string) {
+  async loguearse(usuario: string, pass: string) {
     if (usuario == '' || pass == '') {
       this.mostrarError('Algun campo esta vacio');
     } else {
-      this.auth
+      await this.auth
         .login(usuario, pass)
         .then((response) => {
           this.router.navigate(['/menu']);
@@ -59,19 +59,6 @@ export class InicioComponent {
     if (event.key === 'Enter') {
       this.loguearse(usuario, pass);
     }
-  }
-
-  //login con google
-  googleLogin() {
-    this.auth
-      .loginWithGoogle()
-      .then((response) => {
-        this.router.navigate(['/menu']);
-      })
-      .catch((error) => {
-        this.mostrarError('Error al iniciar sesion.');
-        console.log(error);
-      });
   }
 
   //regitro de usuario con usuario y contraseña añadiendo ademas gametag
