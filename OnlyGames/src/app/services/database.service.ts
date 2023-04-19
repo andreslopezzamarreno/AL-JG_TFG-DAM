@@ -19,7 +19,7 @@ export class DatabaseService {
   constructor() {}
 
   //Escribe en la base de datos --> en la coleccion users, el usuario uid-gametag
-  escribirGameTag(userId: string, gametag: string) {
+  escribirDatos(userId: string, gametag: string) {
     try {
       setDoc(doc(this.db, 'users', userId), {
         id: userId,

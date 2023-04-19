@@ -42,7 +42,7 @@ export class InicioComponent {
           this.router.navigate(['/menu']);
           var gametag = (<HTMLInputElement>document.getElementById('gametag'))
             .value;
-          this.database.escribirGameTag(response.user.uid, gametag);
+          this.database.escribirDatos(response.user.uid, gametag);
           //
         })
         .catch((error) => {
@@ -75,7 +75,7 @@ export class InicioComponent {
             this.auth
               .registro(usuario, pass)
               .then((response) => {
-                this.database.escribirGameTag(response.user.uid, gametag);
+                this.database.escribirDatos(response.user.uid, gametag);
                 this.router.navigate(['/menu']);
               })
               .catch((error) => {
