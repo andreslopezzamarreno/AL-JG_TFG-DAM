@@ -11,8 +11,9 @@ body{
 .gametag{
   position: relative;
   font-family: '8BIT WONDER', sans-serif;
+  font-size: 32px;
   margin: auto;
-  padding: 15px;
+  padding: 5px;
 }
 .menu{
   position: fixed;
