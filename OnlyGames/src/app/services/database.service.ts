@@ -24,6 +24,8 @@ export class DatabaseService {
       setDoc(doc(this.db, 'users', userId), {
         id: userId,
         gametag: gametag,
+        coins: 0,
+        diamantes: 0,
         juegos: [true, false, false],
       });
     } catch (e) {

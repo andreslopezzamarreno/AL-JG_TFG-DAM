@@ -113,7 +113,7 @@ body {
   -webkit-transform: scale(1.2);
   transform: scale(1.2);
   opacity: 1;
-  margin-right: 40px;
+  margin-right: 90px;
   margin-left: 40px;
 }
 
@@ -155,11 +155,8 @@ body {
 }
 
 .carousel-item__details span {
-  /* width: 10px;
-  height: 10px; */
   font-size: 0.9rem;
   color: #2ecc71;
-  /* background-color: white; */
 }
 
 .carousel-item__details .controls {

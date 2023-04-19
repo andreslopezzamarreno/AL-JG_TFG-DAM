@@ -11,6 +11,8 @@ import { Usuario } from 'src/app/utils/usuario';
 })
 export class MenuComponent {
   currentUserGameTag?: string;
+  currentUserCoins?: number;
+  currentUserDiamantes?: number;
 
   constructor(
     private auth: AuthService,
@@ -18,17 +20,19 @@ export class MenuComponent {
     private database: DatabaseService,
     private actroute: ActivatedRoute
   ) {
-    this.ponerGameTag();
+    this.obtenerDatosUser();
   }
 
   //Obtener gametag del usuario que ha iniciado sesion
-  ponerGameTag() {
+  obtenerDatosUser() {
     this.database
       .recuperarGameTag(this.auth.currentUser()?.uid)
       .then((response) => {
         response.forEach((element: any) => {
           var usuario: Usuario = element.data();
           this.currentUserGameTag = usuario.gametag;
+          this.currentUserCoins = usuario.coins;
+          this.currentUserDiamantes = usuario.diamantes
         });
       });
   }
