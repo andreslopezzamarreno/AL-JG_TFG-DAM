@@ -172,9 +172,10 @@ body {
   margin: auto;
 }
 .carousel-item__details--title{
-  font-size: 25px;
+  margin-bottom: 5px;
+  font-size: 30px;
 }
 .carousel-item__details--subtitle {
-  font-size: 13px;
+  font-size: 20px;
 }
 
