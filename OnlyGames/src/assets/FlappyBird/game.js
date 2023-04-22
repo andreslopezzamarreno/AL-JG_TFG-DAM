@@ -70,7 +70,6 @@ cvs.addEventListener("click", function(evt){
     }
 });
 
-
 // BACKGROUND
 const bg = {
     sX : 0,
@@ -303,6 +302,7 @@ const pipes = {
 
 // SCORE
 const score= {
+  //Dependiendo quien se logee la puntuacion maxima valdra una cosa u otra
     best : parseInt(localStorage.getItem("best")) || 0,
     value : 0,
 
