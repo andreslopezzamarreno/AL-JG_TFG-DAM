@@ -12,6 +12,8 @@ import { JuegosComponent } from './components/juegos/juegos.component';
 import { FlappyBirdComponent } from './components/flappy-bird/flappy-bird.component';
 import { AjedrezComponent } from './components/ajedrez/ajedrez.component';
 
+import { CargarScriptsService } from './services/cargar-scripts.service';
+
 @NgModule({
   declarations: [AppComponent, MenuComponent, InicioComponent, JuegosComponent, FlappyBirdComponent, AjedrezComponent],
   imports: [
@@ -21,7 +23,7 @@ import { AjedrezComponent } from './components/ajedrez/ajedrez.component';
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
   ],
-  providers: [],
+  providers: [CargarScriptsService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
