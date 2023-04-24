@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { reload } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,14 @@ export class CargarScriptsService {
       let script = document.createElement("script")
       script.src = "./assets/" + archivo + ".js";
       let body = document.getElementsByTagName("body")[0];
-      body.appendChild(script);
+      if (body.lastElementChild?.isEqualNode(script)) {
+        body.removeChild(body.lastElementChild)
+        body.appendChild(script);
+        location.reload()
+      } else {
+        body.appendChild(script);
+      }
+
     }
   }
 }
