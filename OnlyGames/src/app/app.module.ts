@@ -13,9 +13,10 @@ import { FlappyBirdComponent } from './components/flappy-bird/flappy-bird.compon
 import { AjedrezComponent } from './components/ajedrez/ajedrez.component';
 
 import { CargarScriptsService } from './services/cargar-scripts.service';
+import { SnakeComponent } from './components/snake/snake.component';
 
 @NgModule({
-  declarations: [AppComponent, MenuComponent, InicioComponent, JuegosComponent, FlappyBirdComponent, AjedrezComponent],
+  declarations: [AppComponent, MenuComponent, InicioComponent, JuegosComponent, FlappyBirdComponent, AjedrezComponent, SnakeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -75,7 +75,7 @@ export class JuegosComponent {
 
   irJuego(tipo: string) {
     console.log(tipo);
-
     this.router.navigate(['menu', tipo]);
   }
+
 }

@@ -6,6 +6,7 @@ import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { JuegosComponent } from './components/juegos/juegos.component';
 import { FlappyBirdComponent } from './components/flappy-bird/flappy-bird.component';
 import { AjedrezComponent } from './components/ajedrez/ajedrez.component';
+import { SnakeComponent } from './components/snake/snake.component';
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
       { path: 'juegos/:tipo', component: JuegosComponent },
       { path: 'Flappy', component: FlappyBirdComponent },
       { path: 'Ajedrez', component: AjedrezComponent },
+      { path: 'Snake', component: SnakeComponent },
     ],
   },
 ];

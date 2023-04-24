@@ -10,4 +10,13 @@ export class FlappyBirdComponent {
     constructor( private _CargarScripts: CargarScriptsService){
       _CargarScripts.Carga(["FlappyBird/game"]);
     }
+    ngOnInit() {
+      if (!localStorage.getItem('foo')) {
+        localStorage.setItem('foo', 'no reload')
+        location.reload()
+      } else {
+        localStorage.removeItem('foo')
+      }
+    }
+
 }

@@ -50,8 +50,3 @@ export class MenuComponent {
     this.router.navigate(['juegos', tipo]);
   }
 }
-
-//que es esto
-function then(arg0: (response: any) => void) {
-  throw new Error('Function not implemented.');
-}
