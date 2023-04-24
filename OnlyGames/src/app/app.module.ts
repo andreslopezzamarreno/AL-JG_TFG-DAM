@@ -11,12 +11,22 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { JuegosComponent } from './components/juegos/juegos.component';
 import { FlappyBirdComponent } from './components/flappy-bird/flappy-bird.component';
 import { AjedrezComponent } from './components/ajedrez/ajedrez.component';
+import { TableroComponent } from './components/ajedrez/tablero/tablero.component';
 
 import { CargarScriptsService } from './services/cargar-scripts.service';
 import { SnakeComponent } from './components/snake/snake.component';
 
 @NgModule({
-  declarations: [AppComponent, MenuComponent, InicioComponent, JuegosComponent, FlappyBirdComponent, AjedrezComponent, SnakeComponent],
+  declarations: [
+    AppComponent,
+    MenuComponent,
+    InicioComponent,
+    JuegosComponent,
+    FlappyBirdComponent,
+    AjedrezComponent,
+    SnakeComponent,
+  ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
