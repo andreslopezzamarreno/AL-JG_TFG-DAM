@@ -1,11 +1,9 @@
-//Inicializacion de elementos graficos
+// Inicializacion de elementos graficos
 const playBoard = document.querySelector(".play-board");
 const scoreElement = document.querySelector(".score");
 const highScoreElement = document.querySelector(".high-score");
 const controls = document.querySelectorAll(".controls i");
-//const head = document.querySelectorAll(".head"); //esto sobra
 
-//
 let gameOver = false;
 let foodX, foodY;
 let snakeX = 5,
@@ -16,34 +14,35 @@ let snakeBody = [];
 let setIntervalId;
 let score = 0;
 
-//soniditos
+// Cargar sonidos
 const EAT = new Audio();
 EAT.src = "./assets/Snake/fruit_sound.mp3";
 const DEATH = new Audio();
 DEATH.src = "./assets/Snake/videogame-death-sound-43894.mp3";
 const START = new Audio();
 START.src = "./assets/Snake/game-start-6104.mp3";
-// Getting high score from the local storage
+
+// TODO: Settear high score dependiendo de usuario
 let highScore = localStorage.getItem("high-score") || 0;
 highScoreElement.innerText = `High Score: ${highScore}`;
 START.play();
 
+// Posicion de comida aleatoria
 const updateFoodPosition = () => {
-  // Passing a random 1 - 30 value as food position
   foodX = Math.floor(Math.random() * 30) + 1;
   foodY = Math.floor(Math.random() * 30) + 1;
 };
 
+// Resetear pagina al morir
 const handleGameOver = () => {
-  // Clearing the timer and reloading the page on game over
   DEATH.play();
   clearInterval(setIntervalId);
   alert("Game Over! Presiona Aceptar para volver a jugar...");
   location.reload();
 };
 
+// Control de juego
 const changeDirection = (e) => {
-  // Changing velocity value based on key press
   if (e.key === "ArrowUp" && velocityY != 1) {
     velocityX = 0;
     velocityY = -1;
@@ -59,7 +58,7 @@ const changeDirection = (e) => {
   }
 };
 
-// Calling changeDirection on each key click and passing key dataset value as an object
+// Cambiar direccion dependiendo click de flecha
 controls.forEach((button) =>
   button.addEventListener("click", () =>
     changeDirection({ key: button.dataset.key })
@@ -70,37 +69,37 @@ const initGame = () => {
   if (gameOver) return handleGameOver();
   let html = `<div class="food" style="grid-area: ${foodY} / ${foodX}; background: #FF003D;"></div>`;
 
-  // Checking if the snake hit the food
+  // Comprobar si la snake ha llegado a la comida
   if (snakeX === foodX && snakeY === foodY) {
     EAT.play();
     updateFoodPosition();
-    snakeBody.push([foodY, foodX]); // Pushing food position to snake body array
-    score++; // increment score by 1
+    snakeBody.push([foodY, foodX]); // Aumentar tamaño snake al comer
+    score++; // Aumentar score +1
     highScore = score >= highScore ? score : highScore;
     localStorage.setItem("high-score", highScore);
     scoreElement.innerText = `Score: ${score}`;
     highScoreElement.innerText = `High Score: ${highScore}`;
   }
-  // Updating the snake's head position based on the current velocity
+  // Actualizar la snake con la velocidad
   snakeX += velocityX;
   snakeY += velocityY;
 
-  // Shifting forward the values of the elements in the snake body by one
+  // Desplazar valores de la snake
   for (let i = snakeBody.length - 1; i > 0; i--) {
     snakeBody[i] = snakeBody[i - 1];
   }
-  snakeBody[0] = [snakeX, snakeY]; // Setting first element of snake body to current snake position
+  snakeBody[0] = [snakeX, snakeY]; // Mantener la posicion de la snake al aumentar el tamaño
 
-  // Checking if the snake's head is out of wall, if so setting gameOver to true
+  // Comprobar sila snake se ha chocado
   if (snakeX <= 0 || snakeX > 30 || snakeY <= 0 || snakeY > 30) {
     DEATH.play();
     return (gameOver = true);
   }
 
   for (let i = 0; i < snakeBody.length; i++) {
-    // Adding a div for each part of the snake's body
+    // Añadir div segun el tamaño de la snake
     html += `<div class="head" style="grid-area: ${snakeBody[i][1]} / ${snakeBody[i][0]}; background: #60CBFF"></div>`;
-    // Checking if the snake head hit the body, if so set gameOver to true
+    // Comprobar si la snake se ha chocado con si misma
     if (
       i !== 0 &&
       snakeBody[0][1] === snakeBody[i][1] &&

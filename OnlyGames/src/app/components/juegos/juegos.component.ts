@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DatabaseService } from 'src/app/services/database.service';
 import { Juego } from 'src/app/utils/Juego';
 import { AuthService } from 'src/app/services/auth.service';
-import { Route } from '@angular/router';
+
 
 @Component({
   selector: 'app-juegos',
@@ -44,38 +44,39 @@ export class JuegosComponent {
     });
   }
 
-  verTodosLosJuegos(uid: string) {
-    this.todosLosJuegos = [];
-    this.database.verJuegos().then((item) => {
-      item.forEach((element) => {
-        var nombre = element.data()['nombre'];
-        var descripcion = element.data()['descripcion'];
-        var imagen = element.data()['imagen'];
-        var juego = new Juego(nombre, descripcion, imagen);
-        this.todosLosJuegos.push(juego);
-      });
-    });
-
-    this.database.verMisJuegos(uid).then((item) => {
-      var contador = 0;
-
-      item.forEach((element) => {
-        element.data()['juegos'].forEach((element: any) => {
-          var juegoAct = this.todosLosJuegos[contador];
-          contador++;
-          if (element == true) {
-            this.juegos.push(juegoAct);
-          } else {
-            this.juegosRestantes.push(juegoAct);
-          }
+  // Ver todos los juegos
+    verTodosLosJuegos(uid: string) {
+      this.todosLosJuegos = [];
+      this.database.verJuegos().then((item) => {
+        item.forEach((element) => {
+          var nombre = element.data()['nombre'];
+          var descripcion = element.data()['descripcion'];
+          var imagen = element.data()['imagen'];
+          var juego = new Juego(nombre, descripcion, imagen);
+          this.todosLosJuegos.push(juego);
         });
       });
-    });
-  }
 
-  irJuego(tipo: string) {
-    console.log(tipo);
-    this.router.navigate(['menu', tipo]);
-  }
+      this.database.verMisJuegos(uid).then((item) => {
+        var contador = 0;
+
+        item.forEach((element) => {
+          element.data()['juegos'].forEach((element: any) => {
+            var juegoAct = this.todosLosJuegos[contador];
+            contador++;
+            if (element == true) {
+              this.juegos.push(juegoAct);
+            } else {
+              this.juegosRestantes.push(juegoAct);
+            }
+          });
+        });
+      });
+    }
+  // Ir a juego deseado
+    irJuego(tipo: string) {
+      console.log(tipo);
+      this.router.navigate(['menu', tipo]);
+    }
 
 }

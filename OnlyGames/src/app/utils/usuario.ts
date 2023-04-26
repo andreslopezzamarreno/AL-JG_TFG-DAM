@@ -1,3 +1,4 @@
+// Clase Usuario
 export class Usuario {
   id: string;
   gametag: string;

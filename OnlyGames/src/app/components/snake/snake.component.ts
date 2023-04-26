@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CargarScriptsService } from 'src/app/services/cargar-scripts.service';
-import { Posicion } from 'src/app/utils/Posicion';
 
 @Component({
   selector: 'app-snake',
@@ -8,9 +7,12 @@ import { Posicion } from 'src/app/utils/Posicion';
   styleUrls: ['./snake.component.css'],
 })
 export class SnakeComponent {
-  constructor(private _CargarScripts: CargarScriptsService) {
-    _CargarScripts.Carga(['Snake/game']);
-  }
+  // Cargar script del juego
+    constructor(private _CargarScripts: CargarScriptsService) {
+      _CargarScripts.Carga(['Snake/game']);
+    }
+
+  // Resetear juego
   ngOnInit() {
     if (!localStorage.getItem('foo')) {
       localStorage.setItem('foo', 'no reload');
@@ -19,6 +21,8 @@ export class SnakeComponent {
       localStorage.removeItem('foo');
     }
   }
+
+
   /* //Inicializacion de elementos graficos
   playBoard = document.querySelector('.play-board');
   htmlplayBoard = this.playBoard?.innerHTML;

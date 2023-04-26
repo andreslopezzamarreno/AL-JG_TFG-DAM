@@ -1,3 +1,4 @@
+// Clase Juego
 export class Juego {
   nombre: string;
   descripcion: string;

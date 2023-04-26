@@ -1,3 +1,4 @@
+// Clase Posicion
 export class Posicion {
   snakeX: number = 5;
   snakeY: number = 5;
