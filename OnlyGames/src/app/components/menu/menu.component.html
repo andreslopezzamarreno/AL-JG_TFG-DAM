@@ -51,11 +51,9 @@
         </li>
         <li><a href="">Amigos</a></li>
         <li><a href="">Premios</a></li>
-        <li id="btn-cerrar-sesion" (click)="cerrarSesion()">
-          <a href="">cerrar sesion</a>
-        </li>
-        <p style="user-select: none; display: inline-block; position: absolute; right: -33%; padding-top: 10px; font-family: '8BIT WONDER', sans-serif; font-size: larger;"><img src=".\assets\coin.png" style="margin-right: 5px;"/>{{ currentUserCoins }}<img src=".\assets\diamond.png" style="margin-left: 20px; margin-right: 5px;">{{ currentUserDiamantes }}</p>
+        <p style="user-select: none; display: inline-block; position: absolute; right: -35%; padding-top: 10px; font-family: '8BIT WONDER', sans-serif; font-size: larger;"><img src=".\assets\coin.png" style="margin-right: 5px;"/>{{ currentUserCoins }}<img src=".\assets\diamond.png" style="margin-left: 20px; margin-right: 5px;">{{ currentUserDiamantes }}<a style="position: absolute; margin-left: 350px; top: 25%;" (click)="cerrarSesion()"><img src=".\assets\logout.png"></a></p>
       </ul>
+
     </div>
     <router-outlet></router-outlet>
   </body>
