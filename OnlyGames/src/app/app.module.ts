@@ -14,6 +14,7 @@ import { AjedrezComponent } from './components/ajedrez/ajedrez.component';
 
 import { CargarScriptsService } from './services/cargar-scripts.service';
 import { SnakeComponent } from './components/snake/snake.component';
+import { BreakoutComponent } from './components/breakout/breakout.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { SnakeComponent } from './components/snake/snake.component';
     FlappyBirdComponent,
     AjedrezComponent,
     SnakeComponent,
+    BreakoutComponent,
   ],
 
   imports: [

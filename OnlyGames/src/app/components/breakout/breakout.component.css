@@ -1,0 +1,18 @@
+* {
+  font-family: 'ArcadeClassic';
+  background: transparent;
+  text-align: center;
+}
+#breakout {
+  background-color: black;
+  cursor: none;
+  text-align: center;
+  margin-top: 6%;
+}
+
+#play-button {
+  background-color: green;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1.3rem;
+}

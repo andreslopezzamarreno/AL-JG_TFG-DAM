@@ -37,8 +37,6 @@ const updateFoodPosition = () => {
 const handleGameOver = () => {
   DEATH.play();
   clearInterval(setIntervalId);
-  alert("Game Over! Presiona Aceptar para volver a jugar...");
-  location.reload();
 };
 
 // Control de juego
