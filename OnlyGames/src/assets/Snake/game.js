@@ -73,6 +73,7 @@ const initGame = () => {
     updateFoodPosition();
     snakeBody.push([foodY, foodX]); // Aumentar tamaño snake al comer
     score++; // Aumentar score +1
+    localStorage.setItem("score", score);
     highScore = score >= highScore ? score : highScore;
     localStorage.setItem("high-score", highScore);
     scoreElement.innerText = `Score: ${score}`;
