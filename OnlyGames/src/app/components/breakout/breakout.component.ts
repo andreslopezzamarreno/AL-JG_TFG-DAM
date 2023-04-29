@@ -13,7 +13,7 @@ export class BreakoutComponent {
     _CargarScripts.Carga(["Breakout/game"]);
   }
 
-// Resetear juego
+  // Resetear juego
   ngOnInit() {
     if (!localStorage.getItem('foo')) {
       localStorage.setItem('foo', 'no reload')
@@ -22,5 +22,11 @@ export class BreakoutComponent {
       localStorage.removeItem('foo')
     }
   }
+
+  // Actualizar highscore
+  ngOnDestroy(): void {
+    let highScore = localStorage.getItem('high-score') || 0;
+    console.log(highScore);
+}
 
 }

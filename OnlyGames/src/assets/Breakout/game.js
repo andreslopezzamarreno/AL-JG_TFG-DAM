@@ -1,8 +1,14 @@
 const canvas = document.getElementById('breakout');
 const ctx = canvas.getContext('2d');
+const highScoreElement = document.querySelector(".high-score");
 document.addEventListener('keydown', keyDownHandler);
 document.addEventListener('keyup', keyUpHandler);
 document.addEventListener("mousemove", mouseMoveHandler)
+
+let highScore = parseInt(localStorage.getItem("high-score")) || 0;
+localStorage.setItem("high-score", highScore);
+
+
 let game = {
     requestId: null,
     timeoutId: null,
@@ -12,6 +18,9 @@ let game = {
     music: true,
     sfx: true
 }
+
+game.highScore = highScore;
+
 let paddle = {
     height: 20,
     width: 100,
@@ -184,9 +193,10 @@ function drawBricks() {
 function drawScore() {
     ctx.font = '24px ArcadeClassic';
     ctx. fillStyle = 'white';
-    const { level, score } = game;
+    const { level, score, highScore } = game;
     ctx.fillText(`Level: ${level}`, 5, 23);
     ctx.fillText(`Score: ${score}`, canvas.width / 2 - 50, 23);
+    ctx.fillText(`High Score: ${highScore}`, canvas.width / 4.5 - 50, 23);
 }
 
 // Vidas
@@ -248,7 +258,8 @@ function detectBrickCollision() {
                 brick.color = 'darkgray';
             }
             game.score += brick.points;
-
+            game.highScore = game.score >= game.highScore ? game.score : game.highScore;
+            localStorage.setItem("high-score", game.highScore);
             if (!directionChanged) {
                 directionChanged = true;
                 detectCollisionDirection(brick);
