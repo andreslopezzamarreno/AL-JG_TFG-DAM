@@ -23,4 +23,10 @@ export class FlappyBirdComponent {
       }
     }
 
+  // Actualizar highscore
+  ngOnDestroy(): void {
+    let highScore = localStorage.getItem("best") || 0;
+    console.log(highScore);
+}
+
 }
