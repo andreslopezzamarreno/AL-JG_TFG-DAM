@@ -23,7 +23,6 @@ export class MenuComponent {
   ) {
     this.obtenerDatosUser();
   }
-
   // Obtener gametag del usuario que ha iniciado sesion
     obtenerDatosUser() {
       this.database

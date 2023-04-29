@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, SimpleChanges } from '@angular/core';
 import { CargarScriptsService } from 'src/app/services/cargar-scripts.service';
 
 @Component({
@@ -13,7 +13,6 @@ export class SnakeComponent {
   }
   // Resetear juego
   ngOnInit() {
-    this.cosas();
     if (!localStorage.getItem('foo')) {
       localStorage.setItem('foo', 'no reload');
       location.reload();
@@ -22,18 +21,11 @@ export class SnakeComponent {
     }
   }
 
-  /* @HostListener('window:storage')
-  onStorageChange() {
-    console.log('change...');
-    console.log(localStorage.getItem('score'));
-  } */
-
-  cosas() {
-    let highScore = localStorage.getItem('high-score') || 0;
-    console.log(highScore);
+  // Actualizar highscore
+  ngOnDestroy(): void {
+      let highScore = localStorage.getItem('high-score') || 0;
+      console.log(highScore);
   }
 }
 
-addEventListener('storage', (e) => {
-  console.log('cambio registrado');
-});
+
