@@ -23,7 +23,7 @@ const START = new Audio();
 START.src = "./assets/Snake/game-start-6104.mp3";
 
 // TODO: Settear high score dependiendo de usuario
-let highScore = localStorage.getItem("high-score") || 0;
+let highScore = localStorage.getItem("high-score_snake") || 0;
 highScoreElement.innerText = `High Score: ${highScore}`;
 START.play();
 
@@ -75,7 +75,7 @@ const initGame = () => {
     score++; // Aumentar score +1
     localStorage.setItem("score", score);
     highScore = score >= highScore ? score : highScore;
-    localStorage.setItem("high-score", highScore);
+    localStorage.setItem("high-score_snake", highScore);
     scoreElement.innerText = `Score: ${score}`;
     highScoreElement.innerText = `High Score: ${highScore}`;
   }

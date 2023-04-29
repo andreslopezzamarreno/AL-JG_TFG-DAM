@@ -23,7 +23,7 @@ export class SnakeComponent {
 
   // Actualizar highscore
   ngOnDestroy(): void {
-      let highScore = localStorage.getItem('high-score') || 0;
+      let highScore = localStorage.getItem('high-score_snake') || 0;
       console.log(highScore);
   }
 }
