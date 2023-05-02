@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from "@angular/router";
 import { MenuComponent } from './components/menu/menu.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
@@ -8,14 +8,14 @@ import { FlappyBirdComponent } from './components/flappy-bird/flappy-bird.compon
 import { AjedrezComponent } from './components/ajedrez/ajedrez.component';
 import { SnakeComponent } from './components/snake/snake.component';
 import { BreakoutComponent } from './components/breakout/breakout.component';
+import { MisestadisticasComponent } from './components/misestadisticas/misestadisticas.component';
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
   { path: 'inicio', component: InicioComponent },
   { path: 'inicio/:tipo', component: InicioComponent },
   {
-    path: 'menu',
-    component: MenuComponent,
+    path: 'menu', component: MenuComponent,
     ...canActivate(() => redirectUnauthorizedTo(['/inicio/login'])),
     children: [
       { path: 'juegos/:tipo', component: JuegosComponent },
@@ -23,6 +23,7 @@ const routes: Routes = [
       { path: 'Ajedrez', component: AjedrezComponent },
       { path: 'Snake', component: SnakeComponent },
       { path: 'Breakout', component: BreakoutComponent },
+      { path: 'misEstadisticas', component: MisestadisticasComponent },
     ],
   },
 ];
