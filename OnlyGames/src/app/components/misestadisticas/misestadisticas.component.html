@@ -19,15 +19,27 @@
             <div class="visa_logo">
                 <img src=".\assets\output-onlinepngtools.png" alt="">
             </div>
-            <div class="visa_info">
-                <img src=".\assets\alien-space-character-of-pixels-for-a-game.png" alt="">
-                <p style="font-family: '8BIT WONDER', sans-serif;">TagName: </p>
-
-            </div>
-            <div class="visa_crinfo">
-                <p style="font-family: '8BIT WONDER', sans-serif;">Partidas:</p>
-                <p style="font-family: '8BIT WONDER', sans-serif;">Monedas:</p>
-                <p style="font-family: '8BIT WONDER', sans-serif;">Diamantes:</p>
+            <div class="container" style="margin-left: 13px; margin-bottom: 50px;">
+              <div class="row">
+              </div>
+              <div class="visa_info">
+                <div class="col-sm" style="font-family: '8BIT WONDER', sans-serif; color: white; font-size: 16px; margin-right: 120px;">
+                  <img src=".\assets\alien-space-character-of-pixels-for-a-game.png" alt="">
+                  <p style="font-family: '8BIT WONDER', sans-serif;">TagName: {{ currentUserGameTag }}</p>
+                  <p style="font-family: '8BIT WONDER', sans-serif;">Partidas:</p>
+                  <p style="font-family: '8BIT WONDER', sans-serif;">Monedas: {{ currentUserCoins }} <img src=".\assets\coin.png" style="width: 22px; height: 22px;"></p>
+                  <p style="font-family: '8BIT WONDER', sans-serif;">Diamantes: {{ currentUserDiamantes }} <img src=".\assets\diamond.png" style="width: 22px; height: 22px;"></p>
+                </div>
+              </div>
+              <div class="col-sm" style="font-family: '8BIT WONDER', sans-serif; color: white; font-size: 18px; ">
+                <p style="font-family: '8BIT WONDER', sans-serif; margin-bottom: 10px;">Highest Scores</p>
+                <ul style="margin-left: 10px; list-style-type:none">
+                  <li style="font-family: '8BIT WONDER', sans-serif; font-size: 14px;">Flappy Bird: </li>
+                  <li style="font-family: '8BIT WONDER', sans-serif; font-size: 14px;">Snake: </li>
+                  <li style="font-family: '8BIT WONDER', sans-serif;  font-size: 14px;">Breakout: </li>
+                  <li style="font-family: '8BIT WONDER', sans-serif;  font-size: 14px;">Ajedrez: </li>
+                 </ul>
+              </div>
             </div>
         </div>
     </div>

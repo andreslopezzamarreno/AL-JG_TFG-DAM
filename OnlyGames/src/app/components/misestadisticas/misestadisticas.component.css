@@ -18,8 +18,8 @@ body {
 }
 
 .card {
-  width: 500px;
-  height: 330px;
+  width: 600px;
+  height: 430px;
   border: 2px solid rgba(94, 143, 216, 0.2);
   background: rgba(40, 54, 255, 0.411);
   border-radius: 10px;
@@ -35,9 +35,9 @@ body {
 }
 
 .visa_logo img {
-  width: 200px;
-  height: 40px;
-  float: right;
+  width: 380px;
+  height: 80px;
+  margin-left: 20%;
 }
 
 .visa_info {
@@ -54,7 +54,6 @@ body {
   letter-spacing: 2px;
   color: #ffffff;
   display: flex;
-  margin-bottom: 50px;
 }
 
 .visa_crinfo {
