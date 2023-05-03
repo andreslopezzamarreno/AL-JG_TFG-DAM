@@ -1,3 +1,4 @@
+// Seleccionar canvas e inicializar elementos
 const canvas = document.getElementById('breakout');
 const ctx = canvas.getContext('2d');
 const highScoreElement = document.querySelector(".high-score");
@@ -40,6 +41,7 @@ let images = {
     ball: new Image(),
     paddle: new Image()
 }
+// Pantalla de inicio
 function onImageLoad(e) {
     resetGame();
     initBricks();
@@ -66,6 +68,7 @@ const sounds = {
 
 let brickField = [];
 
+// Empezar juego
 function play() {
     cancelAnimationFrame(game.requestId);
     clearTimeout(game.timeoutId);
@@ -133,6 +136,7 @@ function initBricks() {
     }
 }
 
+// Animaciones
 function animate(now = 0) {
     game.time.elapsed = now - game.time.start;
     if (game.time.elapsed > game.time.refreshRate) {

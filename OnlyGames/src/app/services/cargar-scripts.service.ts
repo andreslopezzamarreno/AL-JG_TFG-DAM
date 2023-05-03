@@ -1,3 +1,4 @@
+// Servicio para cargar los scripts de los juegos
 import { Injectable } from '@angular/core';
 
 @Injectable({

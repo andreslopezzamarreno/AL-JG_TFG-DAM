@@ -317,11 +317,11 @@ const score= {
             ctx.strokeText(this.value, cvs.width/2, 50);
 
         }else if(state.current == state.over){
-            // SCORE VALUE
+            // Valor Score
             ctx.font = "25px Teko";
             ctx.fillText(this.value, 225, 186);
             ctx.strokeText(this.value, 225, 186);
-            // BEST SCORE
+            // Valor HighScore
             ctx.fillText(this.best, 225, 228);
             ctx.strokeText(this.best, 225, 228);
         }
