@@ -24,6 +24,8 @@ export class BreakoutComponent {
   }
 
   // Actualizar highscore
+  // TODO: cuando un usuario registre un record, se guara en bbdd del currentuser, u cada vez que se inicie
+  // un juego el high-score del local storage se settea con el valor del record en bbdd
   ngOnDestroy(): void {
     let highScore = localStorage.getItem('high-score') || 0;
     console.log(highScore);
