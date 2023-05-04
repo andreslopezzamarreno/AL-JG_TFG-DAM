@@ -57,8 +57,8 @@ body {
 }
 
 .carousel-item {
-  width: 370px;
-  height: 330px;
+  width: 270px;
+  height: 230px;
   border-radius: 20px;
   background-color: #95bcd6;
   overflow: hidden;
@@ -74,8 +74,8 @@ body {
 }
 
 .carousel-item-blockGames {
-  width: 370px;
-  height: 330px;
+  width: 270px;
+  height: 230px;
   border-radius: 20px;
   background-color: #95bcd6;
   overflow: hidden;
@@ -160,19 +160,19 @@ body {
 }
 
 .carousel-item__details .controls {
-  padding-top: 120px;
+  padding-top: 80px;
 }
 
 .carousel-item__details--title,
 .carousel-item__details--subtitle {
   color: #fff;
   margin: auto;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .carousel-item__details--title{
-  font-size: 30px;
+  font-size: 25px;
 }
 .carousel-item__details--subtitle {
-  font-size: 20px;
+  font-size: 15px;
 }
 

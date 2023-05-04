@@ -30,37 +30,25 @@ body {
   position: relative;
 }
 
-.visa_logo {
+.only_logo {
   float: right;
 }
 
-.visa_logo img {
+.only_logo img {
   width: 380px;
   height: 80px;
   margin-left: 20%;
 }
-
-.visa_info {
-  padding: 10px;
-}
-.visa_info img {
+.carta_info img {
   width: 70px;
   height: 60px;
 }
 
-.visa_info p {
-  font-size: 15px;
+.carta_info p {
   padding: 10px 0;
-  letter-spacing: 2px;
+
   color: #ffffff;
   display: flex;
-}
-
-.visa_crinfo {
-  display: block;
-  justify-content: space-between;
-  padding: 0 10px;
-  color: #ffffff;
 }
 .lista{
     float: right;
