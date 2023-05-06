@@ -9,6 +9,7 @@ import { AjedrezComponent } from './components/ajedrez/ajedrez.component';
 import { SnakeComponent } from './components/snake/snake.component';
 import { BreakoutComponent } from './components/breakout/breakout.component';
 import { MisestadisticasComponent } from './components/misestadisticas/misestadisticas.component';
+import { PremiosComponent } from './components/premios/premios.component';
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
@@ -18,12 +19,13 @@ const routes: Routes = [
     path: 'menu', component: MenuComponent,
     ...canActivate(() => redirectUnauthorizedTo(['/inicio/login'])),
     children: [
-      { path: 'juegos/:tipo', component: JuegosComponent },
+      { path: 'Juegos/:tipo', component: JuegosComponent },
       { path: 'Flappy', component: FlappyBirdComponent },
       { path: 'Ajedrez', component: AjedrezComponent },
       { path: 'Snake', component: SnakeComponent },
       { path: 'Breakout', component: BreakoutComponent },
-      { path: 'misEstadisticas', component: MisestadisticasComponent },
+      { path: 'Premios', component: PremiosComponent },
+      { path: 'MisEstadisticas', component: MisestadisticasComponent },
     ],
   },
 ];

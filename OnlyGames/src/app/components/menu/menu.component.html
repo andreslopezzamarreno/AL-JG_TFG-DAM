@@ -29,10 +29,10 @@
           <a>Juegos</a>
           <ul class="submenu">
             <li>
-              <a href="" routerLink="/menu/juegos/misJuegos">Mis juegos</a>
+              <a href="" routerLink="/menu/Juegos/misJuegos">Mis juegos</a>
             </li>
             <li>
-              <a href="" routerLink="/menu/juegos/todosJuegos"
+              <a href="" routerLink="/menu/Juegos/todosJuegos"
                 >Todos los juegos</a
               >
             </li>
@@ -42,15 +42,15 @@
           <a href="">Mi Perfil</a>
           <ul class="submenu">
             <li>
-              <a href="" routerLink="/menu/misEstadisticas">Editar perfil</a>
+              <a href="" routerLink="/menu/MisEstadisticas">Editar perfil</a>
             </li>
             <li>
-              <a href="" routerLink="/menu/misEstadisticas">Mis Estadisticas</a>
+              <a href="" routerLink="/menu/MisEstadisticas">Mis Estadisticas</a>
             </li>
           </ul>
         </li>
         <li><a href="">Amigos</a></li>
-        <li><a href="">Premios</a></li>
+        <li><a href="" routerLink="/menu/Premios">Premios</a></li>
         <p style="user-select: none; display: inline-block; position: absolute; right: -35%; padding-top: 10px; font-family: '8BIT WONDER', sans-serif; font-size: larger;"><img src=".\assets\coin.png" style="margin-right: 5px;"/>{{ currentUserCoins }}<img src=".\assets\diamond.png" style="margin-left: 20px; margin-right: 5px;">{{ currentUserDiamantes }}</p>
       </ul>
       <a style="position: absolute; right: 0; margin-top: 10px;" (click)="cerrarSesion()"><img src=".\assets\logout.png"></a>

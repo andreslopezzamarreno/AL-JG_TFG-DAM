@@ -16,6 +16,7 @@ import { CargarScriptsService } from './services/cargar-scripts.service';
 import { SnakeComponent } from './components/snake/snake.component';
 import { BreakoutComponent } from './components/breakout/breakout.component';
 import { MisestadisticasComponent } from './components/misestadisticas/misestadisticas.component';
+import { PremiosComponent } from './components/premios/premios.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { MisestadisticasComponent } from './components/misestadisticas/misestadi
     SnakeComponent,
     BreakoutComponent,
     MisestadisticasComponent,
+    PremiosComponent,
   ],
 
   imports: [
