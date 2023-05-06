@@ -10,6 +10,11 @@ window.addEventListener('resize', () => {
 })
 
 // Variables & Constants
+const SHOOT = new Audio();
+SHOOT.src = "./assets/BubbleShoot/click.wav";
+const EXP = new Audio();
+EXP.src = "./assets/BubbleShoot/laserShoot.wav";
+const DEATH = new Audio();
 const c = canvas.getContext('2d')
 const scoreEl = document.getElementById('scoreEl')
 const score_ = document.getElementById('score')
@@ -64,6 +69,7 @@ class Shooter extends Ball {
 // Particle for Exploding Shooter BAll
 class Particle extends Shooter {
   constructor(x, y, radius, color, velocity) {
+    EXP.play()
     super(x, y, radius, color, velocity)
     this.alpha = 1
   }
@@ -198,6 +204,7 @@ function animate() {
 
 // Shoot Enemy
 function shootEnemy(e) {
+  SHOOT.play()
   let x = canvas.width / 2,
     y = canvas.height / 2
 
