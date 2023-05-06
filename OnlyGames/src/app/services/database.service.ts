@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { getDatabase, ref, set } from 'firebase/database';
 import {
   collection,
   doc,
@@ -22,9 +23,10 @@ export class DatabaseService {
       setDoc(doc(this.db, 'users', userId), {
         id: userId,
         gametag: gametag,
-        coins: 0,
+        coins: 150,
         diamantes: 0,
-        juegos: [true, false, false],
+        juegos: [true, false, false, false],
+        records: [0, 0, 0, 0],
       });
     } catch (e) {
       console.error('Error añadiendo gameTag: ', e);
@@ -62,5 +64,10 @@ export class DatabaseService {
       where('id', '==', uid)
     );
     return await getDocs(querySnapshot);
+  }
+
+  actualizarRecord(uid: string | null | undefined, record: number) {
+    const ref = doc(this.db, 'users/' + uid, 'records');
+    setDoc(ref, { 3: 78 });
   }
 }
