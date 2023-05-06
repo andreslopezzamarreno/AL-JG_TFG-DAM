@@ -17,6 +17,7 @@ import { SnakeComponent } from './components/snake/snake.component';
 import { BreakoutComponent } from './components/breakout/breakout.component';
 import { MisestadisticasComponent } from './components/misestadisticas/misestadisticas.component';
 import { PremiosComponent } from './components/premios/premios.component';
+import { BubbleshootComponent } from './components/bubbleshoot/bubbleshoot.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { PremiosComponent } from './components/premios/premios.component';
     BreakoutComponent,
     MisestadisticasComponent,
     PremiosComponent,
+    BubbleshootComponent,
   ],
 
   imports: [

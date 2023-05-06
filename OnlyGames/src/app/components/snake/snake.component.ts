@@ -9,7 +9,6 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./snake.component.css'],
 })
 export class SnakeComponent {
-  private idJuego = 3;
 
   // Cargar script del juego
   constructor(

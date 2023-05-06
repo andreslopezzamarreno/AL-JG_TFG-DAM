@@ -10,6 +10,7 @@ import { SnakeComponent } from './components/snake/snake.component';
 import { BreakoutComponent } from './components/breakout/breakout.component';
 import { MisestadisticasComponent } from './components/misestadisticas/misestadisticas.component';
 import { PremiosComponent } from './components/premios/premios.component';
+import { BubbleshootComponent } from './components/bubbleshoot/bubbleshoot.component';
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
       { path: 'Ajedrez', component: AjedrezComponent },
       { path: 'Snake', component: SnakeComponent },
       { path: 'Breakout', component: BreakoutComponent },
+      { path: 'BubbleShoot', component: BubbleshootComponent },
       { path: 'Premios', component: PremiosComponent },
       { path: 'MisEstadisticas', component: MisestadisticasComponent },
     ],

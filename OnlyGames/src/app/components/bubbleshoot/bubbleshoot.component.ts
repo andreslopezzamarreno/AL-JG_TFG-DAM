@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { CargarScriptsService } from 'src/app/services/cargar-scripts.service';
 
 @Component({
-  selector: 'app-flappy-bird',
-  templateUrl: './flappy-bird.component.html',
-  styleUrls: ['./flappy-bird.component.css'],
+  selector: 'app-bubbleshoot',
+  templateUrl: './bubbleshoot.component.html',
+  styleUrls: ['./bubbleshoot.component.css']
 })
-export class FlappyBirdComponent {
+export class BubbleshootComponent {
   // Cargar script del juego
   constructor(private _CargarScripts: CargarScriptsService) {
-    _CargarScripts.Carga(['FlappyBird/game']);
+    _CargarScripts.Carga(['BubbleShoot/game']);
   }
 
   // Resetear juego
@@ -20,11 +20,5 @@ export class FlappyBirdComponent {
     } else {
       localStorage.removeItem('foo');
     }
-  }
-
-  // Actualizar highscore
-  ngOnDestroy(): void {
-    let highScore = localStorage.getItem('best') || 0;
-    console.log(highScore);
   }
 }
