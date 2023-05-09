@@ -1,20 +1,37 @@
 import { Injectable } from '@angular/core';
-import { getDatabase, ref, set } from 'firebase/database';
+import { initializeApp } from 'firebase/app';
+
 import {
-  collection,
-  doc,
   getFirestore,
+  setDoc,
+  doc,
   query,
+  collection,
   where,
   getDocs,
-  setDoc,
+  updateDoc,
   getDoc,
 } from 'firebase/firestore';
+
 @Injectable({
   providedIn: 'root',
 })
 export class DatabaseService {
-  db = getFirestore();
+  firebaseConfig = {
+    apiKey: 'AIzaSyBrqX1EVnN70JYSGQdn-2SZRYwxtIqMets',
+    authDomain: 'al-jg-tfg.firebaseapp.com',
+    databaseURL: 'https://al-jg-tfg-default-rtdb.firebaseio.com',
+    projectId: 'al-jg-tfg',
+    storageBucket: 'al-jg-tfg.appspot.com',
+    messagingSenderId: '1004625728225',
+    appId: '1:1004625728225:web:1bdfacd07b2bbd8d861da0',
+    measurementId: 'G-E21591H7RX',
+  };
+
+  app = initializeApp(this.firebaseConfig);
+
+  db = getFirestore(this.app);
+
   constructor() {}
 
   // Escribe en la base de datos --> en la coleccion users, el usuario uid-gametag
@@ -66,8 +83,28 @@ export class DatabaseService {
     return await getDocs(querySnapshot);
   }
 
-  actualizarRecord(uid: string | null | undefined, record: number) {
-    const ref = doc(this.db, 'users/' + uid, 'records');
-    setDoc(ref, { 3: 78 });
+  actualizarRecord(
+    uid: string | null | undefined,
+    record: number,
+    idJuego: number
+  ) {
+    try {
+      var records: number[] = [];
+      const querySnapshot = query(
+        collection(this.db, 'users'),
+        where('id', '==', uid)
+      );
+      getDocs(querySnapshot).then((data) => {
+        data.forEach((item) => {
+          records = item.get('records');
+          records[idJuego] = record;
+          updateDoc(doc(this.db, 'users/' + uid), {
+            records: records,
+          });
+        });
+      });
+    } catch (e) {
+      console.error('Error', e);
+    }
   }
 }

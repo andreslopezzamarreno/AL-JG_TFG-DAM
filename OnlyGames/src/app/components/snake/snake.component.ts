@@ -9,7 +9,6 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./snake.component.css'],
 })
 export class SnakeComponent {
-
   // Cargar script del juego
   constructor(
     private _CargarScripts: CargarScriptsService,
@@ -21,6 +20,7 @@ export class SnakeComponent {
 
   // Resetear juego
   ngOnInit() {
+    this.db.actualizarRecord(this.auth.currentUser()?.uid, 8, 1);
     if (!localStorage.getItem('foo')) {
       localStorage.setItem('foo', 'no reload');
       location.reload();
@@ -33,6 +33,6 @@ export class SnakeComponent {
   ngOnDestroy(): void {
     let highScore = localStorage.getItem('high-score_snake') || 0;
     console.log(highScore);
-    this.db.actualizarRecord(this.auth.currentUser()?.uid, 4);
+    //this.db.actualizarRecord(this.auth.currentUser()?.uid, 4);
   }
 }

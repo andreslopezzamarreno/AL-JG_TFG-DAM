@@ -1,3 +1,5 @@
+//import { klk } from "../../app/components/snake/snake.component";
+
 // Inicializacion de elementos graficos
 const playBoard = document.querySelector(".play-board");
 const scoreElement = document.querySelector(".score");
