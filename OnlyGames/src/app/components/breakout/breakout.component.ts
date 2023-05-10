@@ -1,25 +1,30 @@
 import { Component } from '@angular/core';
 import { CargarScriptsService } from 'src/app/services/cargar-scripts.service';
+import { DatabaseService } from 'src/app/services/database.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-breakout',
   templateUrl: './breakout.component.html',
-  styleUrls: ['./breakout.component.css']
+  styleUrls: ['./breakout.component.css'],
 })
 export class BreakoutComponent {
-
   // Cargar script del juego
-  constructor( private _CargarScripts: CargarScriptsService){
-    _CargarScripts.Carga(["Breakout/game"]);
+  constructor(
+    private _CargarScripts: CargarScriptsService,
+    private db: DatabaseService,
+    private auth: AuthService
+  ) {
+    _CargarScripts.Carga(['Breakout/game']);
   }
 
   // Resetear juego
   ngOnInit() {
     if (!localStorage.getItem('foo')) {
-      localStorage.setItem('foo', 'no reload')
-      location.reload()
+      localStorage.setItem('foo', 'no reload');
+      location.reload();
     } else {
-      localStorage.removeItem('foo')
+      localStorage.removeItem('foo');
     }
   }
 
@@ -29,6 +34,5 @@ export class BreakoutComponent {
   ngOnDestroy(): void {
     let highScore = localStorage.getItem('high-score') || 0;
     console.log(highScore);
-}
-
+  }
 }

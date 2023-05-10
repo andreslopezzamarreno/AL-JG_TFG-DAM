@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CargarScriptsService } from 'src/app/services/cargar-scripts.service';
-
+import { DatabaseService } from 'src/app/services/database.service';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-flappy-bird',
   templateUrl: './flappy-bird.component.html',
@@ -8,7 +9,11 @@ import { CargarScriptsService } from 'src/app/services/cargar-scripts.service';
 })
 export class FlappyBirdComponent {
   // Cargar script del juego
-  constructor(private _CargarScripts: CargarScriptsService) {
+  constructor(
+    private _CargarScripts: CargarScriptsService,
+    private db: DatabaseService,
+    private auth: AuthService
+  ) {
     _CargarScripts.Carga(['FlappyBird/game']);
   }
 
