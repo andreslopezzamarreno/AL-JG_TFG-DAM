@@ -32,10 +32,9 @@ button:focus {
 }
 
 #modelEl {
+  margin-top: 250px;
   position: fixed;
-  top: 0;
   left: 0;
-  bottom: 0;
   right: 0;
   padding: 1em;
   text-align: center;
