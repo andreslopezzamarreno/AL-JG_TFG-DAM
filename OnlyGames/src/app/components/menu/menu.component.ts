@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatabaseService } from 'src/app/services/database.service';
-import { Usuario } from 'src/app/utils/Usuario';
-
+import { Usuario } from 'src/app/utils/usuario';
 
 @Component({
   selector: 'app-menu',
@@ -24,29 +23,32 @@ export class MenuComponent {
     this.obtenerDatosUser();
   }
   // Obtener gametag del usuario que ha iniciado sesion
-    obtenerDatosUser() {
-      this.database
-        .recuperarGameTag(this.auth.currentUser()?.uid)
-        .then((response) => {
-          response.forEach((element: any) => {
-            var usuario: Usuario = element.data();
-            this.currentUserGameTag = usuario.gametag;
-            this.currentUserCoins = usuario.coins;
-            this.currentUserDiamantes = usuario.diamantes
-          });
+  obtenerDatosUser() {
+    this.database
+      .recuperarGameTag(this.auth.currentUser()?.uid)
+      .then((response) => {
+        response.forEach((element: any) => {
+          var usuario: Usuario = element.data();
+          this.currentUserGameTag = usuario.gametag;
+          this.currentUserCoins = usuario.coins;
+          this.currentUserDiamantes = usuario.diamantes;
         });
-    }
+      });
+    console.log('ejecucion inicial');
+
+    this.navegar('misJuegos');
+  }
   // Cerrar sesion
-    cerrarSesion() {
-      this.auth
-        .logout()
-        .then(() => {
-          this.router.navigate(['/inicio/login']);
-        })
-        .catch((error) => console.log(error));
-    }
+  cerrarSesion() {
+    this.auth
+      .logout()
+      .then(() => {
+        this.router.navigate(['/inicio/login']);
+      })
+      .catch((error) => console.log(error));
+  }
   // Navegacion juegos
-    navegar(tipo: string) {
-      this.router.navigate(['juegos', tipo]);
-    }
+  navegar(tipo: string) {
+    this.router.navigate(['menu/Juegos', tipo]);
+  }
 }

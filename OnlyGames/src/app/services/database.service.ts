@@ -42,8 +42,8 @@ export class DatabaseService {
         gametag: gametag,
         coins: 150,
         diamantes: 0,
-        juegos: [true, false, false, false],
-        records: [0, 0, 0, 0],
+        juegos: [true, false, false, false, false],
+        records: [0, 0, 0, 0, 0],
       });
     } catch (e) {
       console.error('Error añadiendo gameTag: ', e);

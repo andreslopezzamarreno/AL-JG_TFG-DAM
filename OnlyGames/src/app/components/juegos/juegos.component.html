@@ -2,7 +2,7 @@
 <div class="row col-sm">
   <div class="carousel__container">
     <div class="carousel-item" *ngFor="let item of juegos">
-      <img class="carousel-item__img" src="{{ item.imagen }}" alt="people" />
+      <img class="carousel-item__img" [src]="item.imagen" />
       <div class="carousel-item__details">
         <div class="controls">
           <span class="fas fa-play-circle"></span>
@@ -25,11 +25,11 @@
               margin-bottom: 10px;
             "
           >
-            Jugar
+            Jugar4
           </button>
           <button
             type="button"
-            class="btn btn-outline-light "
+            class="btn btn-outline-light"
             style="
               position: absolute;
               width: 45%;
@@ -55,7 +55,7 @@
         style="display: inline-block"
         *ngFor="let item of juegosRestantes"
       >
-        <img class="carousel-item__img" src="{{ item.imagen }}" alt="people" />
+        <img class="carousel-item__img" [src]="item.imagen" />
         <div class="carousel-item__details">
           <div class="controls">
             <span class="fas fa-play-circle"></span>

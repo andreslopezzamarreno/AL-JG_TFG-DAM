@@ -8,6 +8,8 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./flappy-bird.component.css'],
 })
 export class FlappyBirdComponent {
+  //id del juego para controlar bd
+  IDJUEGO = 3;
   // Cargar script del juego
   constructor(
     private _CargarScripts: CargarScriptsService,
@@ -29,7 +31,11 @@ export class FlappyBirdComponent {
 
   // Actualizar highscore
   ngOnDestroy(): void {
-    let highScore = localStorage.getItem('best') || 0;
-    console.log(highScore);
+    let highScore = parseInt(localStorage.getItem('high-score_flappy')!);
+    this.db.actualizarRecord(
+      this.auth.currentUser()?.uid,
+      highScore,
+      this.IDJUEGO
+    );
   }
 }

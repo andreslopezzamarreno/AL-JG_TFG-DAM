@@ -8,6 +8,8 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./bubbleshoot.component.css'],
 })
 export class BubbleshootComponent {
+  //id del juego para controlar bd
+  IDJUEGO = 2;
   // Cargar script del juego
   constructor(
     private _CargarScripts: CargarScriptsService,
@@ -25,5 +27,15 @@ export class BubbleshootComponent {
     } else {
       localStorage.removeItem('foo');
     }
+  }
+
+  // Actualizar highscore
+  ngOnDestroy(): void {
+    let highScore = parseInt(localStorage.getItem('high-score_bubbleshoot')!);
+    this.db.actualizarRecord(
+      this.auth.currentUser()?.uid,
+      highScore,
+      this.IDJUEGO
+    );
   }
 }
