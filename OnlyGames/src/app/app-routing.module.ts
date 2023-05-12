@@ -11,6 +11,7 @@ import { BreakoutComponent } from './components/breakout/breakout.component';
 import { MisestadisticasComponent } from './components/misestadisticas/misestadisticas.component';
 import { PremiosComponent } from './components/premios/premios.component';
 import { BubbleshootComponent } from './components/bubbleshoot/bubbleshoot.component';
+import { AmigosComponent } from './components/amigos/amigos.component';
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
       { path: 'Breakout', component: BreakoutComponent },
       { path: 'BubbleShoot', component: BubbleshootComponent },
       { path: 'Premios', component: PremiosComponent },
+      { path: 'Amigos', component: AmigosComponent },
       { path: 'MisEstadisticas', component: MisestadisticasComponent },
     ],
   },

@@ -1,0 +1,83 @@
+#fb{
+  width:400px;
+  border:1px solid gray;
+  border-radius:5px;
+  position:relative;
+  height:100px;
+  background-color: rgb(228, 233, 216);
+}
+#fb p{
+  font-family:sans-serif;
+  margin: 0 0 0 10px;
+  line-height:30px;
+}
+
+#fb-top span{
+  float:right;
+  margin-right:10px;
+}
+#fb-top{
+  background-color:#e4a7fc;
+  height:30px;
+  width:400px;
+  border-radius:5px 5px 0 0;
+  position:absolute;
+  top:-1px;
+  left:-1px;
+  border:1px solid gray;
+}
+
+#fb img{
+  position:absolute;
+  left:10px;
+  top:52.5px;
+}
+
+#info{
+  position:absolute;
+  top:50px;
+}
+
+#info {
+  line-height:25px;
+}
+
+#info span{
+  color:#777;
+  font-size:14px;
+}
+
+#button-block{
+  position:absolute;
+  right:10px;
+  top:55px;
+}
+
+#button-block div{
+  display:inline-block;
+}
+
+#confirm, #delete{
+  background-color:#519c05;
+  color:white;
+  padding:7px;
+  border-radius:2px;
+  margin-right:10px;
+  font-family:sans-serif;
+}
+
+#delete{
+  color:white;
+  background-color:#ca1c2a;
+  border:1px solid #d11a2a;
+  padding:6px;
+  margin-right:0;
+}
+
+#button-block div:hover{
+  opacity:.8;
+  cursor:pointer;
+}
+
+
+
