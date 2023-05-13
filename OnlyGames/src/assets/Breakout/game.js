@@ -6,8 +6,8 @@ document.addEventListener("keydown", keyDownHandler);
 document.addEventListener("keyup", keyUpHandler);
 document.addEventListener("mousemove", mouseMoveHandler);
 
-let highScore = parseInt(localStorage.getItem("high-score")) || 0;
-localStorage.setItem("high-score", highScore);
+let highScore = parseInt(localStorage.getItem("high-score_breakout")) || 0;
+localStorage.setItem("high-score_breakout", highScore);
 
 let game = {
   requestId: null,
