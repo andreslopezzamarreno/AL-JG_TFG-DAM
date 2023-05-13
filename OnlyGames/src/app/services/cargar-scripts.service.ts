@@ -15,8 +15,6 @@ export class CargarScriptsService {
     let body = document.getElementsByTagName('body')[0];
     body.appendChild(script);
 
-    console.log(body);
-
     /* for (let archivo of archivos) {
       let script = document.createElement('script');
       script.src = './assets/' + archivo + '.js';

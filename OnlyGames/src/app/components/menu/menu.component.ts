@@ -34,7 +34,6 @@ export class MenuComponent {
           this.currentUserDiamantes = usuario.diamantes;
         });
       });
-    this.navegar('misJuegos');
   }
   // Cerrar sesion
   cerrarSesion() {
@@ -44,9 +43,5 @@ export class MenuComponent {
         this.router.navigate(['/inicio/login']);
       })
       .catch((error) => console.log(error));
-  }
-  // Navegacion juegos
-  navegar(tipo: string) {
-    this.router.navigate(['menu/Juegos', tipo]);
   }
 }
