@@ -1,3 +1,4 @@
+import { RecursiveVisitor } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { initializeApp } from 'firebase/app';
 
@@ -105,6 +106,26 @@ export class DatabaseService {
       });
     } catch (e) {
       console.error('Error', e);
+    }
+  }
+  async obtenerRecord(uid: string | null | undefined, idJuego: number) {
+    var records: number[] = [];
+    var record = 0;
+    try {
+      const querySnapshot = query(
+        collection(this.db, 'users'),
+        where('id', '==', uid)
+      );
+      await getDocs(querySnapshot).then((data) => {
+        data.forEach((item) => {
+          records = item.get('records');
+          record = records[idJuego];
+        });
+      });
+      return record;
+    } catch (e) {
+      console.error('Error', e);
+      return record;
     }
   }
 }

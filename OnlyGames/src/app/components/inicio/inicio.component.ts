@@ -38,7 +38,7 @@ export class InicioComponent {
       await this.auth
         .login(usuario, pass)
         .then((response) => {
-          this.router.navigate(['/menu']);
+          this.router.navigate(['/menu/Juegos/misJuegos']);
           var gametag = (<HTMLInputElement>document.getElementById('gametag'))
             .value;
         })

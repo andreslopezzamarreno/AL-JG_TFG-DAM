@@ -1,4 +1,10 @@
-import { Component, SimpleChanges } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { CargarScriptsService } from 'src/app/services/cargar-scripts.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -11,15 +17,41 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SnakeComponent {
   //id del juego para controlar bd
   IDJUEGO = 4;
+  highScore = 0;
+
+  @ViewChild('miSpan', { static: false }) miSpan: any;
+  ngAfterViewInit() {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        this.highScore = parseInt(localStorage.getItem('high-score_snake')!);
+        this.db.actualizarRecord(
+          this.auth.currentUser()?.uid,
+          this.highScore,
+          this.IDJUEGO
+        );
+      });
+    });
+    observer.observe(this.miSpan.nativeElement, {
+      childList: true,
+      characterData: true,
+      subtree: true,
+    });
+  }
+
   // Cargar script del juego
   constructor(
     private _CargarScripts: CargarScriptsService,
     private db: DatabaseService,
     private auth: AuthService
   ) {
-    _CargarScripts.Carga('Snake/game');
+    this.db
+      .obtenerRecord(this.auth.currentUser()?.uid, this.IDJUEGO)
+      .then((rec) => {
+        this.highScore = rec;
+        localStorage.setItem('high-score_snake', this.highScore.toString());
+        _CargarScripts.Carga('Snake/game');
+      });
   }
-
   // Resetear juego
   ngOnInit() {
     if (!localStorage.getItem('foo')) {
@@ -30,17 +62,8 @@ export class SnakeComponent {
     }
   }
 
-  // Actualizar highscore
-  ngOnDestroy(): void {
-    let highScore = parseInt(localStorage.getItem('high-score_snake')!);
-    this.db.actualizarRecord(
-      this.auth.currentUser()?.uid,
-      highScore,
-      this.IDJUEGO
-    );
-  }
-
-  klk() {
-    console.log('puñeta lo consegui');
+  reiniciar() {
+    //this._CargarScripts.borrarScript('Snake/game');
+    //this._CargarScripts.Carga('Snake/game');
   }
 }

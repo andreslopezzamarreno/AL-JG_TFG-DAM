@@ -6,21 +6,22 @@ import { Injectable } from '@angular/core';
 })
 export class CargarScriptsService {
   constructor() {}
+
+  script = document.createElement('script');
+
   // LLamar ruta con script de juego deseado
   Carga(archivo: string) {
-    console.log(archivo);
-
-    let script = document.createElement('script');
-    script.src = './assets/' + archivo + '.js';
+    this.script.src = './assets/' + archivo + '.js';
     let body = document.getElementsByTagName('body')[0];
-    body.appendChild(script);
-
-    /* for (let archivo of archivos) {
-      let script = document.createElement('script');
-      script.src = './assets/' + archivo + '.js';
-      //script.type = 'module';
-      let body = document.getElementsByTagName('body')[0];
-      body.appendChild(script);
-    } */
+    body.appendChild(this.script);
   }
+
+  /*  borrarScript(archivo: string) {
+    this.script.src = './assets/' + archivo + '.js';
+    let body = document.getElementsByTagName('body')[0];
+    console.log(body);
+
+    body.removeChild(this.script);
+    console.log(body);
+  } */
 }
