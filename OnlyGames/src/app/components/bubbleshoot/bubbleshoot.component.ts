@@ -16,7 +16,7 @@ export class BubbleshootComponent {
     private db: DatabaseService,
     private auth: AuthService
   ) {
-    _CargarScripts.Carga(['BubbleShoot/game']);
+    _CargarScripts.Carga('BubbleShoot/game');
   }
 
   // Resetear juego

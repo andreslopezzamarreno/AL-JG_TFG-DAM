@@ -34,8 +34,6 @@ export class MenuComponent {
           this.currentUserDiamantes = usuario.diamantes;
         });
       });
-    console.log('ejecucion inicial');
-
     this.navegar('misJuegos');
   }
   // Cerrar sesion

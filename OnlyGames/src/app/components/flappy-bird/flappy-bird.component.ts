@@ -16,7 +16,7 @@ export class FlappyBirdComponent {
     private db: DatabaseService,
     private auth: AuthService
   ) {
-    _CargarScripts.Carga(['FlappyBird/game']);
+    _CargarScripts.Carga('FlappyBird/game');
   }
 
   // Resetear juego

@@ -17,7 +17,7 @@ export class BreakoutComponent {
     private db: DatabaseService,
     private auth: AuthService
   ) {
-    _CargarScripts.Carga(['Breakout/game']);
+    _CargarScripts.Carga('Breakout/game');
   }
 
   // Resetear juego

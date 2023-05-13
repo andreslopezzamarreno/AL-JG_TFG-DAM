@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from "@angular/router";
+import { RouterModule, Routes } from '@angular/router';
 import { MenuComponent } from './components/menu/menu.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
@@ -18,7 +18,8 @@ const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
   { path: 'inicio/:tipo', component: InicioComponent },
   {
-    path: 'menu', component: MenuComponent,
+    path: 'menu',
+    component: MenuComponent,
     ...canActivate(() => redirectUnauthorizedTo(['/inicio/login'])),
     children: [
       { path: 'Juegos/:tipo', component: JuegosComponent },

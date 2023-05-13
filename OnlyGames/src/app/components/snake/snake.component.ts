@@ -17,7 +17,7 @@ export class SnakeComponent {
     private db: DatabaseService,
     private auth: AuthService
   ) {
-    _CargarScripts.Carga(['Snake/game']);
+    _CargarScripts.Carga('Snake/game');
   }
 
   // Resetear juego
@@ -38,5 +38,9 @@ export class SnakeComponent {
       highScore,
       this.IDJUEGO
     );
+  }
+
+  klk() {
+    console.log('puñeta lo consegui');
   }
 }

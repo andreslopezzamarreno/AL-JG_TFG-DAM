@@ -25,7 +25,6 @@ export class JuegosComponent {
   ) {
     actroute.params.subscribe((cosas) => {
       this.tipo = cosas['tipo'];
-      console.log(this.tipo);
       this.todosLosJuegos = [];
       this.juegos = [];
       this.juegosRestantes = [];
@@ -41,7 +40,6 @@ export class JuegosComponent {
         this.todos = true;
       }
     });
-    console.log(this.todosLosJuegos);
   }
 
   // Ver todos los juegos
@@ -75,7 +73,6 @@ export class JuegosComponent {
   }
   // Ir a juego deseado
   irJuego(tipo: string) {
-    console.log(tipo);
     this.router.navigate(['menu', tipo]);
   }
 }
