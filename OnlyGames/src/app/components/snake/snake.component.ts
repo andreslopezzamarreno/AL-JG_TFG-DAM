@@ -52,18 +52,8 @@ export class SnakeComponent {
         _CargarScripts.Carga('Snake/game');
       });
   }
-  // Resetear juego
-  ngOnInit() {
-    if (!localStorage.getItem('foo')) {
-      localStorage.setItem('foo', 'no reload');
-      location.reload();
-    } else {
-      localStorage.removeItem('foo');
-    }
-  }
 
   reiniciar() {
-    //this._CargarScripts.borrarScript('Snake/game');
-    //this._CargarScripts.Carga('Snake/game');
+    this._CargarScripts.Carga('Snake/game');
   }
 }

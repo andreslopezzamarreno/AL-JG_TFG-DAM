@@ -1,46 +1,46 @@
 // Inicializacion de elementos graficos
-const playBoard = document.querySelector(".play-board");
-const scoreElement = document.querySelector(".score");
-const highScoreElement = document.querySelector(".high-score");
-const controls = document.querySelectorAll(".controls i");
+var playBoard = document.querySelector(".play-board");
+var scoreElement = document.querySelector(".score");
+var highScoreElement = document.querySelector(".high-score");
+var controls = document.querySelectorAll(".controls i");
 
-let gameOver = false;
-let foodX, foodY;
-let snakeX = 5,
+var gameOver = false;
+var foodX, foodY;
+var snakeX = 5,
   snakeY = 5;
-let velocityX = 0,
+var velocityX = 0,
   velocityY = 0;
-let snakeBody = [];
-let setIntervalId;
-let score = 0;
+var snakeBody = [];
+var setIntervalId;
+var score = 0;
 
 // Cargar sonidos
-const EAT = new Audio();
+var EAT = new Audio();
 EAT.src = "./assets/Snake/fruit_sound.mp3";
-const DEATH = new Audio();
+var DEATH = new Audio();
 DEATH.src = "./assets/Snake/videogame-death-sound-43894.mp3";
-const START = new Audio();
+var START = new Audio();
 START.src = "./assets/Snake/game-start-6104.mp3";
 
 // TODO: Settear high score dependiendo de usuario
-let highScore = localStorage.getItem("high-score_snake");
+var highScore = localStorage.getItem("high-score_snake");
 highScoreElement.innerText = `High Score: ${highScore}`;
 START.play();
 
 // Posicion de comida aleatoria
-const updateFoodPosition = () => {
+var updateFoodPosition = () => {
   foodX = Math.floor(Math.random() * 30) + 1;
   foodY = Math.floor(Math.random() * 30) + 1;
 };
 
 // Resetear pagina al morir
-const handleGameOver = () => {
+var handleGameOver = () => {
   DEATH.play();
   clearInterval(setIntervalId);
 };
 
 // Control de juego
-const changeDirection = (e) => {
+var changeDirection = (e) => {
   if (e.key === "ArrowUp" && velocityY != 1) {
     velocityX = 0;
     velocityY = -1;
@@ -63,7 +63,7 @@ controls.forEach((button) =>
   )
 );
 
-const initGame = () => {
+var initGame = () => {
   if (gameOver) return handleGameOver();
   let html = `<div class="food" style="grid-area: ${foodY} / ${foodX}; background: #FF003D;"></div>`;
 

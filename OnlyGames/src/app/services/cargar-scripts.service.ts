@@ -7,21 +7,19 @@ import { Injectable } from '@angular/core';
 export class CargarScriptsService {
   constructor() {}
 
-  script = document.createElement('script');
-
   // LLamar ruta con script de juego deseado
   Carga(archivo: string) {
-    this.script.src = './assets/' + archivo + '.js';
-    let body = document.getElementsByTagName('body')[0];
-    body.appendChild(this.script);
+    // Eliminar el script anterior, si lo hay
+    let oldScript = document.querySelector('#mi-script');
+    if (oldScript) {
+      oldScript.remove();
+    }
+
+    // Crear un nuevo elemento <script> con el contenido del script
+    let newScript = document.createElement('script');
+    newScript.id = 'mi-script';
+    newScript.src = './assets/' + archivo + '.js';
+    //newScript.text = scriptContent;
+    document.body.appendChild(newScript);
   }
-
-  /*  borrarScript(archivo: string) {
-    this.script.src = './assets/' + archivo + '.js';
-    let body = document.getElementsByTagName('body')[0];
-    console.log(body);
-
-    body.removeChild(this.script);
-    console.log(body);
-  } */
 }
