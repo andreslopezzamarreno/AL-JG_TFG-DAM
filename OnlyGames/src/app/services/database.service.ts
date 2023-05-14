@@ -128,4 +128,46 @@ export class DatabaseService {
       return record;
     }
   }
-}
+
+  async obtenerSolicitudes(uid: string | null | undefined) {
+    var solicitudes: string[] = [];
+      try {
+        const querySnapshot = query(
+          collection(this.db, 'users'),
+          where('id', '==', uid)
+        );
+        await getDocs(querySnapshot).then((data) => {
+          data.forEach((item) => {
+            solicitudes = item.get('solicitudes');
+          });
+        });
+        return solicitudes;
+      } catch (e) {
+        console.error('Error', e);
+        return solicitudes;
+      }
+    }
+  async eliminarSolicitudes(uid: string | null | undefined, solicitud_eliminar: string) {
+    var solicitudes: string[] = [];
+      try {
+        const querySnapshot = query(
+          collection(this.db, 'users'),
+          where('id', '==', uid)
+        );
+        await getDocs(querySnapshot).then((data) => {
+          data.forEach((item) => {
+            solicitudes = item.get('solicitudes');
+            console.log(solicitudes.indexOf(solicitud_eliminar));
+            solicitudes.splice(solicitudes.indexOf(solicitud_eliminar),1)
+            updateDoc(doc(this.db, 'users/' + uid), {
+              solicitudes: solicitudes,
+            });
+          });
+        });
+        return solicitudes;
+      } catch (e) {
+        console.error('Error', e);
+        return solicitudes;
+      }
+    }
+  }

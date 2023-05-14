@@ -57,7 +57,7 @@
   display:inline-block;
 }
 
-#confirm, #delete{
+#aceptar, #eliminar{
   background-color:#519c05;
   color:white;
   padding:7px;
@@ -66,7 +66,7 @@
   font-family:sans-serif;
 }
 
-#delete{
+#eliminar{
   color:white;
   background-color:#ca1c2a;
   border:1px solid #d11a2a;

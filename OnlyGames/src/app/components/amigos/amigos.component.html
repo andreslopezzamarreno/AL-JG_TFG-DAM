@@ -2,13 +2,13 @@
 
 
 
-<div id="fb" *ngFor="let item of solicitudes">
+<div id="fb" *ngFor="let item of solicitudes" style="margin-top: 10px;">
   <div id="fb-top">
     <p style="font-family: '8BIT WONDER', sans-serif; font-size: 10px;">Solicitudes de amistad</p>
   </div>
   <p id="info" style="font-family: '8BIT WONDER', sans-serif; font-size: 15px;">{{item}}</p>
   <div id="button-block">
-    <div id="confirm" style="font-family: '8BIT WONDER', sans-serif; font-size: 8px;">Aceptar</div>
-    <div id="delete" style="font-family: '8BIT WONDER', sans-serif; font-size: 8px;">Eliminar</div>
+    <div id="aceptar" style="font-family: '8BIT WONDER', sans-serif; font-size: 8px;" (click) = "Aceptar(item)">Aceptar</div>
+    <div id="eliminar" style="font-family: '8BIT WONDER', sans-serif; font-size: 8px;" (click) = "Eliminar(item)">Eliminar</div>
   </div>
 </div>
