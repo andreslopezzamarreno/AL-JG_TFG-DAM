@@ -1,4 +1,3 @@
-// Selecting Canvas
 var canvas = document.querySelector("canvas");
 canvas.width = innerWidth;
 canvas.height = innerHeight;
@@ -29,7 +28,7 @@ var projectiles = [];
 var enemies = [];
 var particles = [];
 var score = 0;
-var highest = localStorage.getItem("highest_bubble") || 0;
+var highest = localStorage.getItem("high-score_bubbleshoot") || 0;
 var animationId;
 var spanEnemiesInterval;
 var spawnTime = 1000;
@@ -95,11 +94,12 @@ class Particle extends Shooter {
 }
 
 function updateScore(times = 1) {
+  localStorage.setItem("high-score_bubbleshoot", highest);
   spawnTime *= 0.9995;
   score += 100 * times;
   scoreEl.innerHTML = score;
   highest = score >= highest ? score : highest;
-  highestEl.innerHTML = highest
+  highestEl.innerHTML = highest;
 }
 
 // Calculate Velocity from center(x, y) to (x1,y1)
@@ -238,7 +238,6 @@ function stopGame() {
   modelEl.style.display = "flex"; // Dialogue box
   if (score > highest) {
     highest = score;
-    localStorage.setItem("high-score_bubbleshoot", highest);
   }
   bigScoreEl.innerHTML = score; // Poping score
 }

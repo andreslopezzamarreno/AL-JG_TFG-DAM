@@ -37,10 +37,8 @@ export class InicioComponent {
     } else {
       await this.auth
         .login(usuario, pass)
-        .then((response) => {
+        .then(async (response) => {
           this.router.navigate(['/menu/Juegos/misJuegos']);
-          var gametag = (<HTMLInputElement>document.getElementById('gametag'))
-            .value;
         })
         .catch((error) => {
           this.mostrarError(

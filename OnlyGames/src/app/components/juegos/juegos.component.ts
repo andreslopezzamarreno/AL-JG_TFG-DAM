@@ -4,6 +4,7 @@ import { DatabaseService } from 'src/app/services/database.service';
 import { Juego } from 'src/app/utils/Juego';
 import { AuthService } from 'src/app/services/auth.service';
 import { Usuario } from 'src/app/utils/usuario';
+import { MenuComponent } from '../menu/menu.component';
 
 @Component({
   selector: 'app-juegos',
@@ -22,7 +23,8 @@ export class JuegosComponent {
     private db: DatabaseService,
     private actroute: ActivatedRoute,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private menu: MenuComponent
   ) {
     actroute.params.subscribe((cosas) => {
       this.tipo = cosas['tipo'];
@@ -52,7 +54,8 @@ export class JuegosComponent {
         var descripcion = element.data()['descripcion'];
         var imagen = element.data()['imagen'];
         var idJuego = element.data()['idJuego'];
-        var juego = new Juego(nombre, descripcion, imagen, idJuego);
+        var precio = element.data()['precio'];
+        var juego = new Juego(nombre, descripcion, imagen, idJuego, precio);
         this.todosLosJuegos.push(juego);
       });
     });
@@ -78,10 +81,17 @@ export class JuegosComponent {
     this.router.navigate(['menu', tipo]);
   }
 
-  comparJuego(idJuego: number) {
-    this.db.recuperarUsuario2(this.currentuser!.uid).then((user) => {
-      var usuario: Usuario = JSON.parse(user)
-      console.log(usuario.id);
-    });
+  comparJuego(idJuego: number, precioJuego: number) {
+    this.db
+      .comprarJuego(this.currentuser!.uid, idJuego, precioJuego)
+      .then((data) => {
+        if (data) {
+          console.log(this.todosLosJuegos[idJuego]);
+          this.juegosRestantes = this.juegosRestantes.filter(
+            (game) => game != this.todosLosJuegos[idJuego]
+          );
+          this.juegos.push(this.todosLosJuegos[idJuego]);
+        }
+      });
   }
 }

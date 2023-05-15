@@ -15,6 +15,7 @@ import {
 } from 'firebase/firestore';
 import { Usuario } from '../utils/usuario';
 import { user } from '@angular/fire/auth';
+import { MenuComponent } from '../components/menu/menu.component';
 
 @Injectable({
   providedIn: 'root',
@@ -32,6 +33,13 @@ export class DatabaseService {
   };
   app = initializeApp(this.firebaseConfig);
   db = getFirestore(this.app);
+  /* usuario: Usuario | undefined;
+  iniciarUsuario(uid: string) {
+    this.recuperarUsuario(uid).then(async (user) => {
+      this.usuario = JSON.parse(user);
+    });
+  }
+ */
   constructor() {}
 
   // Escribe en la base de datos --> en la coleccion users, el usuario
@@ -51,26 +59,19 @@ export class DatabaseService {
       console.error('Error añadiendo gameTag: ', e);
     }
   }
-
-  // Conseguir el gametag del usuario pasado
   async recuperarUsuario(id: any) {
+    let usuario = '';
     const querySnapshot = query(
       collection(this.db, 'users'),
       where('id', '==', id)
     );
-    return await getDocs(querySnapshot);
-  }
-
-  async recuperarUsuario2(id: any) {
-    var usuario = "";
-    await this.recuperarUsuario(id).then((response) => {
+    await getDocs(querySnapshot).then((response) => {
       response.forEach((element: any) => {
-        usuario = JSON.stringify(element.data())
+        usuario = JSON.stringify(element.data());
       });
     });
     return usuario;
   }
-
   // Ver si existe el gametag para que no exista dos usuarios con el mismo
   async existeGametag(gametag: string) {
     const querySnapshot = query(
@@ -93,7 +94,6 @@ export class DatabaseService {
     );
     return await getDocs(querySnapshot);
   }
-
   actualizarRecord(
     uid: string | null | undefined,
     record: number,
@@ -138,7 +138,6 @@ export class DatabaseService {
       return record;
     }
   }
-
   async obtenerSolicitudes(uid: string | null | undefined) {
     var solicitudes: string[] = [];
     try {
@@ -182,13 +181,22 @@ export class DatabaseService {
       return solicitudes;
     }
   }
+  async comprarJuego(uid: string, idJuego: number, precioJuego: number) {
+    var chequeo = false;
 
-  comprarJuego(uid: string, juegoCompra: number) {
-    this.recuperarUsuario(uid).then((data) => {
-      data.forEach((element: any) => {
-        var usuario: Usuario = element.data();
-        return usuario;
-      });
+    await this.recuperarUsuario(uid).then(async (user) => {
+      var usuario: Usuario = JSON.parse(user);
+      if (usuario.coins >= precioJuego) {
+        usuario.coins -= precioJuego;
+        usuario.juegos[idJuego] = true;
+
+        await updateDoc(doc(this.db, 'users/' + uid), {
+          coins: usuario.coins,
+          juegos: usuario.juegos,
+        });
+        chequeo = true;
+      }
     });
+    return chequeo;
   }
 }

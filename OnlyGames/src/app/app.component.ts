@@ -10,22 +10,12 @@ export class AppComponent {}
 /*"JUEGOS"
    Sumar monedas por cada punto que consiga en los juegos, 1 punto = 1 moneda
    Canjear juegos con monedas
-   Quitar clasificacion
 
   "AMIGOS"
    Añadir arraylist SOLICITUDES y AMIGOS a los usuarios.
    Cada vez que se cargue esta pagina , como haciamos en los juegos se comprueba si existen solicitudes y amigos
    Por cada solicitud saldra el elemento solicitud, que si se da al boton aceptar, pasaras a tener ese amigo y si no se elimina la solicitud
    Y por cada amigo, saldra el elemento con el nombre de este, que si se pulsa saldra la tarjeta con sus estadisticas
-
-   "RECORDS"
-    Hacer como en el snake para todos los juegos
-        -breakout, flappy-bird no tiene el record en el html del componente --> no se puede hacer la "conexion"
-        de game.js y el componente
-
-        - bubleshoot no tira bien el high-score, te lo cambia cuando no es un high-score
-
-    Comprobar que las variables highscore del localstorage no coinciden entre juegos
 
    "PREMIOS"
     Comprobar si el usuario tiene las monedas suficientes para canjear el premio
@@ -45,5 +35,6 @@ export class AppComponent {}
 
     al iniciar sesion sigue apareciendo el mensaje de error como parpadeo y luego inicia sesion
 
-    el el bublesbhoot solucionar lo del player.draw
+    el el bublesbhoot solucionar lo del player.draw y lo de ball
+
     */

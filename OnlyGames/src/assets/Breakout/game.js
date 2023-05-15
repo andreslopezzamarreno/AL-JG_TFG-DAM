@@ -8,7 +8,6 @@ document.addEventListener("keyup", keyUpHandler);
 document.addEventListener("mousemove", mouseMoveHandler);
 
 var highScore = parseInt(localStorage.getItem("high-score_breakout")) || 0;
-localStorage.setItem("high-score_breakout", highScore);
 
 var game = {
   requestId: null,
@@ -198,10 +197,12 @@ function drawScore() {
   ctx.font = "24px ArcadeClassic";
   ctx.fillStyle = "white";
   const { level, score, highScore } = game;
-  ctx.fillText(`Level: ${level}`, 5, 23);
+  /* ctx.fillText(`Level: ${level}`, 5, 23);
   ctx.fillText(`Score: ${score}`, canvas.width / 2 - 50, 23);
-  ctx.fillText(`High Score: ${highScore}`, canvas.width / 4.5 - 50, 23);
-  scoreElement.innerHTML = "Score: "+ game.score
+  ctx.fillText(`High Score: ${highScore}`, canvas.width / 4.5 - 50, 23); */
+  scoreElement.innerHTML = "Score: " + game.score;
+  highScoreElement.innerHTML = "High Score:" + game.highScore;
+  localStorage.setItem("high-score_breakout", game.highScore);
 }
 
 // Vidas
@@ -271,7 +272,7 @@ function detectBrickCollision() {
       game.score += brick.points;
       game.highScore =
         game.score >= game.highScore ? game.score : game.highScore;
-      localStorage.setItem("high-score_breakout", game.highScore);
+
       if (!directionChanged) {
         directionChanged = true;
         detectCollisionDirection(brick);

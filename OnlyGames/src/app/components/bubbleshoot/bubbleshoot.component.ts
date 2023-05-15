@@ -19,6 +19,7 @@ export class BubbleshootComponent {
         this.highScore = parseInt(
           localStorage.getItem('high-score_bubbleshoot')!
         );
+
         this.db.actualizarRecord(
           this.auth.currentUser()?.uid,
           this.highScore,
@@ -46,8 +47,6 @@ export class BubbleshootComponent {
           'high-score_bubbleshoot',
           this.highScore.toString()
         );
-        console.log(this.highScore);
-
         _CargarScripts.Carga('BubbleShoot/game');
       });
   }

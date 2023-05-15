@@ -27,12 +27,10 @@ export class MisestadisticasComponent {
     this.database
       .recuperarUsuario(this.auth.currentUser()?.uid)
       .then((response) => {
-        response.forEach((element: any) => {
-          var usuario: Usuario = element.data();
-          this.currentUserGameTag = usuario.gametag;
-          this.currentUserCoins = usuario.coins;
-          this.currentUserDiamantes = usuario.diamantes;
-        });
+        var usuario: Usuario = JSON.parse(response);
+        this.currentUserGameTag = usuario.gametag;
+        this.currentUserCoins = usuario.coins;
+        this.currentUserDiamantes = usuario.diamantes;
       });
   }
 }

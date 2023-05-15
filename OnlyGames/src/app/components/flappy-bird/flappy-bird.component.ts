@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CargarScriptsService } from 'src/app/services/cargar-scripts.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -12,11 +12,11 @@ export class FlappyBirdComponent {
   IDJUEGO = 3;
   highScore = 0;
 
-  /* @ViewChild('miSpan', { static: false }) miSpan: any;
+  @ViewChild('miSpan', { static: false }) miSpan: any;
   ngAfterViewInit() {
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
-        this.highScore = parseInt(localStorage.getItem('high-score_snake')!);
+        this.highScore = parseInt(localStorage.getItem('high-score_flappy')!);
         this.db.actualizarRecord(
           this.auth.currentUser()?.uid,
           this.highScore,
@@ -29,7 +29,7 @@ export class FlappyBirdComponent {
       characterData: true,
       subtree: true,
     });
-  } */
+  }
 
   // Cargar script del juego
   constructor(
@@ -41,7 +41,7 @@ export class FlappyBirdComponent {
       .obtenerRecord(this.auth.currentUser()?.uid, this.IDJUEGO)
       .then((rec) => {
         this.highScore = rec;
-        //localStorage.setItem('high-score_snake', this.highScore.toString());
+        localStorage.setItem('high-score_flappy', this.highScore.toString());
         _CargarScripts.Carga('FlappyBird/game');
       });
   }

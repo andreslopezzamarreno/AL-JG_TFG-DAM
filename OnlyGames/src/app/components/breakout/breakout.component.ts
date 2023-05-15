@@ -13,11 +13,12 @@ export class BreakoutComponent {
   IDJUEGO = 1;
   highScore = 0;
 
-  /* @ViewChild('miSpan', { static: false }) miSpan: any;
+  @ViewChild('miSpan', { static: false }) miSpan: any;
   ngAfterViewInit() {
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
-        this.highScore = parseInt(localStorage.getItem('high-score_snake')!);
+        this.highScore = parseInt(localStorage.getItem('high-score_breakout')!);
+
         this.db.actualizarRecord(
           this.auth.currentUser()?.uid,
           this.highScore,
@@ -30,7 +31,7 @@ export class BreakoutComponent {
       characterData: true,
       subtree: true,
     });
-  } */
+  }
   // Cargar script del juego
   constructor(
     private _CargarScripts: CargarScriptsService,
@@ -41,7 +42,7 @@ export class BreakoutComponent {
       .obtenerRecord(this.auth.currentUser()?.uid, this.IDJUEGO)
       .then((rec) => {
         this.highScore = rec;
-        //localStorage.setItem('high-score_snake', this.highScore.toString());
+        localStorage.setItem('high-score_breakout', this.highScore.toString());
         _CargarScripts.Carga('Breakout/game');
       });
   }

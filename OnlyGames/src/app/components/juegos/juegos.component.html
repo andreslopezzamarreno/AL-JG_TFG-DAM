@@ -17,7 +17,7 @@
             class="btn btn-outline-light"
             style="
               position: absolute;
-              width: 45%;
+              width: 90%;
               height: 12%;
               bottom: 0;
               font-family: '8BIT WONDER', sans-serif;
@@ -26,22 +26,6 @@
             "
           >
             Jugar
-          </button>
-          <button
-            type="button"
-            class="btn btn-outline-light"
-            style="
-              position: absolute;
-              width: 45%;
-              height: 12%;
-              bottom: 0;
-              margin-bottom: 10px;
-              margin-left: 50%;
-              font-family: '8BIT WONDER', sans-serif;
-              font-size: 9px;
-            "
-          >
-            Clasificacion
           </button>
         </div>
       </div>
@@ -74,9 +58,10 @@
               font-family: '8BIT WONDER', sans-serif;
               font-size: 9px;
             "
-            (click)="comparJuego(item.idJuego)"
+            (click)="comparJuego(item.idJuego, item.precio)"
           >
             Conseguir
+            <p>{{ item.precio }} monedas</p>
           </button>
           <h5 class="carousel-item__details--title">{{ item.nombre }}</h5>
           <h6 class="carousel-item__details--subtitle">
@@ -89,7 +74,7 @@
               disabled
               style="
                 position: absolute;
-                width: 45%;
+                width: 90%;
                 height: 12%;
                 bottom: 0;
                 font-family: '8BIT WONDER', sans-serif;
@@ -98,23 +83,6 @@
               "
             >
               Jugar
-            </button>
-            <button
-              type="button"
-              class="btn btn-outline-light text-center"
-              disabled
-              style="
-                position: absolute;
-                width: 45%;
-                height: 12%;
-                bottom: 0;
-                margin-bottom: 10px;
-                margin-left: 50%;
-                font-family: '8BIT WONDER', sans-serif;
-                font-size: 9px;
-              "
-            >
-              Clasificacion
             </button>
           </div>
         </div>
