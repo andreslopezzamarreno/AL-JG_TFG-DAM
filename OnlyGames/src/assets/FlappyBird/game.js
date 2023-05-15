@@ -1,7 +1,8 @@
 // Seleccionar cvs
 var cvs = document.getElementById("bird");
 var ctx = cvs.getContext("2d");
-
+var highScoreElement = document.querySelector(".high-score");
+var scoreElement = document.querySelector(".score");
 // Variables y constantes
 var frames = 0;
 var DEGREE = Math.PI / 180;
@@ -388,9 +389,11 @@ var pipes = {
       if (p.x + this.w <= 0) {
         this.position.shift();
         score.value += 1;
+        scoreElement.innerHTML = "Score: " + score.value
         SCORE_S.play();
         score.best = Math.max(score.value, score.best);
         localStorage.setItem("high-score_flappy", score.best);
+        highScoreElement.innerHTML = "High Score: " + score.best
       }
     }
   },
@@ -420,6 +423,7 @@ var score = {
       ctx.font = "25px Teko";
       ctx.fillText(this.value, 225, 186);
       ctx.strokeText(this.value, 225, 186);
+      scoreElement.innerHTML = "Score: " + this.value
       // Valor HighScore
       ctx.fillText(this.best, 225, 228);
       ctx.strokeText(this.best, 225, 228);

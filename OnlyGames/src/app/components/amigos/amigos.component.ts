@@ -24,16 +24,10 @@ export class AmigosComponent {
   }
 
   Eliminar(gametag_solicitante: string) {
-    // Eliminar la solicitud del array solicitudes
-    this.database.eliminarSolicitudes(
-      this.auth.currentUser()?.uid,
-      gametag_solicitante
-    );
-    this.database
-      .obtenerSolicitudes(this.auth.currentUser()?.uid)
+      this.database
+      .eliminarSolicitudes(this.auth.currentUser()?.uid,gametag_solicitante)
       .then((rec) => {
-        this.solicitudes = rec;
-        console.log(this.solicitudes);
+        this.solicitudes = rec
       });
   }
 }

@@ -7,6 +7,7 @@
       href="https://fonts.googleapis.com/css?family=Teko:700"
       rel="stylesheet"
     />
+
     <style>
       canvas {
         border: 1px solid #000;
@@ -17,6 +18,26 @@
     </style>
   </head>
   <body>
+    <div class="wrapper">
+      <div class="game-details">
+        <span class="score" style="font-family: '8BIT WONDER', sans-serif"
+          >Score: 0</span
+        >
+        <span
+          #miSpan
+          class="high-score"
+          style="font-family: '8BIT WONDER', sans-serif; margin-left: 20px;"
+          >High Score: {{ highScore }}</span
+        >
+      </div>
+      <div class="play-board"></div>
+      <div class="controls">
+        <i data-key="ArrowLeft" class="fa-solid fa-arrow-left-long"></i>
+        <i data-key="ArrowUp" class="fa-solid fa-arrow-up-long"></i>
+        <i data-key="ArrowRight" class="fa-solid fa-arrow-right-long"></i>
+        <i data-key="ArrowDown" class="fa-solid fa-arrow-down-long"></i>
+      </div>
+    </div>
     <canvas id="bird" width="320" height="480"></canvas>
   </body>
 </html>

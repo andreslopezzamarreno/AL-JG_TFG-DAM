@@ -22,8 +22,7 @@ export class AppComponent {}
     Hacer como en el snake para todos los juegos
         -breakout, flappy-bird no tiene el record en el html del componente --> no se puede hacer la "conexion"
         de game.js y el componente
-        -El bubbleshoot no actualiza high-score en el momento que lo consigue sino que lo hace al darle al start
-        de nuevo --> si tiene high-score en el html
+
         - bubleshoot no tira bien el high-score, te lo cambia cuando no es un high-score
 
     Comprobar que las variables highscore del localstorage no coinciden entre juegos

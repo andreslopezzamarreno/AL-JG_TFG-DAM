@@ -2,6 +2,7 @@
 var canvas = document.getElementById("breakout");
 var ctx = canvas.getContext("2d");
 var highScoreElement = document.querySelector(".high-score");
+var scoreElement = document.querySelector(".score");
 document.addEventListener("keydown", keyDownHandler);
 document.addEventListener("keyup", keyUpHandler);
 document.addEventListener("mousemove", mouseMoveHandler);
@@ -200,6 +201,7 @@ function drawScore() {
   ctx.fillText(`Level: ${level}`, 5, 23);
   ctx.fillText(`Score: ${score}`, canvas.width / 2 - 50, 23);
   ctx.fillText(`High Score: ${highScore}`, canvas.width / 4.5 - 50, 23);
+  scoreElement.innerHTML = "Score: "+ game.score
 }
 
 // Vidas

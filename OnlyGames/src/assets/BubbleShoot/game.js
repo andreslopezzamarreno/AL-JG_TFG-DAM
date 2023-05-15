@@ -98,6 +98,8 @@ function updateScore(times = 1) {
   spawnTime *= 0.9995;
   score += 100 * times;
   scoreEl.innerHTML = score;
+  highest = score >= highest ? score : highest;
+  highestEl.innerHTML = highest
 }
 
 // Calculate Velocity from center(x, y) to (x1,y1)

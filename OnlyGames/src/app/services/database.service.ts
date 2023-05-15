@@ -14,6 +14,7 @@ import {
   getDoc,
 } from 'firebase/firestore';
 import { Usuario } from '../utils/usuario';
+import { user } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -169,12 +170,12 @@ export class DatabaseService {
       await getDocs(querySnapshot).then((data) => {
         data.forEach((item) => {
           solicitudes = item.get('solicitudes');
-          console.log(solicitudes.indexOf(solicitud_eliminar));
           solicitudes.splice(solicitudes.indexOf(solicitud_eliminar), 1);
-          updateDoc(doc(this.db, 'users/' + uid), {
-            solicitudes: solicitudes,
-          });
         });
+      });
+      updateDoc(doc(this.db, 'users/' + uid), {
+
+        solicitudes: solicitudes,
       });
       return solicitudes;
     } catch (e) {
