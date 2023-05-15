@@ -72,7 +72,7 @@ export class InicioComponent {
             this.auth
               .registro(usuario, pass)
               .then((response) => {
-                this.database.escribirDatos(response.user.uid, gametag);
+                this.database.registrarUsuario(response.user.uid, gametag);
                 this.router.navigate(['/menu/Juegos/misJuegos']);
               })
               .catch((error) => {

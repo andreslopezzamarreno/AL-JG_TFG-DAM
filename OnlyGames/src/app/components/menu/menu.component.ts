@@ -25,7 +25,7 @@ export class MenuComponent {
   // Obtener gametag del usuario que ha iniciado sesion
   obtenerDatosUser() {
     this.database
-      .recuperarGameTag(this.auth.currentUser()?.uid)
+      .recuperarUsuario(this.auth.currentUser()?.uid)
       .then((response) => {
         response.forEach((element: any) => {
           var usuario: Usuario = element.data();

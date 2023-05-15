@@ -65,7 +65,7 @@ controls.forEach((button) =>
 
 var initGame = () => {
   if (gameOver) return handleGameOver();
-  let html = `<div class="food" style="grid-area: ${foodY} / ${foodX}; background: #FF003D;"></div>`;
+  var html = `<div class="food" style="grid-area: ${foodY} / ${foodX}; background: #FF003D;"></div>`;
 
   // Comprobar si la snake ha llegado a la comida
   if (snakeX === foodX && snakeY === foodY) {
@@ -84,7 +84,7 @@ var initGame = () => {
   snakeY += velocityY;
 
   // Desplazar valores de la snake
-  for (let i = snakeBody.length - 1; i > 0; i--) {
+  for (var i = snakeBody.length - 1; i > 0; i--) {
     snakeBody[i] = snakeBody[i - 1];
   }
   snakeBody[0] = [snakeX, snakeY]; // Mantener la posicion de la snake al aumentar el tamaño
@@ -95,7 +95,7 @@ var initGame = () => {
     return (gameOver = true);
   }
 
-  for (let i = 0; i < snakeBody.length; i++) {
+  for (var i = 0; i < snakeBody.length; i++) {
     // Añadir div segun el tamaño de la snake
     html += `<div class="head" style="grid-area: ${snakeBody[i][1]} / ${snakeBody[i][0]}; background: #60CBFF"></div>`;
     // Comprobar si la snake se ha chocado con si misma

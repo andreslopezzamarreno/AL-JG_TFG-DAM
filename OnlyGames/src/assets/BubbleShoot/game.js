@@ -1,5 +1,5 @@
 // Selecting Canvas
-const canvas = document.querySelector("canvas");
+var canvas = document.querySelector("canvas");
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 
@@ -10,29 +10,29 @@ window.addEventListener("resize", () => {
 });
 
 // Variables & Constants
-const SHOOT = new Audio();
+var SHOOT = new Audio();
 SHOOT.src = "./assets/BubbleShoot/click.wav";
-const EXP = new Audio();
+var EXP = new Audio();
 EXP.src = "./assets/BubbleShoot/laserShoot.wav";
-const DEATH = new Audio();
-const c = canvas.getContext("2d");
-const scoreEl = document.getElementById("scoreEl");
-const score_ = document.getElementById("score");
-const highestEl = document.getElementById("highestEl");
-const startGameBtn = document.getElementById("startGameBtn");
-const modelEl = document.getElementById("modelEl");
-const bigScoreEl = document.getElementById("bigScoreEl");
-const friction = 0.98;
-let x = canvas.width / 2;
-let y = canvas.height / 2;
-let projectiles = [];
-let enemies = [];
-let particles = [];
-let score = 0;
-let highest = localStorage.getItem("highest_bubble") || 0;
-let animationId;
-let spanEnemiesInterval;
-let spawnTime = 1000;
+var DEATH = new Audio();
+var c = canvas.getContext("2d");
+var scoreEl = document.getElementById("scoreEl");
+var score_ = document.getElementById("score");
+var highestEl = document.getElementById("highestEl");
+var startGameBtn = document.getElementById("startGameBtn");
+var modelEl = document.getElementById("modelEl");
+var bigScoreEl = document.getElementById("bigScoreEl");
+var friction = 0.98;
+var x = canvas.width / 2;
+var y = canvas.height / 2;
+var projectiles = [];
+var enemies = [];
+var particles = [];
+var score = 0;
+var highest = localStorage.getItem("highest_bubble") || 0;
+var animationId;
+var spanEnemiesInterval;
+var spawnTime = 1000;
 highestEl.innerHTML = highest;
 
 // Starting Ball Class
@@ -107,8 +107,8 @@ function calculateVelocity(
   x1 = canvas.width / 2,
   y1 = canvas.height / 2
 ) {
-  const angle = Math.atan2(y1 - y, x1 - x);
-  const velocity = {
+  var angle = Math.atan2(y1 - y, x1 - x);
+  var velocity = {
     x: Math.cos(angle),
     y: Math.sin(angle),
   };
@@ -155,7 +155,7 @@ function animate() {
     enemy.update();
 
     // Calculate distance between player(player.x, player.y) and enemy(enemy.x, enemy.y) using Math.hypot(perpendicular, base) which gives hypotenuse / distance between them
-    const dist = Math.hypot(player.x - enemy.x, player.y - enemy.y);
+    var dist = Math.hypot(player.x - enemy.x, player.y - enemy.y);
 
     // Checking if player and enemy is collided
     if (dist - enemy.radius - player.radius < 1) {
@@ -163,12 +163,12 @@ function animate() {
     }
 
     projectiles.forEach((projectile, projectileIndex) => {
-      const dist = Math.hypot(projectile.x - enemy.x, projectile.y - enemy.y);
+      var dist = Math.hypot(projectile.x - enemy.x, projectile.y - enemy.y);
 
       // When Projectiles touch Enemy
       if (dist - enemy.radius - projectile.radius < 0) {
         // Create Particles explosion
-        for (let i = 0; i < enemy.radius * 1; i++) {
+        for (var i = 0; i < enemy.radius * 1; i++) {
           particles.push(
             new Particle(
               projectile.x,
@@ -205,7 +205,7 @@ function animate() {
 // Shoot Enemy
 function shootEnemy(e) {
   SHOOT.play();
-  let x = canvas.width / 2,
+  var x = canvas.width / 2,
     y = canvas.height / 2;
 
   v = calculateVelocity(x, y, e.clientX, e.clientY);
@@ -245,8 +245,8 @@ function stopGame() {
 function spanEnemies() {
   // Spawn a enemy every second
   spanEnemiesInterval = setTimeout(() => {
-    let x, y;
-    const radius = Math.random() * 16 + 14;
+    var x, y;
+    var radius = Math.random() * 16 + 14;
     if (Math.random() < 0.5) {
       x = Math.random() < 0.5 ? 0 - radius : canvas.width + radius;
       y = Math.random() * canvas.height;
@@ -254,7 +254,7 @@ function spanEnemies() {
       x = Math.random() * canvas.width;
       y = Math.random() < 0.5 ? 0 - radius : canvas.height + radius;
     }
-    const color = `hsl(${Math.floor(Math.random() * 360)}, 50%, 50%)`;
+    var color = `hsl(${Math.floor(Math.random() * 360)}, 50%, 50%)`;
     enemies.push(new Shooter(x, y, radius, color, calculateVelocity(x, y)));
     spanEnemies();
   }, spawnTime);

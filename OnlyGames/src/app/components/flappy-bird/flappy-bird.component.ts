@@ -10,32 +10,46 @@ import { AuthService } from 'src/app/services/auth.service';
 export class FlappyBirdComponent {
   //id del juego para controlar bd
   IDJUEGO = 3;
+  highScore = 0;
+
+  /* @ViewChild('miSpan', { static: false }) miSpan: any;
+  ngAfterViewInit() {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        this.highScore = parseInt(localStorage.getItem('high-score_snake')!);
+        this.db.actualizarRecord(
+          this.auth.currentUser()?.uid,
+          this.highScore,
+          this.IDJUEGO
+        );
+      });
+    });
+    observer.observe(this.miSpan.nativeElement, {
+      childList: true,
+      characterData: true,
+      subtree: true,
+    });
+  } */
+
   // Cargar script del juego
   constructor(
     private _CargarScripts: CargarScriptsService,
     private db: DatabaseService,
     private auth: AuthService
   ) {
-    _CargarScripts.Carga('FlappyBird/game');
+    this.db
+      .obtenerRecord(this.auth.currentUser()?.uid, this.IDJUEGO)
+      .then((rec) => {
+        this.highScore = rec;
+        //localStorage.setItem('high-score_snake', this.highScore.toString());
+        _CargarScripts.Carga('FlappyBird/game');
+      });
   }
 
-  // Resetear juego
-  ngOnInit() {
-    if (!localStorage.getItem('foo')) {
-      localStorage.setItem('foo', 'no reload');
-      location.reload();
-    } else {
-      localStorage.removeItem('foo');
-    }
+  reiniciar() {
+    this._CargarScripts.Carga('FlappyBird/game');
   }
-
-  // Actualizar highscore
   ngOnDestroy(): void {
-    let highScore = parseInt(localStorage.getItem('high-score_flappy')!);
-    this.db.actualizarRecord(
-      this.auth.currentUser()?.uid,
-      highScore,
-      this.IDJUEGO
-    );
+    this._CargarScripts.borrarScript();
   }
 }

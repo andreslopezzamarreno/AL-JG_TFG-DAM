@@ -1,37 +1,36 @@
 // Seleccionar canvas e inicializar elementos
-const canvas = document.getElementById("breakout");
-const ctx = canvas.getContext("2d");
-const highScoreElement = document.querySelector(".high-score");
+var canvas = document.getElementById("breakout");
+var ctx = canvas.getContext("2d");
+var highScoreElement = document.querySelector(".high-score");
 document.addEventListener("keydown", keyDownHandler);
 document.addEventListener("keyup", keyUpHandler);
 document.addEventListener("mousemove", mouseMoveHandler);
 
-let highScore = parseInt(localStorage.getItem("high-score_breakout")) || 0;
+var highScore = parseInt(localStorage.getItem("high-score_breakout")) || 0;
 localStorage.setItem("high-score_breakout", highScore);
 
-let game = {
+var game = {
   requestId: null,
   timeoutId: null,
   leftKey: false,
   rightKey: false,
   on: false,
-  music: true,
   sfx: true,
 };
 
 game.highScore = highScore;
 
-let paddle = {
+var paddle = {
   height: 20,
   width: 100,
   get y() {
     return canvas.height - this.height;
   },
 };
-let ball = {
+var ball = {
   radius: 10,
 };
-let brick = {
+var brick = {
   rows: 5,
   cols: 10,
   get width() {
@@ -39,7 +38,7 @@ let brick = {
   },
   height: 30,
 };
-let images = {
+var images = {
   background: new Image(),
   ball: new Image(),
   paddle: new Image(),
@@ -59,17 +58,15 @@ images.background.src = "./assets/Breakout/bg-space.webp";
 images.ball.src = "./assets/Breakout/ball.webp";
 images.paddle.src = "./assets/Breakout/paddle.webp";
 
-const sounds = {
+var sounds = {
   ballLost: new Audio("./assets/Breakout/ball-lost.mp3"),
   breakout: new Audio("./assets/Breakout/breakout.mp3"),
   brick: new Audio("./assets/Breakout/brick.mp3"),
   gameOver: new Audio("./assets/Breakout/game-over.mp3"),
   levelCompleted: new Audio("./assets/Breakout/level-completed.mp3"),
-  music: new Audio("./assets/Breakout/music.mp3"),
-  paddle: new Audio("./assets/Breakout/paddle.mp3"),
 };
 
-let brickField = [];
+var brickField = [];
 
 // Empezar juego
 function play() {
@@ -98,9 +95,8 @@ function resetGame() {
 
 // Inicializar sonidos
 function initSounds() {
-  sounds.music.loop = true;
   for (const [key] of Object.entries(sounds)) {
-    sounds[key].volume = 0.1;
+    sounds[key].volume = 0.5;
   }
 }
 
@@ -245,7 +241,7 @@ function detectCollision() {
   if (hitPaddle()) {
     ball.dy = -ball.dy;
     ball.y = canvas.height - paddle.height - 2 * ball.radius;
-    game.sfx && sounds.paddle.play();
+    game.sfx;
     const drawingConst = 5;
     const paddleMiddle = 2;
     const algo = ((ball.x - paddle.x) / paddle.width) * drawingConst;
@@ -300,8 +296,6 @@ function keyDownHandler(e) {
   if (!game.on && e.key === " ") {
     play();
   }
-  game.music = !game.music;
-  game.music ? sounds.music.play() : sounds.music.pause();
   if (e.key === "ArrowRight") {
     game.rightKey = true;
   } else if (e.key === "ArrowLeft") {
@@ -338,7 +332,6 @@ function isLevelCompleted() {
     initBricks();
     game.timeoutId = setTimeout(() => {
       animate();
-      sounds.music.play();
     }, 3000);
 
     return true;
@@ -350,7 +343,7 @@ function isLevelCompleted() {
 function initNextLevel() {
   game.level++;
   game.speed++;
-  sounds.music.pause();
+
   game.sfx && sounds.levelCompleted.play();
   ctx.font = "50px ArcadeClassic";
   ctx.fillStyle = "yellow";
@@ -380,7 +373,6 @@ function isGameOver() {
 
 function gameOver() {
   game.on = false;
-  sounds.music.pause();
   sounds.currentTime = 0;
   game.sfx && sounds.gameOver.play();
   ctx.font = "50px ArcadeClassic";

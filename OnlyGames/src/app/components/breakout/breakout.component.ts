@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CargarScriptsService } from 'src/app/services/cargar-scripts.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -11,34 +11,45 @@ import { AuthService } from 'src/app/services/auth.service';
 export class BreakoutComponent {
   //id del juego para controlar bd
   IDJUEGO = 1;
+  highScore = 0;
+
+  /* @ViewChild('miSpan', { static: false }) miSpan: any;
+  ngAfterViewInit() {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        this.highScore = parseInt(localStorage.getItem('high-score_snake')!);
+        this.db.actualizarRecord(
+          this.auth.currentUser()?.uid,
+          this.highScore,
+          this.IDJUEGO
+        );
+      });
+    });
+    observer.observe(this.miSpan.nativeElement, {
+      childList: true,
+      characterData: true,
+      subtree: true,
+    });
+  } */
   // Cargar script del juego
   constructor(
     private _CargarScripts: CargarScriptsService,
     private db: DatabaseService,
     private auth: AuthService
   ) {
-    _CargarScripts.Carga('Breakout/game');
+    this.db
+      .obtenerRecord(this.auth.currentUser()?.uid, this.IDJUEGO)
+      .then((rec) => {
+        this.highScore = rec;
+        //localStorage.setItem('high-score_snake', this.highScore.toString());
+        _CargarScripts.Carga('Breakout/game');
+      });
   }
 
-  // Resetear juego
-  ngOnInit() {
-    if (!localStorage.getItem('foo')) {
-      localStorage.setItem('foo', 'no reload');
-      location.reload();
-    } else {
-      localStorage.removeItem('foo');
-    }
+  reiniciar() {
+    this._CargarScripts.Carga('Breakout/game');
   }
-
-  // Actualizar highscore
-  // TODO: cuando un usuario registre un record, se guara en bbdd del currentuser, u cada vez que se inicie
-  // un juego el high-score del local storage se settea con el valor del record en bbdd
   ngOnDestroy(): void {
-    let highScore = parseInt(localStorage.getItem('high-score_breakout')!);
-    this.db.actualizarRecord(
-      this.auth.currentUser()?.uid,
-      highScore,
-      this.IDJUEGO
-    );
+    this._CargarScripts.borrarScript();
   }
 }

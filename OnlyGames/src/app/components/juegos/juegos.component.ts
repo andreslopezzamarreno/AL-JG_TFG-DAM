@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DatabaseService } from 'src/app/services/database.service';
 import { Juego } from 'src/app/utils/Juego';
 import { AuthService } from 'src/app/services/auth.service';
+import { Usuario } from 'src/app/utils/usuario';
 
 @Component({
   selector: 'app-juegos',
@@ -18,7 +19,7 @@ export class JuegosComponent {
   juegosRestantes: Juego[] = [];
 
   constructor(
-    private database: DatabaseService,
+    private db: DatabaseService,
     private actroute: ActivatedRoute,
     private auth: AuthService,
     private router: Router
@@ -45,17 +46,18 @@ export class JuegosComponent {
   // Ver todos los juegos
   async verTodosLosJuegos(uid: string) {
     this.todosLosJuegos = [];
-    await this.database.verJuegos().then((item) => {
+    await this.db.verJuegos().then((item) => {
       item.forEach((element) => {
         var nombre = element.data()['nombre'];
         var descripcion = element.data()['descripcion'];
         var imagen = element.data()['imagen'];
-        var juego = new Juego(nombre, descripcion, imagen);
+        var idJuego = element.data()['idJuego'];
+        var juego = new Juego(nombre, descripcion, imagen, idJuego);
         this.todosLosJuegos.push(juego);
       });
     });
 
-    this.database.verMisJuegos(uid).then((item) => {
+    this.db.verMisJuegos(uid).then((item) => {
       var contador = 0;
 
       item.forEach((element) => {
@@ -74,5 +76,11 @@ export class JuegosComponent {
   // Ir a juego deseado
   irJuego(tipo: string) {
     this.router.navigate(['menu', tipo]);
+  }
+
+  comparJuego(idJuego: number) {
+    this.db.recuperarUsuario2(this.currentuser!.uid).then((user) => {
+      console.log(user);
+    });
   }
 }

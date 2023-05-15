@@ -1,33 +1,33 @@
 // Seleccionar cvs
-const cvs = document.getElementById("bird");
-const ctx = cvs.getContext("2d");
+var cvs = document.getElementById("bird");
+var ctx = cvs.getContext("2d");
 
 // Variables y constantes
-let frames = 0;
-const DEGREE = Math.PI / 180;
+var frames = 0;
+var DEGREE = Math.PI / 180;
 
 // Cargar imagenes
-const sprite = new Image();
+var sprite = new Image();
 sprite.src = "./assets/FlappyBird/sprite.png";
 
 // Cargar sonidos
-const SCORE_S = new Audio();
+var SCORE_S = new Audio();
 SCORE_S.src = "./assets/FlappyBird/sfx_point.wav";
 
-const FLAP = new Audio();
+var FLAP = new Audio();
 FLAP.src = "./assets/FlappyBird/sfx_flap.wav";
 
-const HIT = new Audio();
+var HIT = new Audio();
 HIT.src = "./assets/FlappyBird/sfx_hit.wav";
 
-const SWOOSHING = new Audio();
+var SWOOSHING = new Audio();
 SWOOSHING.src = "./assets/FlappyBird/sfx_swooshing.wav";
 
-const DIE = new Audio();
+var DIE = new Audio();
 DIE.src = "./assets/FlappyBird/sfx_die.wav";
 
 // Estado juego
-const state = {
+var state = {
   current: 0,
   getReady: 0,
   game: 1,
@@ -35,7 +35,7 @@ const state = {
 };
 
 // Boton empezar
-const startBtn = {
+var startBtn = {
   x: 220,
   y: 500,
   w: 153,
@@ -55,9 +55,9 @@ cvs.addEventListener("click", function (evt) {
       FLAP.play();
       break;
     case state.over:
-      let rect = cvs.getBoundingClientRect();
-      let clickX = evt.clientX - rect.left;
-      let clickY = evt.clientY - rect.top;
+      var rect = cvs.getBoundingClientRect();
+      var clickX = evt.clientX - rect.left;
+      var clickY = evt.clientY - rect.top;
 
       // CHECK IF WE CLICK ON THE START BUTTON
       if (
@@ -76,7 +76,7 @@ cvs.addEventListener("click", function (evt) {
 });
 
 // Background
-const bg = {
+var bg = {
   sX: 0,
   sY: 0,
   w: 275,
@@ -112,7 +112,7 @@ const bg = {
 };
 
 // Foreground
-const fg = {
+var fg = {
   sX: 276,
   sY: 0,
   w: 224,
@@ -156,7 +156,7 @@ const fg = {
 };
 
 // Pajaro
-const bird = {
+var bird = {
   animation: [
     { sX: 276, sY: 112 },
     { sX: 276, sY: 139 },
@@ -178,7 +178,7 @@ const bird = {
   rotation: 0,
 
   draw: function () {
-    let bird = this.animation[this.frame];
+    var bird = this.animation[this.frame];
 
     ctx.save();
     ctx.translate(this.x, this.y);
@@ -240,7 +240,7 @@ const bird = {
 };
 
 // Mensaje de listo
-const getReady = {
+var getReady = {
   sX: 0,
   sY: 228,
   w: 173,
@@ -266,7 +266,7 @@ const getReady = {
 };
 
 // Game Over
-const gameOver = {
+var gameOver = {
   sX: 175,
   sY: 228,
   w: 225,
@@ -292,7 +292,7 @@ const gameOver = {
 };
 
 // Tuberias
-const pipes = {
+var pipes = {
   position: [],
 
   top: {
@@ -311,11 +311,11 @@ const pipes = {
   dx: 2,
 
   draw: function () {
-    for (let i = 0; i < this.position.length; i++) {
-      let p = this.position[i];
+    for (var i = 0; i < this.position.length; i++) {
+      var p = this.position[i];
 
-      let topYPos = p.y;
-      let bottomYPos = p.y + this.h + this.gap;
+      var topYPos = p.y;
+      var bottomYPos = p.y + this.h + this.gap;
 
       // Tuberia Top
       ctx.drawImage(
@@ -354,10 +354,10 @@ const pipes = {
         y: this.maxYPos * (Math.random() + 1),
       });
     }
-    for (let i = 0; i < this.position.length; i++) {
-      let p = this.position[i];
+    for (var i = 0; i < this.position.length; i++) {
+      var p = this.position[i];
 
-      let bottomPipeYPos = p.y + this.h + this.gap;
+      var bottomPipeYPos = p.y + this.h + this.gap;
 
       // Detectar colision
       // Tuberia Top
@@ -401,7 +401,7 @@ const pipes = {
 };
 
 // Score
-const score = {
+var score = {
   // TODO: Dependiendo quien se logee la puntuacion maxima valdra una cosa u otra
   best: parseInt(localStorage.getItem("best")) || 0,
   value: 0,

@@ -8,7 +8,7 @@ export class CargarScriptsService {
   constructor() {}
 
   // LLamar ruta con script de juego deseado
-  Carga(archivo: string) {
+  Carga(script: string) {
     // Eliminar el script anterior, si lo hay
     let oldScript = document.querySelector('#mi-script');
     if (oldScript) {
@@ -18,8 +18,15 @@ export class CargarScriptsService {
     // Crear un nuevo elemento <script> con el contenido del script
     let newScript = document.createElement('script');
     newScript.id = 'mi-script';
-    newScript.src = './assets/' + archivo + '.js';
+    newScript.src = './assets/' + script + '.js';
     //newScript.text = scriptContent;
     document.body.appendChild(newScript);
+  }
+
+  borrarScript() {
+    let oldScript = document.querySelector('#mi-script');
+    if (oldScript) {
+      oldScript.remove();
+    }
   }
 }

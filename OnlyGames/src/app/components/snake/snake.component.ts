@@ -56,4 +56,8 @@ export class SnakeComponent {
   reiniciar() {
     this._CargarScripts.Carga('Snake/game');
   }
+
+  ngOnDestroy(): void {
+    this._CargarScripts.borrarScript();
+  }
 }

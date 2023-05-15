@@ -20,6 +20,12 @@ export class AppComponent {}
 
    "RECORDS"
     Hacer como en el snake para todos los juegos
+        -breakout, flappy-bird no tiene el record en el html del componente --> no se puede hacer la "conexion"
+        de game.js y el componente
+        -El bubbleshoot no actualiza high-score en el momento que lo consigue sino que lo hace al darle al start
+        de nuevo --> si tiene high-score en el html
+        - bubleshoot no tira bien el high-score, te lo cambia cuando no es un high-score
+
     Comprobar que las variables highscore del localstorage no coinciden entre juegos
 
    "PREMIOS"
@@ -31,4 +37,14 @@ export class AppComponent {}
 
     "OTROS"
     ¿Utilidad de los diamantes? ¿Por cada 100 monedas 1 diamante? y que los premios cuesten diamantes
-    Hacer Documentacion*/
+    Hacer Documentacion
+
+    "BUGS"
+    cuando estoy con un juego y me voy a otros juegos --> detener la ejecucion del script si es que hay alguno
+    ejecutandose, ejemplo, en el breakout le das a start e inmediatamente vas al menu, se sigue escuchando los
+    sonidos del juego, como si estuvieses jugando aun, hay que quitar eso
+
+    al iniciar sesion sigue apareciendo el mensaje de error como parpadeo y luego inicia sesion
+
+    el el bublesbhoot solucionar lo del player.draw
+    */

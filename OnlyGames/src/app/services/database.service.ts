@@ -13,6 +13,7 @@ import {
   updateDoc,
   getDoc,
 } from 'firebase/firestore';
+import { Usuario } from '../utils/usuario';
 
 @Injectable({
   providedIn: 'root',
@@ -28,15 +29,12 @@ export class DatabaseService {
     appId: '1:1004625728225:web:1bdfacd07b2bbd8d861da0',
     measurementId: 'G-E21591H7RX',
   };
-
   app = initializeApp(this.firebaseConfig);
-
   db = getFirestore(this.app);
-
   constructor() {}
 
-  // Escribe en la base de datos --> en la coleccion users, el usuario uid-gametag
-  escribirDatos(userId: string, gametag: string) {
+  // Escribe en la base de datos --> en la coleccion users, el usuario
+  registrarUsuario(userId: string, gametag: string) {
     try {
       setDoc(doc(this.db, 'users', userId), {
         id: userId,
@@ -45,6 +43,8 @@ export class DatabaseService {
         diamantes: 0,
         juegos: [true, false, false, false, false],
         records: [0, 0, 0, 0, 0],
+        solicitudes: [],
+        amigos: [],
       });
     } catch (e) {
       console.error('Error añadiendo gameTag: ', e);
@@ -52,12 +52,22 @@ export class DatabaseService {
   }
 
   // Conseguir el gametag del usuario pasado
-  async recuperarGameTag(id: any) {
+  async recuperarUsuario(id: any) {
     const querySnapshot = query(
       collection(this.db, 'users'),
       where('id', '==', id)
     );
     return await getDocs(querySnapshot);
+  }
+
+  async recuperarUsuario2(id: any) {
+    var usuario = 'hola';
+    await this.recuperarUsuario(id).then((response) => {
+      response.forEach((element: any) => {
+        usuario = element.data();
+      });
+    });
+    return usuario;
   }
 
   // Ver si existe el gametag para que no exista dos usuarios con el mismo
@@ -68,7 +78,6 @@ export class DatabaseService {
     );
     return await getDocs(querySnapshot);
   }
-
   // Carga todos losjuegos
   async verJuegos() {
     const juegosRef = collection(this.db, 'juegos');
@@ -131,43 +140,55 @@ export class DatabaseService {
 
   async obtenerSolicitudes(uid: string | null | undefined) {
     var solicitudes: string[] = [];
-      try {
-        const querySnapshot = query(
-          collection(this.db, 'users'),
-          where('id', '==', uid)
-        );
-        await getDocs(querySnapshot).then((data) => {
-          data.forEach((item) => {
-            solicitudes = item.get('solicitudes');
-          });
+    try {
+      const querySnapshot = query(
+        collection(this.db, 'users'),
+        where('id', '==', uid)
+      );
+      await getDocs(querySnapshot).then((data) => {
+        data.forEach((item) => {
+          solicitudes = item.get('solicitudes');
         });
-        return solicitudes;
-      } catch (e) {
-        console.error('Error', e);
-        return solicitudes;
-      }
-    }
-  async eliminarSolicitudes(uid: string | null | undefined, solicitud_eliminar: string) {
-    var solicitudes: string[] = [];
-      try {
-        const querySnapshot = query(
-          collection(this.db, 'users'),
-          where('id', '==', uid)
-        );
-        await getDocs(querySnapshot).then((data) => {
-          data.forEach((item) => {
-            solicitudes = item.get('solicitudes');
-            console.log(solicitudes.indexOf(solicitud_eliminar));
-            solicitudes.splice(solicitudes.indexOf(solicitud_eliminar),1)
-            updateDoc(doc(this.db, 'users/' + uid), {
-              solicitudes: solicitudes,
-            });
-          });
-        });
-        return solicitudes;
-      } catch (e) {
-        console.error('Error', e);
-        return solicitudes;
-      }
+      });
+      return solicitudes;
+    } catch (e) {
+      console.error('Error', e);
+      return solicitudes;
     }
   }
+  async eliminarSolicitudes(
+    uid: string | null | undefined,
+    solicitud_eliminar: string
+  ) {
+    var solicitudes: string[] = [];
+    try {
+      const querySnapshot = query(
+        collection(this.db, 'users'),
+        where('id', '==', uid)
+      );
+      await getDocs(querySnapshot).then((data) => {
+        data.forEach((item) => {
+          solicitudes = item.get('solicitudes');
+          console.log(solicitudes.indexOf(solicitud_eliminar));
+          solicitudes.splice(solicitudes.indexOf(solicitud_eliminar), 1);
+          updateDoc(doc(this.db, 'users/' + uid), {
+            solicitudes: solicitudes,
+          });
+        });
+      });
+      return solicitudes;
+    } catch (e) {
+      console.error('Error', e);
+      return solicitudes;
+    }
+  }
+
+  comprarJuego(uid: string, juegoCompra: number) {
+    this.recuperarUsuario(uid).then((data) => {
+      data.forEach((element: any) => {
+        var usuario: Usuario = element.data();
+        return usuario;
+      });
+    });
+  }
+}
