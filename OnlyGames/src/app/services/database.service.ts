@@ -62,10 +62,10 @@ export class DatabaseService {
   }
 
   async recuperarUsuario2(id: any) {
-    var usuario = 'hola';
+    var usuario = "";
     await this.recuperarUsuario(id).then((response) => {
       response.forEach((element: any) => {
-        usuario = element.data();
+        usuario = JSON.stringify(element.data())
       });
     });
     return usuario;
@@ -174,7 +174,6 @@ export class DatabaseService {
         });
       });
       updateDoc(doc(this.db, 'users/' + uid), {
-
         solicitudes: solicitudes,
       });
       return solicitudes;

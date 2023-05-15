@@ -80,7 +80,8 @@ export class JuegosComponent {
 
   comparJuego(idJuego: number) {
     this.db.recuperarUsuario2(this.currentuser!.uid).then((user) => {
-      console.log(user);
+      var usuario: Usuario = JSON.parse(user)
+      console.log(usuario.id);
     });
   }
 }
