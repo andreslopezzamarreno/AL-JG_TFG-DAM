@@ -21,6 +21,7 @@ import { MisestadisticasComponent } from './components/misestadisticas/misestadi
 import { PremiosComponent } from './components/premios/premios.component';
 import { BubbleshootComponent } from './components/bubbleshoot/bubbleshoot.component';
 import { AmigosComponent } from './components/amigos/amigos.component';
+import { EdicionComponent } from './components/edicion/edicion.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { AmigosComponent } from './components/amigos/amigos.component';
     PremiosComponent,
     BubbleshootComponent,
     AmigosComponent,
+    EdicionComponent,
   ],
 
   imports: [
