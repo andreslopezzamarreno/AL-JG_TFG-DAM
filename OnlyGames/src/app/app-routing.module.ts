@@ -12,6 +12,7 @@ import { MisestadisticasComponent } from './components/misestadisticas/misestadi
 import { PremiosComponent } from './components/premios/premios.component';
 import { BubbleshootComponent } from './components/bubbleshoot/bubbleshoot.component';
 import { AmigosComponent } from './components/amigos/amigos.component';
+import { EdicionComponent } from './components/edicion/edicion.component';
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
@@ -31,6 +32,7 @@ const routes: Routes = [
       { path: 'Premios', component: PremiosComponent },
       { path: 'Amigos', component: AmigosComponent },
       { path: 'MisEstadisticas', component: MisestadisticasComponent },
+      { path: 'Edicion', component: EdicionComponent },
     ],
   },
 ];

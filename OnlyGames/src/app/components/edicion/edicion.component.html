@@ -1,1 +1,50 @@
-<p>edicion works!</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mis Estadisticas</title>
+    <link href="https://fonts.cdnfonts.com/css/8bit-wonder" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="circles">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+      </div>
+
+      <div class="card">
+        <div class="only_logo">
+          <img src=".\assets\output-onlinepngtools.png" alt="" />
+        </div>
+        <div class="container" style="margin-left: 13px; margin-bottom: 50px">
+          <div class="row"></div>
+          <div class="carta_info">
+            <div
+              style="
+                font-family: '8BIT WONDER', sans-serif;
+                color: white;
+                font-size: 16px;
+                margin-right: 120px;
+              "
+            >
+              <img
+                src=".\assets\alien-space-character-of-pixels-for-a-game.png"
+                alt=""
+              />
+              <p style="font-family: '8BIT WONDER', sans-serif">TagName:</p>
+              <input
+                [readonly]="!editando"
+                (click)="habilitarEdicion()"
+                type="text"
+                value="{{ currentUserGameTag }}"
+                style="font-family: '8BIT WONDER', sans-serif"
+              />
+              <button (click)="cambiarGameTag()">enter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
