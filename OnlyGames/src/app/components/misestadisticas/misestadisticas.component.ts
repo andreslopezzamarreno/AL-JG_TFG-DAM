@@ -25,7 +25,7 @@ export class MisestadisticasComponent {
   // Obtener gametag del usuario que ha iniciado sesion
   obtenerDatosUser() {
     this.database
-      .recuperarUsuario(this.auth.currentUser()?.uid)
+      .recuperarUsuario(this.auth.currentUser()!.uid)
       .then((response) => {
         var usuario: Usuario = JSON.parse(response);
         this.currentUserGameTag = usuario.gametag;

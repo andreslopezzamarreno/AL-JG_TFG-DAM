@@ -33,13 +33,7 @@ export class DatabaseService {
   };
   app = initializeApp(this.firebaseConfig);
   db = getFirestore(this.app);
-  /* usuario: Usuario | undefined;
-  iniciarUsuario(uid: string) {
-    this.recuperarUsuario(uid).then(async (user) => {
-      this.usuario = JSON.parse(user);
-    });
-  }
- */
+
   constructor() {}
 
   // Escribe en la base de datos --> en la coleccion users, el usuario
@@ -59,7 +53,7 @@ export class DatabaseService {
       console.error('Error añadiendo gameTag: ', e);
     }
   }
-  async recuperarUsuario(id: any) {
+  async recuperarUsuario(id: string) {
     let usuario = '';
     const querySnapshot = query(
       collection(this.db, 'users'),

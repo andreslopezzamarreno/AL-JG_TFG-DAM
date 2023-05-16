@@ -86,11 +86,11 @@ export class JuegosComponent {
       .comprarJuego(this.currentuser!.uid, idJuego, precioJuego)
       .then((data) => {
         if (data) {
-          console.log(this.todosLosJuegos[idJuego]);
           this.juegosRestantes = this.juegosRestantes.filter(
             (game) => game != this.todosLosJuegos[idJuego]
           );
           this.juegos.push(this.todosLosJuegos[idJuego]);
+          this.menu.obtenerDatosUser();
         }
       });
   }

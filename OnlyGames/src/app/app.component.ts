@@ -9,7 +9,6 @@ export class AppComponent {}
 
 /*"JUEGOS"
    Sumar monedas por cada punto que consiga en los juegos, 1 punto = 1 moneda
-   Canjear juegos con monedas
 
   "AMIGOS"
    Añadir arraylist SOLICITUDES y AMIGOS a los usuarios.
