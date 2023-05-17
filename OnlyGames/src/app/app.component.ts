@@ -36,4 +36,8 @@ export class AppComponent {}
 
     el el bublesbhoot solucionar lo del player.draw y lo de ball
 
+
+    "CONFIRMACION CORREO"
+    descomentar el codigo y dejarlo bien antes de entregarlo
+    editar la plantilla para enviar un correo bien guapo
     */

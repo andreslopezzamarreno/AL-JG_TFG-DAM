@@ -40,9 +40,9 @@ export class InicioComponent {
       await this.auth
         .login(usuario, pass)
         .then((user) => {
-          if (user.user.emailVerified) {
-            this.router.navigate(['/menu/Juegos/misJuegos']);
-          }
+          //if (user.user.emailVerified) {
+          this.router.navigate(['/menu/Juegos/misJuegos']);
+          //}
         })
         .catch((error) => {
           this.mostrarError(
@@ -74,7 +74,7 @@ export class InicioComponent {
             this.auth
               .registro(usuario, pass)
               .then((response) => {
-                if (response.user) {
+                /* if (response.user) {
                   sendEmailVerification(response.user).then(() => {
                     console.log('confirma correo');
                     this.database.registrarUsuario(response.user.uid, gametag);
@@ -82,8 +82,9 @@ export class InicioComponent {
                       `Te hemos enviado un correo a ${usuario} para verificar el email`
                     );
                   });
-                }
-                //this.router.navigate(['/menu/Juegos/misJuegos']);
+                } */
+                this.database.registrarUsuario(response.user.uid, gametag);
+                this.router.navigate(['/menu/Juegos/misJuegos']);
               })
               .catch((error) => {
                 console.log(error);
