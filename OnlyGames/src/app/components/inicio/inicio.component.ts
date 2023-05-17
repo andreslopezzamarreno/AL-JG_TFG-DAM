@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { ActivatedRoute } from '@angular/router';
+import { sendEmailVerification } from 'firebase/auth';
+import { emailVerified } from '@angular/fire/auth-guard';
 
 @Component({
   selector: 'app-inicio',
@@ -37,8 +39,10 @@ export class InicioComponent {
     } else {
       await this.auth
         .login(usuario, pass)
-        .then(async (response) => {
-          this.router.navigate(['/menu/Juegos/misJuegos']);
+        .then((user) => {
+          if (user.user.emailVerified) {
+            this.router.navigate(['/menu/Juegos/misJuegos']);
+          }
         })
         .catch((error) => {
           this.mostrarError(
@@ -70,8 +74,16 @@ export class InicioComponent {
             this.auth
               .registro(usuario, pass)
               .then((response) => {
-                this.database.registrarUsuario(response.user.uid, gametag);
-                this.router.navigate(['/menu/Juegos/misJuegos']);
+                if (response.user) {
+                  sendEmailVerification(response.user).then(() => {
+                    console.log('confirma correo');
+                    this.database.registrarUsuario(response.user.uid, gametag);
+                    this.mostrarError(
+                      `Te hemos enviado un correo a ${usuario} para verificar el email`
+                    );
+                  });
+                }
+                //this.router.navigate(['/menu/Juegos/misJuegos']);
               })
               .catch((error) => {
                 console.log(error);
