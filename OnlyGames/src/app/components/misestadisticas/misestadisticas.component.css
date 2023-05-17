@@ -42,12 +42,11 @@ body {
 }
 .carta_info img {
   width: 70px;
-  height: 60px;
+  height: 70px;
 }
 
 .carta_info p {
   padding: 10px 0;
-
   color: #ffffff;
   display: flex;
 }

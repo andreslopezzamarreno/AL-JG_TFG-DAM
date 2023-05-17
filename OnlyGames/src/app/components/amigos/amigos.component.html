@@ -1,10 +1,63 @@
-<div id="fb" *ngFor="let item of solicitudes" style="margin-top: 10px;">
-  <div id="fb-top">
-    <p style="font-family: '8BIT WONDER', sans-serif; font-size: 10px;">Solicitudes de amistad</p>
-  </div>
-  <p id="info" style="font-family: '8BIT WONDER', sans-serif; font-size: 15px;">{{item}}</p>
-  <div id="button-block">
-    <div id="aceptar" style="font-family: '8BIT WONDER', sans-serif; font-size: 8px;" (click) = "Aceptar(item)">Aceptar</div>
-    <div id="eliminar" style="font-family: '8BIT WONDER', sans-serif; font-size: 8px;" (click) = "Eliminar(item)">Eliminar</div>
+<div class="container" style="visibility: {{mostrarcarta}};">
+  <div class="circles">
+      <div class="circle circle-1"></div>
+      <div class="circle circle-2"></div>
+    </div>
+
+  <div class="card">
+      <div class="only_logo">
+          <img src=".\assets\output-onlinepngtools.png" alt="">
+      </div>
+      <div class="container" style="left: 25px;">
+        <div class="row">
+        </div>
+        <div class="carta_info">
+          <div class="col" style="font-family: '8BIT WONDER', sans-serif; color: white; margin-right: 80px;">
+            <img src=".\assets\alien-space-character-of-pixels-for-a-game.png" alt="">
+            <p style="font-family: '8BIT WONDER', sans-serif;">TagName: {{ amigoGameTag }}</p>
+            <p style="font-family: '8BIT WONDER', sans-serif;">Partidas:</p>
+            <p style="font-family: '8BIT WONDER', sans-serif;">Monedas: {{ amigoCoins }} <img src=".\assets\coin.png" style="width: 18px; height: 18px;margin-left: 2px;"></p>
+            <p style="font-family: '8BIT WONDER', sans-serif;">Diamantes: {{ amigoDiamantes }} <img src=".\assets\diamond.png" style="width: 18px; height: 18px; margin-left: 2px;"></p>
+          </div>
+        </div>
+        <div class="col" style="font-family: '8BIT WONDER', sans-serif; color: white; font-size: 14px; margin-left: 35px;">
+          <p style="font-family: '8BIT WONDER', sans-serif; margin-bottom: 10px; margin-top: 15px;">Highest Scores</p>
+          <ul style="margin-left: 5px; list-style-type:none ">
+            <li style="font-family: '8BIT WONDER', sans-serif; font-size: 12px; margin-bottom: 5px;">Flappy Bird: </li>
+            <li style="font-family: '8BIT WONDER', sans-serif; font-size: 12px; margin-bottom: 5px;">Snake: </li>
+            <li style="font-family: '8BIT WONDER', sans-serif;  font-size: 12px; margin-bottom: 5px;">Breakout: </li>
+            <li style="font-family: '8BIT WONDER', sans-serif;  font-size: 12px; margin-bottom: 5px;">Ajedrez: </li>
+           </ul>
+        </div>
+      </div>
   </div>
 </div>
+
+
+
+<div class="row" style="margin-top: 100px; width: 95%;">
+  <div class="col" style="text-align: center;">
+    <p style="font-family: '8BIT WONDER', sans-serif;">Mis Solicitudes</p>
+    <div id="fb" *ngFor="let item of solicitudes" style="margin-top: 40px; left: 28%;">
+      <div id="fb-top">
+        <p style="font-family: '8BIT WONDER', sans-serif; font-size: 10px;">Solicitudes de amistad</p>
+      </div>
+      <p id="info" style="font-family: '8BIT WONDER', sans-serif; font-size: 15px;">{{item}}</p>
+      <div id="button-block">
+        <div id="aceptar" style="font-family: '8BIT WONDER', sans-serif; font-size: 8px;" (click) = "Aceptar(item)">Aceptar</div>
+        <div id="eliminar" style="font-family: '8BIT WONDER', sans-serif; font-size: 8px;" (click) = "Eliminar(item)">Eliminar</div>
+      </div>
+    </div>
+  </div>
+  <div class="col" style="align-items: center; text-align: center;">
+    <p style="font-family: '8BIT WONDER', sans-serif;">Mis Amigos</p>
+    <div id="fb" *ngFor="let item of amigos" style="margin-top: 35px; left: 28%;">
+      <img id="fb img" src=".\assets\alien-space-character-of-pixels-for-a-game.png" style="width: 50px;">
+      <p id="infoamigo" style="font-family: '8BIT WONDER', sans-serif; font-size: 15px; margin-top: 38px; position: absolute; margin-left: 80px;">{{item}}</p>
+      <div id="button-block">
+        <div id="verEstadisticas" style="font-family: '8BIT WONDER', sans-serif; font-size: 8px;" (click) = "verEstadisticas(item)">Ver estadisticas</div>
+      </div>
+    </div>
+  </div>
+</div>
+

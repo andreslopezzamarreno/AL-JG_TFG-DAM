@@ -193,4 +193,22 @@ export class DatabaseService {
     });
     return chequeo;
   }
+  async obtenerAmigos(uid: string | null | undefined) {
+    var amigos: string[] = [];
+    try {
+      const querySnapshot = query(
+        collection(this.db, 'users'),
+        where('id', '==', uid)
+      );
+      await getDocs(querySnapshot).then((data) => {
+        data.forEach((item) => {
+          amigos = item.get('amigos');
+        });
+      });
+      return amigos;
+    } catch (e) {
+      console.error('Error', e);
+      return amigos;
+    }
+  }
 }

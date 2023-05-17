@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./premios.component.css']
 })
 export class PremiosComponent {
-  fun(){
+  canjearPremio(){
     console.log("click");
   }
 
