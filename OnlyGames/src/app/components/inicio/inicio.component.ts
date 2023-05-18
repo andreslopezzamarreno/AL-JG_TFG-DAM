@@ -64,8 +64,9 @@ export class InicioComponent {
   registro(usuario: string, pass: string): void {
     var gametag = (<HTMLInputElement>document.getElementById('gametag')).value;
     if (usuario != '' && pass != '' && gametag != '') {
-      this.database.existeGametag(gametag).then((response) => {
-        if (response.size == 0) {
+      this.database.userGametag(gametag).then((response) => {
+        console.log(response);
+        if (response == '') {
           if (pass.length < 6) {
             this.mostrarError(
               'La contrasena tiene que tener al menos 6 caracteres'

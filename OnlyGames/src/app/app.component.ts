@@ -12,6 +12,8 @@ export class AppComponent {}
 
   "AMIGOS"
    Y por cada amigo, saldra el elemento con el nombre de este, que si se pulsa saldra la tarjeta con sus estadisticas
+  boton aceptar hace amigos para el current user pero tambien tiene que añadir amigo el otro al current user
+  ¿como se hacen amigos?
 
    "PREMIOS"
     Comprobar si el usuario tiene las monedas suficientes para canjear el premio

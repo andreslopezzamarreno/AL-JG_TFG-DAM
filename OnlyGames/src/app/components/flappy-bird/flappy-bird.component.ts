@@ -18,7 +18,7 @@ export class FlappyBirdComponent {
       mutations.forEach((mutation) => {
         this.highScore = parseInt(localStorage.getItem('high-score_flappy')!);
         this.db.actualizarRecord(
-          this.auth.currentUser()?.uid,
+          this.auth.currentUser()!.uid,
           this.highScore,
           this.IDJUEGO
         );
@@ -38,7 +38,7 @@ export class FlappyBirdComponent {
     private auth: AuthService
   ) {
     this.db
-      .obtenerRecord(this.auth.currentUser()?.uid, this.IDJUEGO)
+      .obtenerRecord(this.auth.currentUser()!.uid, this.IDJUEGO)
       .then((rec) => {
         this.highScore = rec;
         localStorage.setItem('high-score_flappy', this.highScore.toString());

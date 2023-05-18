@@ -25,7 +25,7 @@ export class SnakeComponent {
       mutations.forEach((mutation) => {
         this.highScore = parseInt(localStorage.getItem('high-score_snake')!);
         this.db.actualizarRecord(
-          this.auth.currentUser()?.uid,
+          this.auth.currentUser()!.uid,
           this.highScore,
           this.IDJUEGO
         );
@@ -45,7 +45,7 @@ export class SnakeComponent {
     private auth: AuthService
   ) {
     this.db
-      .obtenerRecord(this.auth.currentUser()?.uid, this.IDJUEGO)
+      .obtenerRecord(this.auth.currentUser()!.uid, this.IDJUEGO)
       .then((rec) => {
         this.highScore = rec;
         localStorage.setItem('high-score_snake', this.highScore.toString());

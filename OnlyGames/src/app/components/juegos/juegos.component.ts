@@ -60,19 +60,17 @@ export class JuegosComponent {
       });
     });
 
-    this.db.verMisJuegos(uid).then((item) => {
+    await this.db.recuperarUsuario(uid).then((user) => {
+      var usuario: Usuario = JSON.parse(user);
       var contador = 0;
-
-      item.forEach((element) => {
-        element.data()['juegos'].forEach((element: any) => {
-          var juegoAct = this.todosLosJuegos[contador];
-          contador++;
-          if (element == true) {
-            this.juegos.push(juegoAct);
-          } else {
-            this.juegosRestantes.push(juegoAct);
-          }
-        });
+      usuario.juegos.forEach((juego) => {
+        var juegoAct = this.todosLosJuegos[contador];
+        contador++;
+        if (juego == true) {
+          this.juegos.push(juegoAct);
+        } else {
+          this.juegosRestantes.push(juegoAct);
+        }
       });
     });
   }

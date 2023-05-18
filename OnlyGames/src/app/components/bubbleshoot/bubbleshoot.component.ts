@@ -21,7 +21,7 @@ export class BubbleshootComponent {
         );
 
         this.db.actualizarRecord(
-          this.auth.currentUser()?.uid,
+          this.auth.currentUser()!.uid,
           this.highScore,
           this.IDJUEGO
         );
@@ -40,7 +40,7 @@ export class BubbleshootComponent {
     private auth: AuthService
   ) {
     this.db
-      .obtenerRecord(this.auth.currentUser()?.uid, this.IDJUEGO)
+      .obtenerRecord(this.auth.currentUser()!.uid, this.IDJUEGO)
       .then((rec) => {
         this.highScore = rec;
         localStorage.setItem(

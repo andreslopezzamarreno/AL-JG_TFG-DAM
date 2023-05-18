@@ -36,8 +36,8 @@ export class DatabaseService {
 
   constructor() {}
 
-  // Escribe en la base de datos --> en la coleccion users, el usuario
   registrarUsuario(userId: string, gametag: string) {
+    // Escribe en la base de datos --> en la coleccion users, el usuario
     try {
       setDoc(doc(this.db, 'users', userId), {
         id: userId,
@@ -53,6 +53,7 @@ export class DatabaseService {
       console.error('Error añadiendo gameTag: ', e);
     }
   }
+
   async recuperarUsuario(id: string) {
     let usuario = '';
     const querySnapshot = query(
@@ -66,65 +67,51 @@ export class DatabaseService {
     });
     return usuario;
   }
-  // Ver si existe el gametag para que no exista dos usuarios con el mismo
-  async existeGametag(gametag: string) {
+
+  async userGametag(gametag: string) {
+    var usuario = '';
+    // Ver si existe el gametag para que no exista dos usuarios con el mismo
     const querySnapshot = query(
       collection(this.db, 'users'),
       where('gametag', '==', gametag)
     );
-    return await getDocs(querySnapshot);
+    await getDocs(querySnapshot).then((data) => {
+      data.forEach((user) => {
+        usuario = JSON.stringify(user.data());
+      });
+    });
+    return usuario;
   }
-  // Carga todos losjuegos
+
   async verJuegos() {
+    // Carga todos los juegos
     const juegosRef = collection(this.db, 'juegos');
     const q = query(juegosRef);
     return await getDocs(q);
   }
-  // Carga mis juegos
-  async verMisJuegos(uid: string) {
-    const querySnapshot = query(
-      collection(this.db, 'users'),
-      where('id', '==', uid)
-    );
-    return await getDocs(querySnapshot);
-  }
-  actualizarRecord(
-    uid: string | null | undefined,
-    record: number,
-    idJuego: number
-  ) {
+
+  async actualizarRecord(uid: string, record: number, idJuego: number) {
     try {
       var records: number[] = [];
-      const querySnapshot = query(
-        collection(this.db, 'users'),
-        where('id', '==', uid)
-      );
-      getDocs(querySnapshot).then((data) => {
-        data.forEach((item) => {
-          records = item.get('records');
-          records[idJuego] = record;
-          updateDoc(doc(this.db, 'users/' + uid), {
-            records: records,
-          });
+      await this.recuperarUsuario(uid).then((user) => {
+        var usuario: Usuario = JSON.parse(user);
+        records = usuario.records;
+        records[idJuego] = record;
+        updateDoc(doc(this.db, 'users/' + uid), {
+          records: records,
         });
       });
     } catch (e) {
       console.error('Error', e);
     }
   }
-  async obtenerRecord(uid: string | null | undefined, idJuego: number) {
-    var records: number[] = [];
+
+  async obtenerRecord(uid: string, idJuego: number) {
     var record = 0;
     try {
-      const querySnapshot = query(
-        collection(this.db, 'users'),
-        where('id', '==', uid)
-      );
-      await getDocs(querySnapshot).then((data) => {
-        data.forEach((item) => {
-          records = item.get('records');
-          record = records[idJuego];
-        });
+      await this.recuperarUsuario(uid).then((user) => {
+        var usuario: Usuario = JSON.parse(user);
+        record = usuario.records[idJuego];
       });
       return record;
     } catch (e) {
@@ -132,52 +119,58 @@ export class DatabaseService {
       return record;
     }
   }
-  async obtenerSolicitudes(uid: string | null | undefined) {
+
+  async eliminarSolicitudes(uid: string, solicitud_eliminar: string) {
     var solicitudes: string[] = [];
-    try {
-      const querySnapshot = query(
-        collection(this.db, 'users'),
-        where('id', '==', uid)
-      );
-      await getDocs(querySnapshot).then((data) => {
-        data.forEach((item) => {
-          solicitudes = item.get('solicitudes');
-        });
-      });
-      return solicitudes;
-    } catch (e) {
-      console.error('Error', e);
-      return solicitudes;
-    }
+    await this.recuperarUsuario(uid).then((user) => {
+      var usuario: Usuario = JSON.parse(user);
+      solicitudes = usuario.solicitudes;
+      solicitudes.splice(solicitudes.indexOf(solicitud_eliminar), 1);
+    });
+    await updateDoc(doc(this.db, 'users/' + uid), {
+      solicitudes: solicitudes,
+    });
+    return solicitudes;
   }
-  async eliminarSolicitudes(
-    uid: string | null | undefined,
-    solicitud_eliminar: string
-  ) {
+
+  async aniadirAmigo(uid: string, solicitud: string, anidir: boolean) {
+    var amigos: string[] = [];
     var solicitudes: string[] = [];
-    try {
-      const querySnapshot = query(
-        collection(this.db, 'users'),
-        where('id', '==', uid)
-      );
-      await getDocs(querySnapshot).then((data) => {
-        data.forEach((item) => {
-          solicitudes = item.get('solicitudes');
-          solicitudes.splice(solicitudes.indexOf(solicitud_eliminar), 1);
-        });
-      });
-      updateDoc(doc(this.db, 'users/' + uid), {
-        solicitudes: solicitudes,
-      });
-      return solicitudes;
-    } catch (e) {
-      console.error('Error', e);
-      return solicitudes;
-    }
+    var gametagCuerrentUser;
+    var idSolicitud;
+
+    await this.userGametag(solicitud).then((user) => {
+      var usuario: Usuario = JSON.parse(user);
+      idSolicitud = usuario.id;
+      if (anidir) {
+        amigos = usuario.amigos;
+        amigos.push(solicitud);
+      }
+    });
+    await updateDoc(doc(this.db, 'users/' + idSolicitud), {
+      amigos: amigos,
+    });
+
+    await this.recuperarUsuario(uid).then((user) => {
+      var usuario: Usuario = JSON.parse(user);
+      gametagCuerrentUser = usuario.gametag;
+      if (anidir) {
+        amigos = usuario.amigos;
+        amigos.push(solicitud);
+      } else {
+        solicitudes = usuario.solicitudes;
+        solicitudes.splice(solicitudes.indexOf(solicitud), 1);
+      }
+    });
+    await updateDoc(doc(this.db, 'users/' + uid), {
+      amigos: amigos,
+    });
+
+    return amigos;
   }
+
   async comprarJuego(uid: string, idJuego: number, precioJuego: number) {
     var chequeo = false;
-
     await this.recuperarUsuario(uid).then(async (user) => {
       var usuario: Usuario = JSON.parse(user);
       if (usuario.coins >= precioJuego) {
@@ -192,23 +185,5 @@ export class DatabaseService {
       }
     });
     return chequeo;
-  }
-  async obtenerAmigos(uid: string | null | undefined) {
-    var amigos: string[] = [];
-    try {
-      const querySnapshot = query(
-        collection(this.db, 'users'),
-        where('id', '==', uid)
-      );
-      await getDocs(querySnapshot).then((data) => {
-        data.forEach((item) => {
-          amigos = item.get('amigos');
-        });
-      });
-      return amigos;
-    } catch (e) {
-      console.error('Error', e);
-      return amigos;
-    }
   }
 }

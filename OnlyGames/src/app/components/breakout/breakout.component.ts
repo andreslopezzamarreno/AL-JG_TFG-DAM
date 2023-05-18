@@ -20,7 +20,7 @@ export class BreakoutComponent {
         this.highScore = parseInt(localStorage.getItem('high-score_breakout')!);
 
         this.db.actualizarRecord(
-          this.auth.currentUser()?.uid,
+          this.auth.currentUser()!.uid,
           this.highScore,
           this.IDJUEGO
         );
@@ -39,7 +39,7 @@ export class BreakoutComponent {
     private auth: AuthService
   ) {
     this.db
-      .obtenerRecord(this.auth.currentUser()?.uid, this.IDJUEGO)
+      .obtenerRecord(this.auth.currentUser()!.uid, this.IDJUEGO)
       .then((rec) => {
         this.highScore = rec;
         localStorage.setItem('high-score_breakout', this.highScore.toString());
