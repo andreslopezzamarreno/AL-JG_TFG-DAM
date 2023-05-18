@@ -18,7 +18,7 @@ body{
 .menu{
   position: fixed;
 }
-/*Diseño Menu*/
+
 .cf:before,
 .cf:after {
   content: " ";
@@ -42,8 +42,6 @@ body{
 .menu {
   margin: auto;
   width: 800px;
-  width: -moz-fit-content;
-  width: -webkit-fit-content;
   width: fit-content;
 
 }
@@ -167,5 +165,4 @@ body{
 .menu > li:hover .submenu li:nth-child(odd){
   transform: skewX(-25deg) translateX(-15px);
 }
-/*Fin Menu*/
 

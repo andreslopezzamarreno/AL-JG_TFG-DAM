@@ -30,12 +30,12 @@ export class AmigosComponent {
         this.amigos = rec;
       });
   }
-
+  // Aceptar solicitud y añadar solicitante como amigo
   Aceptar(gametag_solicitante: string) {
     // Conseguir uid del gametag que ha enviado la solicitud
     console.log(gametag_solicitante);
   }
-
+  // Eliminar solicitud
   Eliminar(gametag_solicitante: string) {
       this.database
       .eliminarSolicitudes(this.auth.currentUser()?.uid,gametag_solicitante)
@@ -44,6 +44,7 @@ export class AmigosComponent {
       });
   }
 
+  // Ver estadisticas del amigo
   verEstadisticas(gametag_amigo: string){
     this.mostrarcarta = "visible"
     this.obtenerDatosAmigo()

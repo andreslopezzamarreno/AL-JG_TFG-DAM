@@ -6,37 +6,6 @@ body {
   background: transparent;
 }
 
-.background {
-  background: url('https://images.pexels.com/photos/1095624/pexels-photo-1095624.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260')
-    center top no-repeat #252746;
-  background-size: cover;
-  display: block;
-  width: 100%;
-  height: 1000px;
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  left: 0;
-}
-
-.background-texture {
-  background: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    from(#0f0140e6),
-    to(rgba(255, 214, 117, 0.9))
-  );
-  background: linear-gradient(to top, #0f0140e6, rgba(255, 214, 117, 0.9));
-  background-size: cover;
-  width: 100%;
-  height: 1000px;
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  left: 0;
-}
-
 .carousel {
   width: 100%;
   overflow-x: scroll;
@@ -50,7 +19,6 @@ body {
 }
 
 .categories__title {
- color: rgb(77, 55, 102);
   font-size: 28px;
   position: absolute;
   padding-left: 30px;
@@ -126,13 +94,6 @@ body {
 }
 
 .carousel-item__details {
-  background: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    from(rgba(0, 0, 0, 0.9)),
-    to(rgba(0, 0, 0, 0))
-  );
   background: linear-gradient(
     to top,
     rgba(0, 0, 0, 0.9) 0%,
