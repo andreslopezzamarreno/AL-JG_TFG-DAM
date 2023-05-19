@@ -12,17 +12,16 @@ export class AmigosComponent {
   solicitudes: string[] = [];
   amigos: string[] = [];
   currentuser = this.auth.currentUser();
-  uid_amigo: string = '';
-  amigoGameTag?: string;
-  amigoCoins?: number;
-  amigoDiamantes?: number;
+  currentuser_gametag: string = ""
+  usuario_amigo: Usuario | undefined;
+  uid_amigo: string = "";
   mostrarcarta: string = 'hidden';
-  gametagCuerrentUser = '';
   constructor(private database: DatabaseService, private auth: AuthService) {
     this.database
       .recuperarUsuario(this.auth.currentUser()!.uid)
       .then((user) => {
         var usuario: Usuario = JSON.parse(user);
+        this.currentuser_gametag = usuario.gametag;
         this.solicitudes = usuario.solicitudes;
         this.amigos = usuario.amigos;
       });
@@ -33,7 +32,7 @@ export class AmigosComponent {
     this.Eliminar(gametag_solicitante);
     // Conseguir uid del gametag que ha enviado la solicitud
     await this.database
-      .aniadirAmigo(this.auth.currentUser()!.uid, gametag_solicitante, true)
+      .aniadirAmigo(this.auth.currentUser()!.uid, gametag_solicitante)
       .then((amigos) => {
         this.amigos = amigos;
       });
@@ -51,15 +50,14 @@ export class AmigosComponent {
   verEstadisticas(gametag_amigo: string) {
     // Ver estadisticas del amigo
     this.mostrarcarta = 'visible';
-    this.obtenerDatosAmigo();
+    this.database.userGametag(gametag_amigo).then((response) => {
+      var usuario: Usuario = JSON.parse(response);
+      this.usuario_amigo = usuario
+      console.log(usuario.gametag);
+    });
   }
 
-  obtenerDatosAmigo() {
-    this.database.recuperarUsuario(this.uid_amigo).then((response) => {
-      var usuario: Usuario = JSON.parse(response);
-      this.amigoGameTag = usuario.gametag;
-      this.amigoCoins = usuario.coins;
-      this.amigoDiamantes = usuario.diamantes;
-    });
+  enviarSolicitud(gametag_solicitado: string){
+    this.database.obtenerSolicitudes(gametag_solicitado,this.currentuser_gametag)
   }
 }

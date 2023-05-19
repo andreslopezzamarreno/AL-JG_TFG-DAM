@@ -14,10 +14,10 @@
         <div class="carta_info">
           <div class="col" style="font-family: '8BIT WONDER', sans-serif; color: white; margin-right: 80px;">
             <img src=".\assets\alien-space-character-of-pixels-for-a-game.png" alt="">
-            <p style="font-family: '8BIT WONDER', sans-serif;">TagName: {{ amigoGameTag }}</p>
+            <p style="font-family: '8BIT WONDER', sans-serif;">TagName: {{usuario_amigo?.gametag}}</p>
             <p style="font-family: '8BIT WONDER', sans-serif;">Partidas:</p>
-            <p style="font-family: '8BIT WONDER', sans-serif;">Monedas: {{ amigoCoins }} <img src=".\assets\coin.png" style="width: 18px; height: 18px;margin-left: 2px;"></p>
-            <p style="font-family: '8BIT WONDER', sans-serif;">Diamantes: {{ amigoDiamantes }} <img src=".\assets\diamond.png" style="width: 18px; height: 18px; margin-left: 2px;"></p>
+            <p style="font-family: '8BIT WONDER', sans-serif;">Monedas: {{usuario_amigo?.coins}}<img src=".\assets\coin.png" style="width: 18px; height: 18px;margin-left: 2px;"></p>
+            <p style="font-family: '8BIT WONDER', sans-serif;">Diamantes: {{usuario_amigo?.diamantes}}<img src=".\assets\diamond.png" style="width: 18px; height: 18px; margin-left: 2px;"></p>
           </div>
         </div>
         <div class="col" style="font-family: '8BIT WONDER', sans-serif; color: white; font-size: 14px; margin-left: 35px;">
@@ -59,5 +59,14 @@
       </div>
     </div>
   </div>
+  <form>
+    <div class="form-group">
+      <p style="font-family: '8BIT WONDER', sans-serif; font-size: 12px; position: absolute; left: 91.15%; bottom: 77%;">Agregar amigo</p>
+      <input type="text" style="width: 15%; position: absolute; left: 84%; bottom: 73.55%;" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="GameTag de usuario" #gametagAmigo>
+    </div>
+    <div type="submit" class="btn btn-primary" style="border-color: transparent; background-color: rgb(211, 54, 250); font-family: '8BIT WONDER', sans-serif; font-size: 12px; position: absolute; left: 94.15%; bottom: 69%;" (click)="enviarSolicitud(gametagAmigo.value)">Enviar</div>
+  </form>
 </div>
+
+
 
