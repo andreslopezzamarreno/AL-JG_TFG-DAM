@@ -365,7 +365,7 @@ function isGameOver() {
     game.lives -= 1;
     game.sfx && sounds.ballLost.play();
     if (game.lives === 0) {
-      gameOver();
+      gameOverBreakout();
       return true;
     }
     resetBall();
@@ -374,7 +374,7 @@ function isGameOver() {
   return false;
 }
 
-function gameOver() {
+function gameOverBreakout() {
   game.on = false;
   sounds.currentTime = 0;
   game.sfx && sounds.gameOver.play();

@@ -50,6 +50,7 @@ export class BreakoutComponent {
   reiniciar() {
     this._CargarScripts.Carga('Breakout/game');
   }
+
   ngOnDestroy(): void {
     this._CargarScripts.borrarScript();
   }

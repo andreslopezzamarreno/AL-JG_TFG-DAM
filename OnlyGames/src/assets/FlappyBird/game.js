@@ -267,6 +267,29 @@ var getReady = {
 };
 
 // Game Over
+gameOverDraw = () => {
+  (this.sX = 175),
+    (this.sY = 228),
+    (this.w = 225),
+    (this.h = 202),
+    (this.x = cvs.width / 2 - 225 / 2),
+    (this.y = 90);
+
+  if (state.current == state.over) {
+    ctx.drawImage(
+      sprite,
+      this.sX,
+      this.sY,
+      this.w,
+      this.h,
+      this.x,
+      this.y,
+      this.w,
+      this.h
+    );
+  }
+};
+/* // Game Over
 var gameOver = {
   sX: 175,
   sY: 228,
@@ -290,7 +313,7 @@ var gameOver = {
       );
     }
   },
-};
+}; */
 
 // Tuberias
 var pipes = {
@@ -389,11 +412,11 @@ var pipes = {
       if (p.x + this.w <= 0) {
         this.position.shift();
         score.value += 1;
-        scoreElement.innerHTML = "Score: " + score.value
+        scoreElement.innerHTML = "Score: " + score.value;
         SCORE_S.play();
         score.best = Math.max(score.value, score.best);
         localStorage.setItem("high-score_flappy", score.best);
-        highScoreElement.innerHTML = "High Score: " + score.best
+        highScoreElement.innerHTML = "High Score: " + score.best;
       }
     }
   },
@@ -423,7 +446,7 @@ var score = {
       ctx.font = "25px Teko";
       ctx.fillText(this.value, 225, 186);
       ctx.strokeText(this.value, 225, 186);
-      scoreElement.innerHTML = "Score: " + this.value
+      scoreElement.innerHTML = "Score: " + this.value;
       // Valor HighScore
       ctx.fillText(this.best, 225, 228);
       ctx.strokeText(this.best, 225, 228);
@@ -445,7 +468,8 @@ function draw() {
   fg.draw();
   bird.draw();
   getReady.draw();
-  gameOver.draw();
+  //gameOver.draw();
+  gameOverDraw();
   score.draw();
 }
 
