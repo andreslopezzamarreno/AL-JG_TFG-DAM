@@ -40,7 +40,24 @@
                 value="{{ currentUserGameTag }}"
                 style="font-family: '8BIT WONDER', sans-serif"
               />
-              <button (click)="cambiarGameTag()">enter</button>
+              <div
+                type="submit"
+                class="btn btn-primary"
+                style="
+                  border-color: transparent;
+                  color: white;
+                  background-color: rgb(23, 27, 44);
+                  font-family: '8BIT WONDER', sans-serif;
+                  font-size: 12px;
+                  position: relative;
+                  text-align: center;
+                  margin-top: 5px;
+                  height: fit-content;
+                "
+                  (click)="cambiarGameTag()"
+              >
+                Editar
+              </div>
             </div>
           </div>
         </div>
