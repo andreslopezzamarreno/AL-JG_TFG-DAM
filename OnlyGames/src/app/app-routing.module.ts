@@ -5,7 +5,6 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { JuegosComponent } from './components/juegos/juegos.component';
 import { FlappyBirdComponent } from './components/flappy-bird/flappy-bird.component';
-import { AjedrezComponent } from './components/ajedrez/ajedrez.component';
 import { SnakeComponent } from './components/snake/snake.component';
 import { BreakoutComponent } from './components/breakout/breakout.component';
 import { MisestadisticasComponent } from './components/misestadisticas/misestadisticas.component';
@@ -25,7 +24,6 @@ const routes: Routes = [
     children: [
       { path: 'Juegos/:tipo', component: JuegosComponent },
       { path: 'Flappy', component: FlappyBirdComponent },
-      { path: 'Ajedrez', component: AjedrezComponent },
       { path: 'Snake', component: SnakeComponent },
       { path: 'Breakout', component: BreakoutComponent },
       { path: 'BubbleShoot', component: BubbleshootComponent },

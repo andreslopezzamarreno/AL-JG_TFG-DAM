@@ -30,7 +30,6 @@ export class MisestadisticasComponent {
         var usuario: Usuario = JSON.parse(response);
         this.currentUserGameTag = usuario.gametag;
         this.currentUserCoins = usuario.coins;
-        this.currentUserDiamantes = usuario.diamantes;
       });
   }
 }

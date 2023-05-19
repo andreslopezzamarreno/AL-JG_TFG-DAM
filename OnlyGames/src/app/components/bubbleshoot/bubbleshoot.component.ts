@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class BubbleshootComponent {
   //id del juego para controlar bd
-  IDJUEGO = 2;
+  IDJUEGO = 1;
   highScore = 0;
 
   @ViewChild('miSpan', { static: false }) miSpan: any;

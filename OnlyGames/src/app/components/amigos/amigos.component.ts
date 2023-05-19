@@ -12,9 +12,9 @@ export class AmigosComponent {
   solicitudes: string[] = [];
   amigos: string[] = [];
   currentuser = this.auth.currentUser();
-  currentuser_gametag: string = ""
+  currentuser_gametag: string = '';
   usuario_amigo: Usuario | undefined;
-  uid_amigo: string = "";
+  uid_amigo: string = '';
   mostrarcarta: string = 'hidden';
   constructor(private database: DatabaseService, private auth: AuthService) {
     this.database
@@ -52,12 +52,15 @@ export class AmigosComponent {
     this.mostrarcarta = 'visible';
     this.database.userGametag(gametag_amigo).then((response) => {
       var usuario: Usuario = JSON.parse(response);
-      this.usuario_amigo = usuario
+      this.usuario_amigo = usuario;
       console.log(usuario.gametag);
     });
   }
 
-  enviarSolicitud(gametag_solicitado: string){
-    this.database.obtenerSolicitudes(gametag_solicitado,this.currentuser_gametag)
+  enviarSolicitud(gametag_solicitado: string) {
+    this.database.obtenerSolicitudes(
+      gametag_solicitado,
+      this.currentuser_gametag
+    );
   }
 }

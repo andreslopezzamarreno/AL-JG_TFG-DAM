@@ -16,7 +16,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SnakeComponent {
   //id del juego para controlar bd
-  IDJUEGO = 4;
+  IDJUEGO = 3;
   highScore = 0;
 
   @ViewChild('miSpan', { static: false }) miSpan: any;

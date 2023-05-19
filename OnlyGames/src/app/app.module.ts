@@ -12,7 +12,6 @@ import { MenuComponent } from './components/menu/menu.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { JuegosComponent } from './components/juegos/juegos.component';
 import { FlappyBirdComponent } from './components/flappy-bird/flappy-bird.component';
-import { AjedrezComponent } from './components/ajedrez/ajedrez.component';
 
 import { CargarScriptsService } from './services/cargar-scripts.service';
 import { SnakeComponent } from './components/snake/snake.component';
@@ -30,7 +29,6 @@ import { EdicionComponent } from './components/edicion/edicion.component';
     InicioComponent,
     JuegosComponent,
     FlappyBirdComponent,
-    AjedrezComponent,
     SnakeComponent,
     BreakoutComponent,
     MisestadisticasComponent,

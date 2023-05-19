@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class BreakoutComponent {
   //id del juego para controlar bd
-  IDJUEGO = 1;
+  IDJUEGO = 0;
   highScore = 0;
 
   @ViewChild('miSpan', { static: false }) miSpan: any;

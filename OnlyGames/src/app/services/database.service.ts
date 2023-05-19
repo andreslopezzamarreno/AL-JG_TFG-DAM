@@ -43,9 +43,8 @@ export class DatabaseService {
         id: userId,
         gametag: gametag,
         coins: 150,
-        diamantes: 0,
-        juegos: [true, false, false, false, false],
-        records: [0, 0, 0, 0, 0],
+        juegos: [false, false, false, false],
+        records: [0, 0, 0, 0],
         solicitudes: [],
         amigos: [],
       });
@@ -121,13 +120,13 @@ export class DatabaseService {
   }
 
   async obtenerSolicitudes(gameTag: string, gametagCuerrentUser: string) {
-    var uid_usuario: string = "";
+    var uid_usuario: string = '';
     var solicitudes: string[] = [];
     await this.userGametag(gameTag).then((user) => {
       var usuario: Usuario = JSON.parse(user);
       solicitudes = usuario.solicitudes;
-      solicitudes.push(gametagCuerrentUser)
-      uid_usuario = usuario.id
+      solicitudes.push(gametagCuerrentUser);
+      uid_usuario = usuario.id;
     });
     await updateDoc(doc(this.db, 'users/' + uid_usuario), {
       solicitudes: solicitudes,
@@ -148,7 +147,7 @@ export class DatabaseService {
   }
 
   async aniadirAmigo(uid: string, solicitud: string) {
-    var amigos_solicitante: string[] = []
+    var amigos_solicitante: string[] = [];
     var amigos: string[] = [];
     var solicitudes: string[] = [];
     var gametagCuerrentUser: string;
@@ -173,7 +172,6 @@ export class DatabaseService {
     await updateDoc(doc(this.db, 'users/' + idSolicitud), {
       amigos: amigos_solicitante,
     });
-
 
     return amigos;
   }

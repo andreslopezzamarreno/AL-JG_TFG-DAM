@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class FlappyBirdComponent {
   //id del juego para controlar bd
-  IDJUEGO = 3;
+  IDJUEGO = 2;
   highScore = 0;
 
   @ViewChild('miSpan', { static: false }) miSpan: any;
