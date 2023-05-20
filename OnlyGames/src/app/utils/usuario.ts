@@ -12,7 +12,6 @@ export class Usuario {
     id: string,
     gametag: string,
     coins: number,
-    diamantes: number,
     amigos: string[],
     juegos: boolean[],
     solicitudes: string[],

@@ -33,13 +33,16 @@
                 alt=""
               />
               <p style="font-family: '8BIT WONDER', sans-serif">TagName:</p>
+              <div style="display: flex;">
+              <img src=".\assets\edit.png" style="width: 15px; height: 15px; margin-top: 15px; margin-right: 8px;">
               <input
                 [readonly]="!editando"
                 (click)="habilitarEdicion()"
                 type="text"
                 value="{{ currentUserGameTag }}"
                 style="font-family: '8BIT WONDER', sans-serif"
-              />
+                />
+              </div>
               <div
                 type="submit"
                 class="btn btn-primary"

@@ -25,19 +25,17 @@
               <div class="carta_info">
                 <div class="col-sm" style="font-family: '8BIT WONDER', sans-serif; color: white; font-size: 16px; margin-right: 120px;">
                   <img src=".\assets\alien-space-character-of-pixels-for-a-game.png" alt="">
-                  <p style="font-family: '8BIT WONDER', sans-serif;">TagName: {{ currentUserGameTag }}</p>
-                  <p style="font-family: '8BIT WONDER', sans-serif;">Partidas:</p>
-                  <p style="font-family: '8BIT WONDER', sans-serif;">Monedas: {{ currentUserCoins }} <img src=".\assets\coin.png" style="width: 18px; height: 18px; margin-top: 4px; margin-left: 2px;"></p>
-                  <p style="font-family: '8BIT WONDER', sans-serif;">Diamantes: {{ currentUserDiamantes }} <img src=".\assets\diamond.png" style="width: 18px; height: 18px; margin-top: 4px; margin-left: 2px;"></p>
+                  <p style="font-family: '8BIT WONDER', sans-serif;">TagName: {{ usuario?.gametag }}</p>
+                  <p style="font-family: '8BIT WONDER', sans-serif;">Monedas: {{ usuario?.coins }} <img src=".\assets\coin.png" style="width: 18px; height: 18px; margin-top: 4px; margin-left: 2px;"></p>
                 </div>
               </div>
               <div class="col-sm" style="font-family: '8BIT WONDER', sans-serif; color: white; font-size: 16px; ">
-                <p style="font-family: '8BIT WONDER', sans-serif; margin-bottom: 10px; margin-top: 28px;">Highest Scores</p>
+                <p style="font-family: '8BIT WONDER', sans-serif; margin-bottom: 10px; margin-top: 28px; margin-left: 5px;">Highest Scores</p>
                 <ul style="margin-left: 5px; list-style-type:none ">
-                  <li style="font-family: '8BIT WONDER', sans-serif; font-size: 12px; margin-bottom: 5px;">Flappy Bird: </li>
-                  <li style="font-family: '8BIT WONDER', sans-serif; font-size: 12px; margin-bottom: 5px;">Snake: </li>
-                  <li style="font-family: '8BIT WONDER', sans-serif;  font-size: 12px; margin-bottom: 5px;">Breakout: </li>
-                  <li style="font-family: '8BIT WONDER', sans-serif;  font-size: 12px; margin-bottom: 5px;">Ajedrez: </li>
+                  <li style="font-family: '8BIT WONDER', sans-serif; font-size: 12px; margin-bottom: 5px;">Flappy Bird: {{usuario!.records[2]}}</li>
+                  <li style="font-family: '8BIT WONDER', sans-serif; font-size: 12px; margin-bottom: 5px;">Snake: {{usuario!.records[3]}}</li>
+                  <li style="font-family: '8BIT WONDER', sans-serif;  font-size: 12px; margin-bottom: 5px;">Breakout: {{usuario!.records[0]}}</li>
+                  <li style="font-family: '8BIT WONDER', sans-serif;  font-size: 12px; margin-bottom: 5px;">BubbleShoot: {{usuario!.records[1]}}</li>
                  </ul>
               </div>
             </div>

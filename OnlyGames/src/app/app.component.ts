@@ -10,15 +10,10 @@ export class AppComponent {}
 /*JUEGOS
           1. Sumar monedas por cada punto que consiga en los juegos, 1 punto = 1 moneda
 
-          "ESTADISTICAS"
-          2. Quitar partidas y terminar lo de poner las estadísticas
-
           "PREMIOS"
           4. Comprobar si el usuario tiene las monedas suficientes para canjear el premio
 
           5. Si es asi lo canjea y le envia email o le sale un alert con el codigo
-
-          6. Quitar diamantes
 
           "EDITAR PERFIL"
           7. Que el usuario pueda cambiar su gametag y que pueda alomejor cambiar su foto de perfil, donde habria varias fotos que pudiera elegir

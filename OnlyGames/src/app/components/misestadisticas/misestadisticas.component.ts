@@ -10,9 +10,7 @@ import { Usuario } from 'src/app/utils/usuario';
   styleUrls: ['./misestadisticas.component.css'],
 })
 export class MisestadisticasComponent {
-  currentUserGameTag?: string;
-  currentUserCoins?: number;
-  currentUserDiamantes?: number;
+  usuario: Usuario | undefined;
 
   constructor(
     private auth: AuthService,
@@ -28,8 +26,7 @@ export class MisestadisticasComponent {
       .recuperarUsuario(this.auth.currentUser()!.uid)
       .then((response) => {
         var usuario: Usuario = JSON.parse(response);
-        this.currentUserGameTag = usuario.gametag;
-        this.currentUserCoins = usuario.coins;
+        this.usuario = usuario
       });
   }
 }

@@ -3,6 +3,7 @@ var cvs = document.getElementById("bird");
 var ctx = cvs.getContext("2d");
 var highScoreElement = document.querySelector(".high-score");
 var scoreElement = document.querySelector(".score");
+var btnStart = document.getElementById("play-button")
 // Variables y constantes
 var frames = 0;
 var DEGREE = Math.PI / 180;
@@ -55,25 +56,21 @@ cvs.addEventListener("click", function (evt) {
       bird.flap();
       FLAP.play();
       break;
-    case state.over:
-      var rect = cvs.getBoundingClientRect();
+  }
+});
+
+btnStart.addEventListener("click", function (evt){
+  var rect = cvs.getBoundingClientRect();
       var clickX = evt.clientX - rect.left;
       var clickY = evt.clientY - rect.top;
-
-      // CHECK IF WE CLICK ON THE START BUTTON
-      if (
         clickX >= startBtn.x &&
         clickX <= startBtn.x + startBtn.w &&
         clickY >= startBtn.y &&
         clickY <= startBtn.y + startBtn.h
-      ) {
         pipes.reset();
         bird.speedReset();
         score.reset();
         state.current = state.getReady;
-      }
-      break;
-  }
 });
 
 // Background
@@ -266,55 +263,6 @@ var getReady = {
   },
 };
 
-// Game Over
-gameOverDraw = () => {
-  (this.sX = 175),
-    (this.sY = 228),
-    (this.w = 225),
-    (this.h = 202),
-    (this.x = cvs.width / 2 - 225 / 2),
-    (this.y = 90);
-
-  if (state.current == state.over) {
-    ctx.drawImage(
-      sprite,
-      this.sX,
-      this.sY,
-      this.w,
-      this.h,
-      this.x,
-      this.y,
-      this.w,
-      this.h
-    );
-  }
-};
-/* // Game Over
-var gameOver = {
-  sX: 175,
-  sY: 228,
-  w: 225,
-  h: 202,
-  x: cvs.width / 2 - 225 / 2,
-  y: 90,
-
-  draw: function () {
-    if (state.current == state.over) {
-      ctx.drawImage(
-        sprite,
-        this.sX,
-        this.sY,
-        this.w,
-        this.h,
-        this.x,
-        this.y,
-        this.w,
-        this.h
-      );
-    }
-  },
-}; */
-
 // Tuberias
 var pipes = {
   position: [],
@@ -468,9 +416,6 @@ function draw() {
   fg.draw();
   bird.draw();
   getReady.draw();
-  //gameOver.draw();
-  gameOverDraw();
-  score.draw();
 }
 
 // UPDATE
@@ -485,7 +430,6 @@ function loop() {
   update();
   draw();
   frames++;
-
   requestAnimationFrame(loop);
 }
 loop();

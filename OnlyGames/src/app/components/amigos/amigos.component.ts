@@ -14,8 +14,8 @@ export class AmigosComponent {
   currentuser = this.auth.currentUser();
   currentuser_gametag: string = '';
   usuario_amigo: Usuario | undefined;
-  uid_amigo: string = '';
   mostrarcarta: string = 'hidden';
+  records_amigo: number[] = [];
   constructor(private database: DatabaseService, private auth: AuthService) {
     this.database
       .recuperarUsuario(this.auth.currentUser()!.uid)
@@ -53,8 +53,10 @@ export class AmigosComponent {
     this.database.userGametag(gametag_amigo).then((response) => {
       var usuario: Usuario = JSON.parse(response);
       this.usuario_amigo = usuario;
-      console.log(usuario.gametag);
+      this.records_amigo = this.usuario_amigo.records
+      console.log(this.records_amigo);
     });
+
   }
 
   enviarSolicitud(gametag_solicitado: string) {
