@@ -8,7 +8,6 @@ import {
 import { CargarScriptsService } from 'src/app/services/cargar-scripts.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { MenuComponent } from '../menu/menu.component';
 
 @Component({
   selector: 'app-snake',
@@ -25,9 +24,13 @@ export class SnakeComponent {
   }
 
   handleScriptMessage(event: MessageEvent): void {
-    if (event.data && event.data.action === 'monedasSnake') {
+    if (event.data && event.data.action === 'datosSnake') {
+      console.log('muere');
+
       const scriptData = event.data.data;
       this.db.aniadirMoneda(this.auth.currentUser()!.uid, scriptData.monedas);
+      var coins = document.getElementById('coins_menu');
+      console.log();
     }
   }
 

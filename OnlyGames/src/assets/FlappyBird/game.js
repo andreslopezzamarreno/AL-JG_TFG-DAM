@@ -3,7 +3,7 @@ var cvs = document.getElementById("bird");
 var ctx = cvs.getContext("2d");
 var highScoreElement = document.querySelector(".high-score");
 var scoreElement = document.querySelector(".score");
-var btnStart = document.getElementById("play-button")
+var btnStart = document.getElementById("play-button");
 // Variables y constantes
 var frames = 0;
 var DEGREE = Math.PI / 180;
@@ -59,18 +59,18 @@ cvs.addEventListener("click", function (evt) {
   }
 });
 
-btnStart.addEventListener("click", function (evt){
+btnStart.addEventListener("click", function (evt) {
   var rect = cvs.getBoundingClientRect();
-      var clickX = evt.clientX - rect.left;
-      var clickY = evt.clientY - rect.top;
-        clickX >= startBtn.x &&
-        clickX <= startBtn.x + startBtn.w &&
-        clickY >= startBtn.y &&
-        clickY <= startBtn.y + startBtn.h
-        pipes.reset();
-        bird.speedReset();
-        score.reset();
-        state.current = state.getReady;
+  var clickX = evt.clientX - rect.left;
+  var clickY = evt.clientY - rect.top;
+  clickX >= startBtn.x &&
+    clickX <= startBtn.x + startBtn.w &&
+    clickY >= startBtn.y &&
+    clickY <= startBtn.y + startBtn.h;
+  pipes.reset();
+  bird.speedReset();
+  score.reset();
+  state.current = state.getReady;
 });
 
 // Background
@@ -220,6 +220,15 @@ var bird = {
         if (state.current == state.game) {
           state.current = state.over;
           DIE.play();
+          window.postMessage(
+            {
+              action: "datosFlappy",
+              data: {
+                score: 4,
+              },
+            },
+            "*"
+          );
         }
       }
 
@@ -341,6 +350,13 @@ var pipes = {
       ) {
         state.current = state.over;
         HIT.play();
+        window.postMessage(
+          {
+            action: "datosFlappy",
+            data: 2,
+          },
+          "*"
+        );
       }
       // Tuberia Bottom
       if (
@@ -351,6 +367,13 @@ var pipes = {
       ) {
         state.current = state.over;
         HIT.play();
+        window.postMessage(
+          {
+            action: "datosFlappy",
+            data: 2,
+          },
+          "*"
+        );
       }
 
       // Movimiento de tuberias

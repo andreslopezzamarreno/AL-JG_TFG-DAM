@@ -12,6 +12,21 @@ export class FlappyBirdComponent {
   IDJUEGO = 2;
   highScore = 0;
 
+  ngOnInit(): void {
+    window.addEventListener('message', this.handleScriptMessage.bind(this));
+  }
+
+  handleScriptMessage(event: MessageEvent): void {
+    if (event.data && event.data.action === 'datosFlappy') {
+      console.log('muere');
+
+      const scriptData = event.data.data;
+      this.db.aniadirMoneda(this.auth.currentUser()!.uid, scriptData.monedas);
+      var coins = document.getElementById('coins_menu');
+      console.log();
+    }
+  }
+
   @ViewChild('miSpan', { static: false }) miSpan: any;
   ngAfterViewInit() {
     const observer = new MutationObserver((mutations) => {

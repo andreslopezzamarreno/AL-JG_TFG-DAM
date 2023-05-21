@@ -37,7 +37,7 @@ var handleGameOver = () => {
   DEATH.play();
   window.postMessage(
     {
-      action: "monedasSnake",
+      action: "datosSnake",
       data: {
         score: score,
         record: highScore,
