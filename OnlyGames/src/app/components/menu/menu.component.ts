@@ -12,7 +12,6 @@ import { Usuario } from 'src/app/utils/usuario';
 export class MenuComponent {
   currentUserGameTag?: string;
   currentUserCoins?: number;
-  currentUserDiamantes?: number;
 
   constructor(
     private auth: AuthService,

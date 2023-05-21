@@ -8,6 +8,7 @@ import {
 import { CargarScriptsService } from 'src/app/services/cargar-scripts.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { MenuComponent } from '../menu/menu.component';
 
 @Component({
   selector: 'app-snake',
@@ -26,8 +27,7 @@ export class SnakeComponent {
   handleScriptMessage(event: MessageEvent): void {
     if (event.data && event.data.action === 'monedasSnake') {
       const scriptData = event.data.data;
-      // Haz algo con la información recibida del script
-      console.log('Puntos recibidas desde el snake:', scriptData);
+      this.db.aniadirMoneda(this.auth.currentUser()!.uid, scriptData.monedas);
     }
   }
 

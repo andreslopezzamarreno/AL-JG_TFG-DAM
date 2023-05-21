@@ -193,4 +193,14 @@ export class DatabaseService {
     });
     return chequeo;
   }
+
+  async aniadirMoneda(uid: string, numMonedas: number) {
+    await this.recuperarUsuario(uid).then((user) => {
+      var usuario: Usuario = JSON.parse(user);
+      usuario.coins += numMonedas;
+      updateDoc(doc(this.db, 'users/' + uid), {
+        coins: usuario.coins,
+      });
+    });
+  }
 }

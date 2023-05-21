@@ -25,8 +25,6 @@ export class CargarScriptsService {
   }
 
   borrarScript() {
-    window.postMessage({ action: 'stopScript' }, '*');
-
     if (this.newScript) {
       document.body.removeChild(this.newScript);
       this.newScript = null;
