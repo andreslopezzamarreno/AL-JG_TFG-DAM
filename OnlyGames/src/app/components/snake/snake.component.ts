@@ -26,11 +26,13 @@ export class SnakeComponent {
   handleScriptMessage(event: MessageEvent): void {
     if (event.data && event.data.action === 'datosSnake') {
       console.log('muere');
-
       const scriptData = event.data.data;
-      this.db.aniadirMoneda(this.auth.currentUser()!.uid, scriptData.monedas);
-      var coins = document.getElementById('coins_menu');
-      console.log();
+      this.db
+        .aniadirMoneda(this.auth.currentUser()!.uid, scriptData.monedas)
+        .then((coins) => {
+          console.log(coins);
+          this.db.setcoins = coins;
+        });
     }
   }
 

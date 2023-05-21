@@ -75,7 +75,7 @@ export class JuegosComponent {
     });
   }
   // Ir a juego deseado
-    irJuego(tipo: string) {
+  irJuego(tipo: string) {
     this.router.navigate(['menu', tipo]);
   }
 
@@ -88,7 +88,6 @@ export class JuegosComponent {
             (game) => game != this.todosLosJuegos[idJuego]
           );
           this.juegos.push(this.todosLosJuegos[idJuego]);
-          this.menu.obtenerDatosUser();
         }
       });
   }

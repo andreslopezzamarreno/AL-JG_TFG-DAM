@@ -16,6 +16,7 @@ import {
 import { Usuario } from '../utils/usuario';
 import { user } from '@angular/fire/auth';
 import { MenuComponent } from '../components/menu/menu.component';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -33,6 +34,23 @@ export class DatabaseService {
   };
   app = initializeApp(this.firebaseConfig);
   db = getFirestore(this.app);
+  private _gametag: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  get getgametag(): BehaviorSubject<string> {
+    return this._gametag;
+  }
+  set setgametag(value: string) {
+    this._gametag.next(value);
+  }
+
+  private _coins: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  get getcoins(): BehaviorSubject<number> {
+    return this._coins;
+  }
+  set setcoins(value: number) {
+    this._coins.next(value);
+  }
+
+  currentCoins = 0;
 
   constructor() {}
 
@@ -65,6 +83,14 @@ export class DatabaseService {
       });
     });
     return usuario;
+  }
+
+  async asignarDatos(uid: string) {
+    await this.recuperarUsuario(uid).then((user) => {
+      var usuario: Usuario = JSON.parse(user);
+      this.setgametag = usuario.gametag;
+      this.setcoins = usuario.coins;
+    });
   }
 
   async userGametag(gametag: string) {
@@ -195,13 +221,15 @@ export class DatabaseService {
   }
 
   async aniadirMoneda(uid: string, numMonedas: number) {
+    var monedas = 0;
     await this.recuperarUsuario(uid).then((user) => {
       var usuario: Usuario = JSON.parse(user);
-      usuario.coins += numMonedas;
+      monedas = usuario.coins + numMonedas;
       updateDoc(doc(this.db, 'users/' + uid), {
-        coins: usuario.coins,
+        coins: monedas,
       });
     });
+    return monedas;
   }
 
   async cambiarNombre(uid: string, gametagNuevo: string) {

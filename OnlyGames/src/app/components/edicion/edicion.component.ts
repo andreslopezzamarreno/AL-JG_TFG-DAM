@@ -32,7 +32,8 @@ export class EdicionComponent {
     this.editando = true;
   }
 
-  cambiarGameTag(texto: string) {
-    this.database.cambiarNombre(this.auth.currentUser()!.uid, texto);
+  async cambiarGameTag(texto: string) {
+    await this.database.cambiarNombre(this.auth.currentUser()!.uid, texto);
+    this.database.setgametag = texto;
   }
 }
