@@ -15,7 +15,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./snake.component.css'],
 })
 export class SnakeComponent {
-  //id del juego para controlar bd
+  //id del juego para controlar db
   IDJUEGO = 3;
   highScore = 0;
 

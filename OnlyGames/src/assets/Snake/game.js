@@ -1,9 +1,9 @@
+var finalizar = false;
 // Inicializacion de elementos graficos
 var playBoard = document.querySelector(".play-board");
 var scoreElement = document.querySelector(".score");
 var highScoreElement = document.querySelector(".high-score");
 var controls = document.querySelectorAll(".controls i");
-
 var gameOver = false;
 var foodX, foodY;
 var snakeX = 5,
@@ -13,7 +13,6 @@ var velocityX = 0,
 var snakeBody = [];
 var setIntervalId;
 var score = 0;
-
 // Cargar sonidos
 var EAT = new Audio();
 EAT.src = "./assets/Snake/fruit_sound.mp3";
@@ -36,7 +35,17 @@ var updateFoodPosition = () => {
 // Resetear pagina al morir
 var handleGameOver = () => {
   DEATH.play();
-  window.postMessage({ action: "monedasSnake", data: score }, "*");
+  window.postMessage(
+    {
+      action: "monedasSnake",
+      data: {
+        score: score,
+        record: highScore,
+        monedas: 89,
+      },
+    },
+    "*"
+  );
   clearInterval(setIntervalId);
 };
 
@@ -65,6 +74,9 @@ controls.forEach((button) =>
 );
 
 var initGame = () => {
+  if (finalizar) {
+    return;
+  }
   if (gameOver) return handleGameOver();
   var html = `<div class="food" style="grid-area: ${foodY} / ${foodX}; background: #FF003D;"></div>`;
 
@@ -118,8 +130,7 @@ document.addEventListener("keyup", changeDirection);
 window.addEventListener("message", function (event) {
   if (event.data && event.data.action === "stopScript") {
     // Detener la ejecución del script
-    // Puedes agregar aquí la lógica para finalizar la ejecución del script
-    console.log("Script detenido por solicitud del componente Angular");
+    finalizar = true;
     return;
   }
 });
