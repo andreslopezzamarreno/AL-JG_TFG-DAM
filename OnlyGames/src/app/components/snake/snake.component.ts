@@ -19,6 +19,18 @@ export class SnakeComponent {
   IDJUEGO = 3;
   highScore = 0;
 
+  ngOnInit(): void {
+    window.addEventListener('message', this.handleScriptMessage.bind(this));
+  }
+
+  handleScriptMessage(event: MessageEvent): void {
+    if (event.data && event.data.action === 'monedasSnake') {
+      const scriptData = event.data.data;
+      // Haz algo con la información recibida del script
+      console.log('Puntos recibidas desde el snake:', scriptData);
+    }
+  }
+
   @ViewChild('miSpan', { static: false }) miSpan: any;
   ngAfterViewInit() {
     const observer = new MutationObserver((mutations) => {

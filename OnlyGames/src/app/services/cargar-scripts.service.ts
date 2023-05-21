@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class CargarScriptsService {
   constructor() {}
 
+  private newScript: HTMLScriptElement | null = null;
   // LLamar ruta con script de juego deseado
   Carga(script: string) {
     // Eliminar el script anterior, si lo hay
@@ -16,17 +17,19 @@ export class CargarScriptsService {
     }
 
     // Crear un nuevo elemento <script> con el contenido del script
-    let newScript = document.createElement('script');
-    newScript.id = 'mi-script';
-    newScript.src = './assets/' + script + '.js';
+    this.newScript = document.createElement('script');
+    this.newScript.id = 'mi-script';
+    this.newScript.src = './assets/' + script + '.js';
     //newScript.text = scriptContent;
-    document.body.appendChild(newScript);
+    document.body.appendChild(this.newScript);
   }
 
   borrarScript() {
-    let oldScript = document.querySelector('#mi-script');
-    if (oldScript) {
-      oldScript.remove();
+    window.postMessage({ action: 'stopScript' }, '*');
+
+    if (this.newScript) {
+      document.body.removeChild(this.newScript);
+      this.newScript = null;
     }
   }
 }

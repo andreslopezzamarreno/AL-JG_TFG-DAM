@@ -36,6 +36,7 @@ var updateFoodPosition = () => {
 // Resetear pagina al morir
 var handleGameOver = () => {
   DEATH.play();
+  window.postMessage({ action: "monedasSnake", data: score }, "*");
   clearInterval(setIntervalId);
 };
 
@@ -113,3 +114,12 @@ var initGame = () => {
 updateFoodPosition();
 setIntervalId = setInterval(initGame, 100);
 document.addEventListener("keyup", changeDirection);
+
+window.addEventListener("message", function (event) {
+  if (event.data && event.data.action === "stopScript") {
+    // Detener la ejecución del script
+    // Puedes agregar aquí la lógica para finalizar la ejecución del script
+    console.log("Script detenido por solicitud del componente Angular");
+    return;
+  }
+});
