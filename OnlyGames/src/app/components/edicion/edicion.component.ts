@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { DatabaseService } from 'src/app/services/database.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Usuario } from 'src/app/utils/usuario';
@@ -23,8 +23,16 @@ export class EdicionComponent {
         this.currentUserGameTag = usuario.gametag;
       });
   }
+
   habilitarEdicion() {
+    var input = document.getElementById('input');
+    input!.style.outline = '';
+    input!.focus();
+
     this.editando = true;
   }
-  cambiarGameTag() {}
+
+  cambiarGameTag(texto: string) {
+    this.database.cambiarNombre(this.auth.currentUser()!.uid, texto);
+  }
 }

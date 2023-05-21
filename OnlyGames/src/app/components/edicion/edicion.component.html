@@ -33,14 +33,24 @@
                 alt=""
               />
               <p style="font-family: '8BIT WONDER', sans-serif">TagName:</p>
-              <div style="display: flex;">
-              <img src=".\assets\edit.png" style="width: 15px; height: 15px; margin-top: 15px; margin-right: 8px;">
-              <input
-                [readonly]="!editando"
-                (click)="habilitarEdicion()"
-                type="text"
-                value="{{ currentUserGameTag }}"
-                style="font-family: '8BIT WONDER', sans-serif"
+              <div style="display: flex">
+                <img
+                  (click)="habilitarEdicion()"
+                  src=".\assets\edit.png"
+                  style="
+                    width: 15px;
+                    height: 15px;
+                    margin-top: 15px;
+                    margin-right: 8px;
+                  "
+                />
+                <input
+                  [readonly]="!editando"
+                  type="text"
+                  id="input"
+                  value="{{ currentUserGameTag }}"
+                  style="font-family: '8BIT WONDER', sans-serif"
+                  #miInput
                 />
               </div>
               <div
@@ -57,7 +67,7 @@
                   margin-top: 5px;
                   height: fit-content;
                 "
-                  (click)="cambiarGameTag()"
+                (click)="cambiarGameTag(miInput.value)"
               >
                 Editar
               </div>

@@ -19,11 +19,8 @@ export class FlappyBirdComponent {
   handleScriptMessage(event: MessageEvent): void {
     if (event.data && event.data.action === 'datosFlappy') {
       console.log('muere');
-
       const scriptData = event.data.data;
       this.db.aniadirMoneda(this.auth.currentUser()!.uid, scriptData.monedas);
-      var coins = document.getElementById('coins_menu');
-      console.log();
     }
   }
 

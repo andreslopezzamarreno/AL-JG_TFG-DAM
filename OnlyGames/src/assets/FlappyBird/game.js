@@ -370,7 +370,9 @@ var pipes = {
         window.postMessage(
           {
             action: "datosFlappy",
-            data: 2,
+            data: {
+              monedas: 20,
+            },
           },
           "*"
         );
@@ -385,7 +387,8 @@ var pipes = {
         score.value += 1;
         scoreElement.innerHTML = "Score: " + score.value;
         SCORE_S.play();
-        score.best = Math.max(score.value, score.best);
+        //score.best = Math.max(score.value, score.best);
+        score.best = score.value >= score.best ? score.value : score.best;
         localStorage.setItem("high-score_flappy", score.best);
         highScoreElement.innerHTML = "High Score: " + score.best;
       }
@@ -400,7 +403,7 @@ var pipes = {
 // Score
 var score = {
   // TODO: Dependiendo quien se logee la puntuacion maxima valdra una cosa u otra
-  best: parseInt(localStorage.getItem("best")) || 0,
+  best: parseInt(localStorage.getItem("high-score_flappy")),
   value: 0,
 
   draw: function () {

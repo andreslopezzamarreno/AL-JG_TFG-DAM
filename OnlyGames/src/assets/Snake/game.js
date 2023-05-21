@@ -39,8 +39,6 @@ var handleGameOver = () => {
     {
       action: "datosSnake",
       data: {
-        score: score,
-        record: highScore,
         monedas: 89,
       },
     },

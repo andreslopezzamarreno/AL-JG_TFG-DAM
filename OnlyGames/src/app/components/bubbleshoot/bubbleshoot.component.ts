@@ -12,6 +12,19 @@ export class BubbleshootComponent {
   IDJUEGO = 1;
   highScore = 0;
 
+  ngOnInit(): void {
+    window.addEventListener('message', this.handleScriptMessage.bind(this));
+  }
+
+  handleScriptMessage(event: MessageEvent): void {
+    if (event.data && event.data.action === 'datosBubbleShoot') {
+      console.log('muere');
+
+      const scriptData = event.data.data;
+      this.db.aniadirMoneda(this.auth.currentUser()!.uid, scriptData.monedas);
+    }
+  }
+
   @ViewChild('miSpan', { static: false }) miSpan: any;
   ngAfterViewInit() {
     const observer = new MutationObserver((mutations) => {

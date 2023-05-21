@@ -13,7 +13,8 @@ export class AppComponent {}
 
 
           "JUEGOS"
-          1. Sumar monedas por cada punto que consiga en los juegos, 1 punto = 1 moneda
+          1. monedas --> base de datos se actualiza, ver si las monedas grficamente se actializan
+            - ver cuantas monedas da cada juegos por puntos
 
           "PREMIOS"
           2. Comprobar si el usuario tiene las monedas suficientes para canjear el premio
@@ -36,6 +37,8 @@ export class AppComponent {}
           9. En el flappy bird cuando juegas, te sales del componente y vuelves al flappy va el doble de rapido
           10. En el snake tambien pasa lo de arriba
 
+          11. Al enviar solicitud, ver que no puede enviarselo a si mismo y tampoco aun usuario que ya tiene como amigo
+
           "CONFIRMACION CORREO"
-          11. Descomentar el codigo y dejarlo bien antes de entregarlo
+          12. Descomentar el codigo y dejarlo bien antes de entregarlo
     */

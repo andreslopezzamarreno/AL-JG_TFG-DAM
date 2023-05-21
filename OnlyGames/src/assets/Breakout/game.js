@@ -375,6 +375,15 @@ function isGameOver() {
 }
 
 function gameOverBreakout() {
+  window.postMessage(
+    {
+      action: "datosBreackout",
+      data: {
+        monedas: 20,
+      },
+    },
+    "*"
+  );
   game.on = false;
   sounds.currentTime = 0;
   game.sfx && sounds.gameOver.play();

@@ -67,3 +67,7 @@ body {
 .lista{
     float: right;
 }
+
+input{
+  border: none;
+}

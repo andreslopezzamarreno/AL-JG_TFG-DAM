@@ -13,7 +13,6 @@ var SHOOT = new Audio();
 SHOOT.src = "./assets/BubbleShoot/click.wav";
 var EXP = new Audio();
 EXP.src = "./assets/BubbleShoot/laserShoot.wav";
-var DEATH = new Audio();
 var c = canvas.getContext("2d");
 var scoreEl = document.getElementById("scoreEl");
 var score_ = document.getElementById("score");
@@ -232,6 +231,15 @@ function init() {
 
 // Stop Game
 function stopGame() {
+  window.postMessage(
+    {
+      action: "datosBubbleShoot",
+      data: {
+        monedas: 20,
+      },
+    },
+    "*"
+  );
   clearInterval(spanEnemiesInterval);
   cancelAnimationFrame(animationId); // Exit Animation
   canvas.removeEventListener("click", shootEnemy); // Stop Shooting
