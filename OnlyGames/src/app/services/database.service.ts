@@ -206,12 +206,14 @@ export class DatabaseService {
 
   async cambiarNombre(uid: string, gametagNuevo: string) {
     var libre = false;
-    this.userGametag(gametagNuevo).then((user) => {
+
+    await this.userGametag(gametagNuevo).then((user) => {
       if (user == '') {
         //gametag esta libre
         libre = true;
       }
     });
+
     if (libre) {
       await this.recuperarUsuario(uid).then((user) => {
         var usuario: Usuario = JSON.parse(user);
