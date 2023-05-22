@@ -228,14 +228,17 @@ function init() {
   scoreEl.innerHTML = score;
   highestEl.innerHTML = highest;
 }
-
+function cambioPuntos(puntos) {
+  return Math.trunc(puntos / 2000);
+}
 // Stop Game
 function stopGame() {
+  var numMonedas = cambioPuntos(score);
   window.postMessage(
     {
       action: "datosBubbleShoot",
       data: {
-        monedas: 20,
+        monedas: numMonedas,
       },
     },
     "*"

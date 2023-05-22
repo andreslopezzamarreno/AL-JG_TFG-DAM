@@ -53,16 +53,29 @@ export class AmigosComponent {
     this.database.userGametag(gametag_amigo).then((response) => {
       var usuario: Usuario = JSON.parse(response);
       this.usuario_amigo = usuario;
-      this.records_amigo = this.usuario_amigo.records
+      this.records_amigo = this.usuario_amigo.records;
       console.log(this.records_amigo);
     });
-
   }
 
-  enviarSolicitud(gametag_solicitado: string) {
-    this.database.obtenerSolicitudes(
-      gametag_solicitado,
-      this.currentuser_gametag
-    );
+  async enviarSolicitud(gametag_solicitado: string) {
+    var amigos: string[] = [];
+    await this.database
+      .recuperarUsuario(this.auth.currentUser()!.uid)
+      .then((user) => {
+        var usuario: Usuario = JSON.parse(user);
+        amigos = usuario.amigos;
+      });
+
+    if (gametag_solicitado != this.currentuser_gametag) {
+      if (!amigos.includes(gametag_solicitado)) {
+        console.log('no existe amigo ni es el mismo == nuevo amigo');
+
+        this.database.obtenerSolicitudes(
+          gametag_solicitado,
+          this.currentuser_gametag
+        );
+      }
+    }
   }
 }

@@ -373,13 +373,16 @@ function isGameOver() {
   }
   return false;
 }
-
+function cambioPuntos(puntos) {
+  return Math.trunc(puntos / 40);
+}
 function gameOverBreakout() {
+  var numMonedas = cambioPuntos(game.score);
   window.postMessage(
     {
       action: "datosBreackout",
       data: {
-        monedas: 20,
+        monedas: numMonedas,
       },
     },
     "*"

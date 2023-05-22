@@ -153,6 +153,10 @@ var fg = {
   },
 };
 
+var cambioPuntos = (puntos) => {
+  return puntos * 3;
+};
+
 // Pajaro
 var bird = {
   animation: [
@@ -220,11 +224,13 @@ var bird = {
         if (state.current == state.game) {
           state.current = state.over;
           DIE.play();
+          var numMonedas = cambioPuntos(score.value);
+
           window.postMessage(
             {
               action: "datosFlappy",
               data: {
-                monedas: 20,
+                monedas: numMonedas,
               },
             },
             "*"
@@ -350,11 +356,13 @@ var pipes = {
       ) {
         state.current = state.over;
         HIT.play();
+        var numMonedas = cambioPuntos(score.value);
+
         window.postMessage(
           {
             action: "datosFlappy",
             data: {
-              monedas: 20,
+              monedas: numMonedas,
             },
           },
           "*"
@@ -369,11 +377,12 @@ var pipes = {
       ) {
         state.current = state.over;
         HIT.play();
+        var numMonedas = cambioPuntos(score.value);
         window.postMessage(
           {
             action: "datosFlappy",
             data: {
-              monedas: 20,
+              monedas: numMonedas,
             },
           },
           "*"

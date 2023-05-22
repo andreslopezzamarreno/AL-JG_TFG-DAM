@@ -60,7 +60,7 @@ export class DatabaseService {
       setDoc(doc(this.db, 'users', userId), {
         id: userId,
         gametag: gametag,
-        coins: 150,
+        coins: 200,
         juegos: [false, false, false, false],
         records: [0, 0, 0, 0],
         solicitudes: [],

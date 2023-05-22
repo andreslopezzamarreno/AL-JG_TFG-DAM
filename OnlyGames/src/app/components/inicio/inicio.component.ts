@@ -61,10 +61,10 @@ export class InicioComponent {
   }
 
   // Regitro de usuario con usuario y contraseña añadiendo ademas gametag
-  registro(usuario: string, pass: string): void {
+  async registro(usuario: string, pass: string): Promise<void> {
     var gametag = (<HTMLInputElement>document.getElementById('gametag')).value;
     if (usuario != '' && pass != '' && gametag != '') {
-      this.database.userGametag(gametag).then((response) => {
+      await this.database.userGametag(gametag).then(async (response) => {
         console.log(response);
         if (response == '') {
           if (pass.length < 6) {
@@ -72,7 +72,7 @@ export class InicioComponent {
               'La contrasena tiene que tener al menos 6 caracteres'
             );
           } else {
-            this.auth
+            await this.auth
               .registro(usuario, pass)
               .then((response) => {
                 /* if (response.user) {
