@@ -32,14 +32,18 @@ var updateFoodPosition = () => {
   foodY = Math.floor(Math.random() * 30) + 1;
 };
 
+var cambioPuntos = (puntos) => {
+  return puntos * 2;
+};
 // Resetear pagina al morir
 var handleGameOver = () => {
   DEATH.play();
+  var numMonedas = cambioPuntos(score);
   window.postMessage(
     {
       action: "datosSnake",
       data: {
-        monedas: 89,
+        monedas: numMonedas,
       },
     },
     "*"
