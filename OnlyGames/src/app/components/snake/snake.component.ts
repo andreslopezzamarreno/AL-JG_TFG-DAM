@@ -30,7 +30,6 @@ export class SnakeComponent {
       this.db
         .aniadirMoneda(this.auth.currentUser()!.uid, scriptData.monedas)
         .then((coins) => {
-          console.log(coins);
           this.db.setcoins = coins;
         });
     }

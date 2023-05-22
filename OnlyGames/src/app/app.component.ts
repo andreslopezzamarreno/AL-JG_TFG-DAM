@@ -13,8 +13,7 @@ export class AppComponent {}
 
 
           "JUEGOS"
-          1. monedas --> base de datos se actualiza, ver si las monedas graficamente se actializan
-            - ver cuantas monedas da cada juegos por puntos
+          1. monedas --> ver cuantas monedas da cada juegos por puntos
 
           "PREMIOS"
           2. Comprobar si el usuario tiene las monedas suficientes para canjear el premio
@@ -22,8 +21,7 @@ export class AppComponent {}
           3. Si es asi lo canjea y le envia email o le sale un alert con el codigo
 
           "EDITAR PERFIL"
-          4. Que el usuario pueda cambiar su gametag --> base de datos funciona ver que graficamente se actializan
-          y que pueda alomejor cambiar su foto de perfil, donde habria varias fotos que pudiera elegir
+          4. Que el usuario pueda cambiar su gametag --> que pueda cambiar su foto de perfil, donde habria varias fotos que pudiera elegir
 
           "OTROS"
           5. Hacer Documentacion

@@ -224,7 +224,7 @@ var bird = {
             {
               action: "datosFlappy",
               data: {
-                score: 4,
+                monedas: 20,
               },
             },
             "*"
@@ -353,7 +353,9 @@ var pipes = {
         window.postMessage(
           {
             action: "datosFlappy",
-            data: 2,
+            data: {
+              monedas: 20,
+            },
           },
           "*"
         );

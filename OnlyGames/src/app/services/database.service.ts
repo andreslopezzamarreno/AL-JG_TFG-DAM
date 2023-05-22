@@ -214,6 +214,7 @@ export class DatabaseService {
           coins: usuario.coins,
           juegos: usuario.juegos,
         });
+        this.setcoins = usuario.coins;
         chequeo = true;
       }
     });

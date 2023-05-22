@@ -21,7 +21,11 @@ export class BubbleshootComponent {
       console.log('muere');
 
       const scriptData = event.data.data;
-      this.db.aniadirMoneda(this.auth.currentUser()!.uid, scriptData.monedas);
+      this.db
+        .aniadirMoneda(this.auth.currentUser()!.uid, scriptData.monedas)
+        .then((coins) => {
+          this.db.setcoins = coins;
+        });
     }
   }
 
