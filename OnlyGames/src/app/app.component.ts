@@ -23,14 +23,6 @@ export class AppComponent {}
               - que el usuario pueda comprar iconos
               - que pueda cambiarse la foto  (string de la ruta de la imagen, como los juegos)
 
-          "BUGS"
-          4. Cuando estoy con un juego y me voy a otros juegos --> detener la ejecucion del script si es
- que hay alguno ejecutandose, ejemplo, en el breakout le das a start e inmediatamente vas al menu, se sigue escuchando los sonidos del juego, como si estuvieses jugando aun
-
-          5. El el bublesbhoot solucionar lo del player.draw y lo de ball -> no se ni cuándo ni porque sale
-
-          6. En el flappy bird cuando juegas, te sales del componente y vuelves al flappy va el doble de rapido
-          7. En el snake tambien pasa lo de arriba
 
           "CONFIRMACION CORREO"
           8. Descomentar el codigo y dejarlo bien antes de entregarlo

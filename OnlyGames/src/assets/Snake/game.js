@@ -33,7 +33,7 @@ var updateFoodPosition = () => {
 };
 
 var cambioPuntos = (puntos) => {
-  return puntos;
+  return puntos * 6;
 };
 // Resetear pagina al morir
 var handleGameOver = () => {

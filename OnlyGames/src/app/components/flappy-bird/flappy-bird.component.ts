@@ -20,7 +20,6 @@ export class FlappyBirdComponent {
     if (event.data && event.data.action === 'datosFlappy') {
       console.log('muere');
       const scriptData = event.data.data;
-      console.log(scriptData.monedas);
 
       this.db
         .aniadirMoneda(this.auth.currentUser()!.uid, scriptData.monedas)
@@ -69,5 +68,6 @@ export class FlappyBirdComponent {
   }
   ngOnDestroy(): void {
     this._CargarScripts.borrarScript();
+    location.reload()
   }
 }

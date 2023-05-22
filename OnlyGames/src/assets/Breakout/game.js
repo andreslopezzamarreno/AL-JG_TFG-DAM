@@ -62,7 +62,6 @@ var sounds = {
   ballLost: new Audio("./assets/Breakout/ball-lost.mp3"),
   breakout: new Audio("./assets/Breakout/breakout.mp3"),
   brick: new Audio("./assets/Breakout/brick.mp3"),
-  gameOver: new Audio("./assets/Breakout/game-over.mp3"),
   levelCompleted: new Audio("./assets/Breakout/level-completed.mp3"),
 };
 
@@ -374,7 +373,7 @@ function isGameOver() {
   return false;
 }
 function cambioPuntos(puntos) {
-  return Math.trunc(puntos / 40);
+  return puntos;
 }
 function gameOverBreakout() {
   var numMonedas = cambioPuntos(game.score);
@@ -389,7 +388,7 @@ function gameOverBreakout() {
   );
   game.on = false;
   sounds.currentTime = 0;
-  game.sfx && sounds.gameOver.play();
+  game.sfx;
   ctx.font = "50px ArcadeClassic";
   ctx.fillStyle = "red";
   ctx.fillText("GAME OVER", canvas.width / 2 - 140, canvas.height / 2);

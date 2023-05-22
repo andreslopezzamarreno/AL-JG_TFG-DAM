@@ -54,7 +54,6 @@ export class AmigosComponent {
       var usuario: Usuario = JSON.parse(response);
       this.usuario_amigo = usuario;
       this.records_amigo = this.usuario_amigo.records;
-      console.log(this.records_amigo);
     });
   }
 
@@ -69,7 +68,6 @@ export class AmigosComponent {
 
     if (gametag_solicitado != this.currentuser_gametag) {
       if (!amigos.includes(gametag_solicitado)) {
-        console.log('no existe amigo ni es el mismo == nuevo amigo');
 
         this.database.obtenerSolicitudes(
           gametag_solicitado,
@@ -77,5 +75,9 @@ export class AmigosComponent {
         );
       }
     }
+  }
+
+  ocultarCarta(){
+    this.mostrarcarta = "hidden"
   }
 }

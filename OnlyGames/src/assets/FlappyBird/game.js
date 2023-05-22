@@ -60,6 +60,7 @@ cvs.addEventListener("click", function (evt) {
 });
 
 btnStart.addEventListener("click", function (evt) {
+  scoreElement.innerHTML = "Score: 0";
   var rect = cvs.getBoundingClientRect();
   var clickX = evt.clientX - rect.left;
   var clickY = evt.clientY - rect.top;
@@ -154,7 +155,7 @@ var fg = {
 };
 
 var cambioPuntos = (puntos) => {
-  return puntos * 3;
+  return puntos * 6;
 };
 
 // Pajaro

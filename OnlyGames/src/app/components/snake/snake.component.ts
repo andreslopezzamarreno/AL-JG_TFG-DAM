@@ -75,5 +75,6 @@ export class SnakeComponent {
 
   ngOnDestroy(): void {
     this._CargarScripts.borrarScript();
+    location.reload()
   }
 }

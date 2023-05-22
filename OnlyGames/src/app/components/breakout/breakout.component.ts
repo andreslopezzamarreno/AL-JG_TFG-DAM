@@ -20,8 +20,8 @@ export class BreakoutComponent {
   handleScriptMessage(event: MessageEvent): void {
     if (event.data && event.data.action === 'datosBreackout') {
       console.log('muere');
-
       const scriptData = event.data.data;
+
       this.db
         .aniadirMoneda(this.auth.currentUser()!.uid, scriptData.monedas)
         .then((coins) => {
@@ -29,6 +29,7 @@ export class BreakoutComponent {
         });
     }
   }
+
 
   @ViewChild('miSpan', { static: false }) miSpan: any;
   ngAfterViewInit() {
@@ -70,5 +71,6 @@ export class BreakoutComponent {
 
   ngOnDestroy(): void {
     this._CargarScripts.borrarScript();
+    location.reload()
   }
 }

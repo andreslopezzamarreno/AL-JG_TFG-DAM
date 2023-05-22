@@ -32,7 +32,6 @@ var animationId;
 var spanEnemiesInterval;
 var spawnTime = 1000;
 highestEl.innerHTML = highest;
-
 // Starting Ball Class
 class Ball {
   constructor(x, y, radius, color) {
@@ -49,6 +48,7 @@ class Ball {
     c.fill();
   }
 }
+var player = new Ball(x, y, 10, "white");
 
 // Shooter Ball for Moving Ball
 class Shooter extends Ball {
@@ -121,7 +121,6 @@ function calculateVelocity(
 function animate() {
   animationId = requestAnimationFrame(animate);
   c.fillStyle = "rgba(0,0,0,0.1)";
-
   c.fillRect(0, 0, canvas.width, canvas.height);
   player.draw();
 
@@ -218,7 +217,6 @@ function shootEnemy(e) {
 
 // Reinitializing Variables for Starting a New Game
 function init() {
-  player = new Ball(x, y, 10, "white");
   projectiles = [];
   enemies = [];
   particles = [];
@@ -229,7 +227,7 @@ function init() {
   highestEl.innerHTML = highest;
 }
 function cambioPuntos(puntos) {
-  return Math.trunc(puntos / 2000);
+  return Math.trunc(puntos / 100);
 }
 // Stop Game
 function stopGame() {
