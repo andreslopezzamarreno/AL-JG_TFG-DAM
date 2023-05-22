@@ -12,8 +12,6 @@ export class PremiosComponent {
     for (let i = 0; i < 4; i++) {
       this.generarCodigo()
     }
-
-
     alert("Tu codigo es: " + this.code.slice(0, -1))
   }
 
