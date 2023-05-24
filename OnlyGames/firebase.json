@@ -2,4 +2,10 @@
   "database": {
     "rules": "database.rules.json"
   }
+  "hosting": {
+    "site": "onlygames",
+
+    "public": "public",
+    ...
+  }
 }
