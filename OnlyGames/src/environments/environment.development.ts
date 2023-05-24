@@ -1,11 +1,11 @@
 export const environment = {
   firebase: {
-    projectId: 'al-jg-tfg',
-    appId: '1:1004625728225:web:1bdfacd07b2bbd8d861da0',
-    databaseURL: 'https://al-jg-tfg-default-rtdb.firebaseio.com',
-    storageBucket: 'al-jg-tfg.appspot.com',
-    apiKey: 'AIzaSyBrqX1EVnN70JYSGQdn-2SZRYwxtIqMets',
-    authDomain: 'al-jg-tfg.firebaseapp.com',
-    messagingSenderId: '1004625728225',
-    measurementId: 'G-E21591H7RX',
+     apiKey: "AIzaSyBrqX1EVnN70JYSGQdn-2SZRYwxtIqMets",
+  authDomain: "al-jg-tfg.firebaseapp.com",
+  databaseURL: "https://al-jg-tfg-default-rtdb.firebaseio.com",
+  projectId: "al-jg-tfg",
+  storageBucket: "al-jg-tfg.appspot.com",
+  messagingSenderId: "1004625728225",
+  appId: "1:1004625728225:web:336928f0ecfdc08c861da0",
+  measurementId: "G-WTKRBJ8X6W",
   },};
