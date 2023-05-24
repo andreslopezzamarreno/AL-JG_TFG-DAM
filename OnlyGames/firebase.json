@@ -1,10 +1,20 @@
 {
   "database": {
     "rules": "database.rules.json"
-  }
+  },
   "hosting": {
-    "site": "onlygames",
-
-    "public": "public",
+    "site":"onlygames-tfg",
+    "public": "dist/only-games",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
   }
 }
