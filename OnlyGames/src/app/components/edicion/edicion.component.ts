@@ -11,6 +11,8 @@ import { Usuario } from 'src/app/utils/usuario';
 export class EdicionComponent {
   currentUserGameTag?: string;
   editando = false;
+  error = false;
+  success = false;
   constructor(private auth: AuthService, private database: DatabaseService) {
     this.obtenerDatosUser();
   }
@@ -28,12 +30,27 @@ export class EdicionComponent {
     var input = document.getElementById('input');
     input!.style.outline = '';
     input!.focus();
-
     this.editando = true;
   }
 
   async cambiarGameTag(texto: string) {
-    await this.database.cambiarNombre(this.auth.currentUser()!.uid, texto);
-    this.database.setgametag = texto;
+    try {
+
+      await this.database.cambiarNombre(this.auth.currentUser()!.uid, texto);
+      this.database.setgametag = texto;
+      this.mostrarSuccess()
+
+    } catch(error){
+      this.mostrarError()
+    }
+  }
+
+  // Muestra el alert con el mensaje pasado
+  mostrarError() {
+    this.error = true;
+  }
+  // Muestra el alert con el mensaje pasado
+  mostrarSuccess() {
+    this.success = true;
   }
 }
