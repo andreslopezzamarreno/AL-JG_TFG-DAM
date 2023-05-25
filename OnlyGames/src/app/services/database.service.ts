@@ -276,6 +276,8 @@ export class DatabaseService {
         });
         this.setcoins = usuario.coins;
         alert('Tu codigo es: ' + codigoPremio);
+      } else {
+        alert("No tienes suficientes monedas");
       }
     });
     return monedas;

@@ -48,7 +48,7 @@ body {
   background-color: #95bcd6;
   overflow: hidden;
   margin-right: 10px;
-  margin-top: 50px;
+  top: 63%;
   display: inline-block;
   cursor: pointer;
   -webkit-transition: 1000ms all;

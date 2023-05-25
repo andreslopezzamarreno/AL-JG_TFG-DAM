@@ -11,6 +11,7 @@ import { Usuario } from 'src/app/utils/usuario';
 export class PremiosComponent {
   code = '';
   premios: string[] = [];
+  error = false
   constructor(private auth: AuthService, private db: DatabaseService) {
     this.db
         .recuperarUsuario(this.auth.currentUser()!.uid)
