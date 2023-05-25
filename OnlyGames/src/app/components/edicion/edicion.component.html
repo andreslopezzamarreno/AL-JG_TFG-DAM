@@ -51,6 +51,7 @@
                   value="{{ currentUserGameTag }}"
                   style="font-family: '8BIT WONDER', sans-serif"
                   #miInput
+                  (click)="habilitarEdicion()"
                 />
               </div>
               <div
@@ -76,5 +77,37 @@
         </div>
       </div>
     </div>
+    <div
+        class="alert alert-danger"
+        role="alert"
+        style="
+          font-family: '8BIT WONDER', sans-serif;
+          font-size: smaller;
+          color: red; width: 600px;
+          text-align: center;
+          margin-left: 660px;
+          margin-top: 10px;
+        "
+        *ngIf="error"
+      >
+        Error al cambiar el gametag
+      </div>
+
+      <div
+        class="alert alert"
+        role="alert"
+        style="
+          font-family: '8BIT WONDER', sans-serif;
+          font-size: smaller;
+          color: white; width: 600px;
+          text-align: center;
+          margin-left: 660px;
+          margin-top: 10px;
+          background-color: #519c05;
+        "
+        *ngIf="success"
+      >
+        Gametag cambiado correctamente
+      </div>
   </body>
 </html>
