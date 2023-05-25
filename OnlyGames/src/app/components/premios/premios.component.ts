@@ -18,12 +18,11 @@ export class PremiosComponent {
       this.generarCodigo();
     }
 
-    this.db
-      .comprarPremio(this.auth.currentUser()!.uid, this.code, 200000)
-      .then((res) => {
-        this.db.setcoins = res!;
-        alert('Tu codigo es: ' + this.code.slice(0, -1));
-      });
+    await this.db.comprarPremio(
+      this.auth.currentUser()!.uid,
+      this.code,
+      200000
+    );
   }
 
   generarCodigo() {

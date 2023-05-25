@@ -265,13 +265,18 @@ export class DatabaseService {
     let monedas;
     await this.recuperarUsuario(uid).then((user) => {
       var usuario: Usuario = JSON.parse(user);
-      usuario.coins -= precioPremio;
-      usuario.premios.push(codigoPremio);
       monedas = usuario.coins;
-      updateDoc(doc(this.db, 'users/' + uid), {
-        coins: usuario.coins,
-        premios: usuario.premios,
-      });
+      if (usuario.coins >= precioPremio) {
+        usuario.coins -= precioPremio;
+        usuario.premios.push(codigoPremio);
+        monedas = usuario.coins;
+        updateDoc(doc(this.db, 'users/' + uid), {
+          coins: usuario.coins,
+          premios: usuario.premios,
+        });
+        this.setcoins = usuario.coins;
+        alert('Tu codigo es: ' + codigoPremio.slice(0, -1));
+      }
     });
     return monedas;
   }
