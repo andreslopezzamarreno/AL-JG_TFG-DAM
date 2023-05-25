@@ -21,6 +21,7 @@ import { PremiosComponent } from './components/premios/premios.component';
 import { BubbleshootComponent } from './components/bubbleshoot/bubbleshoot.component';
 import { AmigosComponent } from './components/amigos/amigos.component';
 import { EdicionComponent } from './components/edicion/edicion.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { EdicionComponent } from './components/edicion/edicion.component';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
+    HttpClientModule,
   ],
   providers: [CargarScriptsService],
   bootstrap: [AppComponent],

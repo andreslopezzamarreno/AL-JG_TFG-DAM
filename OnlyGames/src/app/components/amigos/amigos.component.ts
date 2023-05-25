@@ -37,7 +37,7 @@ export class AmigosComponent {
 
   // Aceptar solicitud y añadar solicitante como amigo
   async Aceptar(gametag_solicitante: string) {
-    this.success = false;
+    this.mostrar = false;
     this.Eliminar(gametag_solicitante);
     // Conseguir uid del gametag que ha enviado la solicitud
     await this.database
@@ -48,7 +48,6 @@ export class AmigosComponent {
   }
 
   Eliminar(gametag_solicitante: string) {
-    this.success = false;
     // Eliminar solicitud
     this.database
       .eliminarSolicitudes(this.auth.currentUser()!.uid, gametag_solicitante)
@@ -58,7 +57,6 @@ export class AmigosComponent {
   }
 
   verEstadisticas(gametag_amigo: string) {
-    this.success = false;
     // Ver estadisticas del amigo
     this.mostrarcarta = 'visible';
     this.database.userGametag(gametag_amigo).then((response) => {
