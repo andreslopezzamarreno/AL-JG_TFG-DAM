@@ -22,24 +22,22 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class DatabaseService {
-   firebaseConfig = {
+  firebaseConfig = {
+    apiKey: 'AIzaSyBrqX1EVnN70JYSGQdn-2SZRYwxtIqMets',
 
-    apiKey: "AIzaSyBrqX1EVnN70JYSGQdn-2SZRYwxtIqMets",
+    authDomain: 'al-jg-tfg.firebaseapp.com',
 
-    authDomain: "al-jg-tfg.firebaseapp.com",
+    databaseURL: 'https://al-jg-tfg-default-rtdb.firebaseio.com',
 
-    databaseURL: "https://al-jg-tfg-default-rtdb.firebaseio.com",
+    projectId: 'al-jg-tfg',
 
-    projectId: "al-jg-tfg",
+    storageBucket: 'al-jg-tfg.appspot.com',
 
-    storageBucket: "al-jg-tfg.appspot.com",
+    messagingSenderId: '1004625728225',
 
-    messagingSenderId: "1004625728225",
+    appId: '1:1004625728225:web:336928f0ecfdc08c861da0',
 
-    appId: "1:1004625728225:web:336928f0ecfdc08c861da0",
-
-    measurementId: "G-WTKRBJ8X6W"
-
+    measurementId: 'G-WTKRBJ8X6W',
   };
   app = initializeApp(this.firebaseConfig);
   db = getFirestore(this.app);
@@ -74,6 +72,7 @@ export class DatabaseService {
         records: [0, 0, 0, 0],
         solicitudes: [],
         amigos: [],
+        premios: [],
       });
     } catch (e) {
       console.error('Error añadiendo gameTag: ', e);
@@ -260,5 +259,20 @@ export class DatabaseService {
         });
       });
     }
+  }
+
+  async comprarPremio(uid: string, codigoPremio: string, precioPremio: number) {
+    let monedas;
+    await this.recuperarUsuario(uid).then((user) => {
+      var usuario: Usuario = JSON.parse(user);
+      usuario.coins -= precioPremio;
+      usuario.premios.push(codigoPremio);
+      monedas = usuario.coins;
+      updateDoc(doc(this.db, 'users/' + uid), {
+        coins: usuario.coins,
+        premios: usuario.premios,
+      });
+    });
+    return monedas;
   }
 }

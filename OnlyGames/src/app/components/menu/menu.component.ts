@@ -19,9 +19,6 @@ export class MenuComponent {
     private database: DatabaseService
   ) {
     this.database.asignarDatos(this.auth.currentUser()!.uid);
-    //this.obtenerDatosUser();
-    /* this.currentUserCoins = this.database.currentCoins;
-    this.currentUserGameTag = this.database.currentUserGametag; */
   }
 
   ngOnInit() {

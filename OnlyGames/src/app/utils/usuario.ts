@@ -7,6 +7,7 @@ export class Usuario {
   juegos: boolean[];
   solicitudes: string[];
   records: number[];
+  premios: string[];
 
   constructor(
     id: string,
@@ -15,7 +16,8 @@ export class Usuario {
     amigos: string[],
     juegos: boolean[],
     solicitudes: string[],
-    records: number[]
+    records: number[],
+    premios: string[]
   ) {
     this.id = id;
     this.gametag = gametag;
@@ -24,5 +26,6 @@ export class Usuario {
     this.juegos = juegos;
     this.solicitudes = solicitudes;
     this.records = records;
+    this.premios = premios;
   }
 }

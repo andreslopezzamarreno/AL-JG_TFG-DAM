@@ -1,27 +1,37 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { DatabaseService } from 'src/app/services/database.service';
+import { Usuario } from 'src/app/utils/usuario';
 @Component({
   selector: 'app-premios',
   templateUrl: './premios.component.html',
-  styleUrls: ['./premios.component.css']
+  styleUrls: ['./premios.component.css'],
 })
 export class PremiosComponent {
-  code = "";
+  code = '';
 
-  canjearPremio(){
-    this.code = ""
+  constructor(private auth: AuthService, private db: DatabaseService) {}
+
+  async canjearPremio() {
+    this.code = '';
     for (let i = 0; i < 4; i++) {
-      this.generarCodigo()
+      this.generarCodigo();
     }
-    alert("Tu codigo es: " + this.code.slice(0, -1))
+
+    this.db
+      .comprarPremio(this.auth.currentUser()!.uid, this.code, 200000)
+      .then((res) => {
+        this.db.setcoins = res!;
+        alert('Tu codigo es: ' + this.code.slice(0, -1));
+      });
   }
 
-  generarCodigo(){
-    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+  generarCodigo() {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
     for (let i = 0; i < 4; i++) {
       const randomIndex = Math.floor(Math.random() * characters.length);
       this.code += characters.charAt(randomIndex);
     }
-    return this.code += "-"
+    return (this.code += '-');
   }
 }
-
