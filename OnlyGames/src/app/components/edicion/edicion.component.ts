@@ -11,9 +11,10 @@ import { Usuario } from 'src/app/utils/usuario';
 export class EdicionComponent {
   currentUserGameTag?: string;
   editando = false;
-  error = false;
-  success = false;
-  mensaje = "";
+  mensaje = '';
+  mostrar = false;
+  color = '';
+
   constructor(private auth: AuthService, private database: DatabaseService) {
     this.obtenerDatosUser();
   }
@@ -36,30 +37,36 @@ export class EdicionComponent {
 
   async cambiarGameTag(texto: string) {
     try {
-
       this.database.userGametag(texto).then((response) => {
-        if(response == ""){
+        if (response == '') {
           this.database.cambiarNombre(this.auth.currentUser()!.uid, texto);
           this.database.setgametag = texto;
-          this.mostrarSuccess()
+          this.mostrarSuccess();
         } else {
-          this.mostrarError("Ese gametag ya existe")
+          this.mostrarError('Ese gametag ya existe');
         }
       });
-    } catch(error){
-      this.mostrarError("Error cambiando el gametag")
+    } catch (error) {
+      this.mostrarError('Error cambiando el gametag');
     }
   }
 
   // Muestra el alert con el mensaje pasado
   mostrarError(mensaje: string) {
-    this.success = false
-    this.error = true;
-    this.mensaje = mensaje
+    this.mostrar = true;
+    this.mensaje = mensaje;
+    this.color = 'red';
+    setTimeout(() => {
+      this.mostrar = false;
+    }, 5000);
   }
   // Muestra el alert con el mensaje pasado
   mostrarSuccess() {
-    this.error = false
-    this.success = true;
+    this.mostrar = true;
+    this.color = '#519c05';
+    this.mensaje = 'Gametag cambiado correctamente';
+    setTimeout(() => {
+      this.mostrar = false;
+    }, 5000);
   }
 }

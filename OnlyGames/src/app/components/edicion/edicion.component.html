@@ -78,36 +78,21 @@
       </div>
     </div>
     <div
-        class="alert alert-danger"
-        role="alert"
-        style="
-          font-family: '8BIT WONDER', sans-serif;
-          font-size: smaller;
-          color: red; width: 600px;
-          text-align: center;
-          margin-left: 660px;
-          margin-top: 10px;
-        "
-        *ngIf="error"
-      >
-        {{ mensaje }}
-      </div>
-
-      <div
-        class="alert alert"
-        role="alert"
-        style="
-          font-family: '8BIT WONDER', sans-serif;
-          font-size: smaller;
-          color: white; width: 600px;
-          text-align: center;
-          margin-left: 660px;
-          margin-top: 10px;
-          background-color: #519c05;
-        "
-        *ngIf="success"
-      >
-        Gametag cambiado correctamente
-      </div>
+      class="alert alert"
+      role="alert"
+      style="
+        font-family: '8BIT WONDER', sans-serif;
+        font-size: smaller;
+        color: white;
+        width: 600px;
+        text-align: center;
+        margin-left: 660px;
+        margin-top: 10px;
+        background-color: {{ color }}
+      "
+      *ngIf="mostrar"
+    >
+      {{ mensaje }}
+    </div>
   </body>
 </html>

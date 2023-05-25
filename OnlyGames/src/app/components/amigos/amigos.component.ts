@@ -17,10 +17,10 @@ export class AmigosComponent {
   usuario_amigo: Usuario | undefined;
   mostrarcarta: string = 'hidden';
   records_amigo: number[] = [];
-  mostrar = false
-  success = false
-  mensaje = ""
-  colorAlert = ""
+  mostrar = false;
+  success = false;
+  mensaje = '';
+  colorAlert = '';
   constructor(private database: DatabaseService, private auth: AuthService) {
     this.database
       .recuperarUsuario(this.auth.currentUser()!.uid)
@@ -30,24 +30,25 @@ export class AmigosComponent {
         this.solicitudes = usuario.solicitudes;
         this.amigos = usuario.amigos;
         if (this.amigos.length == 0) {
-          this.mostrar = true
+          this.mostrar = true;
         }
       });
   }
 
   // Aceptar solicitud y añadar solicitante como amigo
   async Aceptar(gametag_solicitante: string) {
+    this.success = false;
     this.Eliminar(gametag_solicitante);
     // Conseguir uid del gametag que ha enviado la solicitud
-      await this.database
-        .aniadirAmigo(this.auth.currentUser()!.uid, gametag_solicitante)
-        .then((amigos) => {
-            this.amigos = amigos;
-        });
-
+    await this.database
+      .aniadirAmigo(this.auth.currentUser()!.uid, gametag_solicitante)
+      .then((amigos) => {
+        this.amigos = amigos;
+      });
   }
 
   Eliminar(gametag_solicitante: string) {
+    this.success = false;
     // Eliminar solicitud
     this.database
       .eliminarSolicitudes(this.auth.currentUser()!.uid, gametag_solicitante)
@@ -57,6 +58,7 @@ export class AmigosComponent {
   }
 
   verEstadisticas(gametag_amigo: string) {
+    this.success = false;
     // Ver estadisticas del amigo
     this.mostrarcarta = 'visible';
     this.database.userGametag(gametag_amigo).then((response) => {
@@ -69,36 +71,35 @@ export class AmigosComponent {
   async enviarSolicitud(gametag_solicitado: string) {
     var amigos: string[] = [];
     await this.database
-    .recuperarUsuario(this.auth.currentUser()!.uid)
-    .then((user) => {
-      var usuario: Usuario = JSON.parse(user);
-      amigos = usuario.amigos;
+      .recuperarUsuario(this.auth.currentUser()!.uid)
+      .then((user) => {
+        var usuario: Usuario = JSON.parse(user);
+        amigos = usuario.amigos;
       });
 
-      if (gametag_solicitado != this.currentuser_gametag) {
-        if (!amigos.includes(gametag_solicitado)) {
-          this.database.obtenerSolicitudes(
-          gametag_solicitado,
-          this.currentuser_gametag
-          ).then((rec) => {
+    if (gametag_solicitado != this.currentuser_gametag) {
+      if (!amigos.includes(gametag_solicitado)) {
+        this.database
+          .obtenerSolicitudes(gametag_solicitado, this.currentuser_gametag)
+          .then((rec) => {
             console.log(rec);
-            this.success = true
-            setTimeout( () =>{
-              this.success = false
-            } , 5000)
+            this.success = true;
+            setTimeout(() => {
+              this.success = false;
+            }, 5000);
             if (rec) {
-              this.mensaje = "Solicitud enviada"
-              this.colorAlert = "#519c05"
+              this.mensaje = 'Solicitud enviada';
+              this.colorAlert = '#519c05';
             } else {
-              this.mensaje = "El gametag no existe"
-              this.colorAlert = "red"
+              this.mensaje = 'El gametag no existe';
+              this.colorAlert = 'red';
             }
           });
       }
     }
   }
 
-  ocultarCarta(){
-    this.mostrarcarta = "hidden"
+  ocultarCarta() {
+    this.mostrarcarta = 'hidden';
   }
 }
