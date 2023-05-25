@@ -56,7 +56,12 @@ export class InicioComponent {
   // Control de las pulsaciondes del teclado
   onKeydown(event: any, usuario: string, pass: string) {
     if (event.key === 'Enter') {
-      this.loguearse(usuario, pass);
+      if (location.href.includes("login")) {
+        this.loguearse(usuario, pass);
+
+      } else {
+        this.registro(usuario, pass)
+      }
     }
   }
 
