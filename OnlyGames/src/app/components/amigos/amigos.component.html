@@ -1,3 +1,23 @@
+<div *ngIf="mostrar">
+  <div
+    class="alert alert"
+    role="alert"
+    style="
+      position: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: '8BIT WONDER', sans-serif;
+      font-size: smaller;
+      color: black;
+      top: 50%;
+      left: 35%;
+    "
+  >
+    Todavia no tienes amigos, sal a la calle campeon.
+  </div>
+</div>
+
 <div class="container" style="visibility: {{ mostrarcarta }}">
   <div class="circles">
     <div class="circle circle-1"></div>
@@ -172,6 +192,25 @@
       </div>
       </div>
     </form>
+    <div *ngIf="success">
+      <div
+        class="alert alert"
+        role="alert"
+        style="
+        position: absolute;
+          font-family: '8BIT WONDER', sans-serif;
+          font-size: smaller;
+          color: white; width: 350px;
+          text-align: center;
+          margin-top: 10px;
+          left: 40%;
+          background-color: {{colorAlert}};
+          font-size: 10px;
+        "
+      >
+        {{mensaje}}
+      </div>
+    </div>
   </div>
   <div class="col" style="align-items: center; text-align: center">
     <p style="font-family: '8BIT WONDER', sans-serif">Mis Amigos</p>

@@ -1,48 +1,98 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.cdnfonts.com/css/8bit-wonder" rel="stylesheet" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div *ngIf="juegos.length == 0">
-      <div
-        class="alert alert-danger"
-        role="alert"
-        style="
-          position: fixed;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-family: '8BIT WONDER', sans-serif;
-          font-size: smaller;
-          color: red;
-        "
-      >
-        Todavia no tienes juegos.
+<link href="https://fonts.cdnfonts.com/css/8bit-wonder" rel="stylesheet" />
+<div *ngIf="mostrar">
+  <div
+    class="alert alert"
+    role="alert"
+    style="
+      position: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: '8BIT WONDER', sans-serif;
+      font-size: smaller;
+      color: black;
+      top: 50%;
+      left: 25%;
+    "
+  >
+    Todavia no tienes juegos dirigite a "Todos los juegos" en el menu para comprarlos.
+  </div>
+</div>
+  <div class="row col-sm">
+    <div class="carousel__container">
+      <div class="carousel-item" *ngFor="let item of juegos">
+        <img class="carousel-item__img" [src]="item.imagen" />
+        <div class="carousel-item__details">
+          <div class="controls">
+            <span class="fas fa-play-circle"></span>
+            <span class="fas fa-plus-circle"></span>
+          </div>
+          <h5 class="carousel-item__details--title">{{ item.nombre }}</h5>
+          <h6 class="carousel-item__details--subtitle">
+            {{ item.descripcion }}
+          </h6>
+          <div style="display: inline-block">
+            <button
+              (click)="irJuego(item.nombre.split(' ')[0])"
+              type="button"
+              class="btn btn-outline-light"
+              style="
+                position: absolute;
+                width: 90%;
+                height: 12%;
+                bottom: 0;
+                font-family: '8BIT WONDER', sans-serif;
+                font-size: 9px;
+                margin-bottom: 10px;
+              "
+            >
+              Jugar
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="row col-sm">
-      <div class="carousel__container">
-        <div class="carousel-item" *ngFor="let item of juegos">
+
+    <div class="carousel__container">
+      <ng-container *ngIf="todos">
+        <div
+          class="carousel-item-blockGames"
+          style="display: inline-block"
+          *ngFor="let item of juegosRestantes"
+        >
           <img class="carousel-item__img" [src]="item.imagen" />
           <div class="carousel-item__details">
             <div class="controls">
               <span class="fas fa-play-circle"></span>
               <span class="fas fa-plus-circle"></span>
             </div>
+            <button
+              type="button"
+              class="btn btn-outline-light"
+              style="
+                border: none;
+                position: absolute;
+                top: 10%;
+                right: 17%;
+                height: 120px;
+                width: 180px;
+                font-family: '8BIT WONDER', sans-serif;
+                font-size: 9px;
+              "
+              (click)="comparJuego(item.idJuego, item.precio)"
+            >
+              Conseguir
+              <p>{{ item.precio }} monedas</p>
+            </button>
             <h5 class="carousel-item__details--title">{{ item.nombre }}</h5>
             <h6 class="carousel-item__details--subtitle">
               {{ item.descripcion }}
             </h6>
             <div style="display: inline-block">
               <button
-                (click)="irJuego(item.nombre.split(' ')[0])"
                 type="button"
-                class="btn btn-outline-light"
+                class="btn btn-outline-light text-center"
+                disabled
                 style="
                   position: absolute;
                   width: 90%;
@@ -58,65 +108,7 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="carousel__container">
-        <ng-container *ngIf="todos">
-          <div
-            class="carousel-item-blockGames"
-            style="display: inline-block"
-            *ngFor="let item of juegosRestantes"
-          >
-            <img class="carousel-item__img" [src]="item.imagen" />
-            <div class="carousel-item__details">
-              <div class="controls">
-                <span class="fas fa-play-circle"></span>
-                <span class="fas fa-plus-circle"></span>
-              </div>
-              <button
-                type="button"
-                class="btn btn-outline-light"
-                style="
-                  border: none;
-                  position: absolute;
-                  top: 10%;
-                  right: 17%;
-                  height: 120px;
-                  width: 180px;
-                  font-family: '8BIT WONDER', sans-serif;
-                  font-size: 9px;
-                "
-                (click)="comparJuego(item.idJuego, item.precio)"
-              >
-                Conseguir
-                <p>{{ item.precio }} monedas</p>
-              </button>
-              <h5 class="carousel-item__details--title">{{ item.nombre }}</h5>
-              <h6 class="carousel-item__details--subtitle">
-                {{ item.descripcion }}
-              </h6>
-              <div style="display: inline-block">
-                <button
-                  type="button"
-                  class="btn btn-outline-light text-center"
-                  disabled
-                  style="
-                    position: absolute;
-                    width: 90%;
-                    height: 12%;
-                    bottom: 0;
-                    font-family: '8BIT WONDER', sans-serif;
-                    font-size: 9px;
-                    margin-bottom: 10px;
-                  "
-                >
-                  Jugar
-                </button>
-              </div>
-            </div>
-          </div>
-        </ng-container>
-      </div>
+      </ng-container>
     </div>
-  </body>
-</html>
+  </div>
+

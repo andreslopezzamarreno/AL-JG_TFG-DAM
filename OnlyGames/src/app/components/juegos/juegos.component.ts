@@ -18,6 +18,7 @@ export class JuegosComponent {
   todosLosJuegos: Juego[] = [];
   juegos: Juego[] = [];
   juegosRestantes: Juego[] = [];
+  mostrar = false
 
   constructor(
     private db: DatabaseService,
@@ -25,22 +26,23 @@ export class JuegosComponent {
     private auth: AuthService,
     private router: Router,
     private menu: MenuComponent
-  ) {
-    actroute.params.subscribe((cosas) => {
-      this.tipo = cosas['tipo'];
-      this.todosLosJuegos = [];
-      this.juegos = [];
-      this.juegosRestantes = [];
-      this.verTodosLosJuegos(this.currentuser!.uid);
+    ) {
+      actroute.params.subscribe((cosas) => {
+        this.tipo = cosas['tipo'];
+        this.todosLosJuegos = [];
+        this.juegos = [];
+        this.juegosRestantes = [];
+        this.verTodosLosJuegos(this.currentuser!.uid);
 
-      if (this.tipo == undefined) {
-        this.tipo = 'misJuegos';
-      }
+        if (this.tipo == undefined) {
+          this.tipo = 'misJuegos';
+        }
 
       if (this.tipo == 'misJuegos') {
         this.todos = false;
       } else {
         this.todos = true;
+        this.mostrar = false
       }
     });
   }
@@ -73,6 +75,9 @@ export class JuegosComponent {
         }
       });
     });
+    if (this.juegos.length == 0 && !location.href.includes("todosJuegos")) {
+      this.mostrar = true
+    }
   }
   // Ir a juego deseado
   irJuego(tipo: string) {
@@ -86,7 +91,8 @@ export class JuegosComponent {
         if (data) {
           this.juegosRestantes = this.juegosRestantes.filter(
             (game) => game != this.todosLosJuegos[idJuego]
-          );
+            );
+            this.mostrar = false
           this.juegos.push(this.todosLosJuegos[idJuego]);
         }
       });

@@ -168,11 +168,10 @@ export class DatabaseService {
       await updateDoc(doc(this.db, 'users/' + uid_usuario), {
         solicitudes: solicitudes,
       });
-      alert("Solicitud enviada")
+      return true
     } catch (error) {
-      alert("Ese gametag no existe")
+      return false
     }
-    return solicitudes;
   }
   async eliminarSolicitudes(uid: string, solicitud_eliminar: string) {
     var solicitudes: string[] = [];

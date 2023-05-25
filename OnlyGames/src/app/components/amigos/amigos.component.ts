@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DatabaseService } from 'src/app/services/database.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Usuario } from 'src/app/utils/usuario';
+import { timeout } from 'rxjs';
 
 @Component({
   selector: 'app-amigos',
@@ -16,6 +17,10 @@ export class AmigosComponent {
   usuario_amigo: Usuario | undefined;
   mostrarcarta: string = 'hidden';
   records_amigo: number[] = [];
+  mostrar = false
+  success = false
+  mensaje = ""
+  colorAlert = ""
   constructor(private database: DatabaseService, private auth: AuthService) {
     this.database
       .recuperarUsuario(this.auth.currentUser()!.uid)
@@ -24,6 +29,9 @@ export class AmigosComponent {
         this.currentuser_gametag = usuario.gametag;
         this.solicitudes = usuario.solicitudes;
         this.amigos = usuario.amigos;
+        if (this.amigos.length == 0) {
+          this.mostrar = true
+        }
       });
   }
 
@@ -72,7 +80,20 @@ export class AmigosComponent {
           this.database.obtenerSolicitudes(
           gametag_solicitado,
           this.currentuser_gametag
-          );
+          ).then((rec) => {
+            console.log(rec);
+            this.success = true
+            setTimeout( () =>{
+              this.success = false
+            } , 5000)
+            if (rec) {
+              this.mensaje = "Solicitud enviada"
+              this.colorAlert = "#519c05"
+            } else {
+              this.mensaje = "El gametag no existe"
+              this.colorAlert = "red"
+            }
+          });
       }
     }
   }
