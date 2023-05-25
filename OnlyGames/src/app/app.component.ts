@@ -10,6 +10,7 @@ export class AppComponent {}
 /*
           "EDITAR PERFIL"
           1. Que el usuario pueda cambiar su gametag -->que salga alert o algo que indique que se ha cambiado
+            - que no pueda poner un gametag que ya existe
           2. modificar tarjeta
 
           "PREMIOS"
