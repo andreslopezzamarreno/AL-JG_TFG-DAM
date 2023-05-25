@@ -56,11 +56,10 @@ export class InicioComponent {
   // Control de las pulsaciondes del teclado
   onKeydown(event: any, usuario: string, pass: string) {
     if (event.key === 'Enter') {
-      if (location.href.includes("login")) {
+      if (location.href.includes('login')) {
         this.loguearse(usuario, pass);
-
       } else {
-        this.registro(usuario, pass)
+        this.registro(usuario, pass);
       }
     }
   }
@@ -69,38 +68,45 @@ export class InicioComponent {
   async registro(usuario: string, pass: string): Promise<void> {
     var gametag = (<HTMLInputElement>document.getElementById('gametag')).value;
     if (usuario != '' && pass != '' && gametag != '') {
-      await this.database.userGametag(gametag).then(async (response) => {
-        console.log(response);
-        if (response == '') {
-          if (pass.length < 6) {
-            this.mostrarError(
-              'La contrasena tiene que tener al menos 6 caracteres'
-            );
-          } else {
-            await this.auth
-              .registro(usuario, pass)
-              .then((response) => {
-                /* if (response.user) {
-                  sendEmailVerification(response.user).then(() => {
-                    console.log('confirma correo');
-                    this.database.registrarUsuario(response.user.uid, gametag);
-                    this.mostrarError(
-                      `Te hemos enviado un correo a ${usuario} para verificar el email`
-                    );
-                  });
-                } */
-                this.database.registrarUsuario(response.user.uid, gametag);
-                this.router.navigate(['/menu/Juegos/misJuegos']);
-              })
-              .catch((error) => {
-                console.log(error);
-                this.mostrarError('Error al registrarse, el correo ya existe');
-              });
-          }
+      var regExp = /^[\w.-]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,})+$/;
+      if (!regExp.test(usuario)) {
+        this.mostrarError(`Introduce correctamente el correo`);
+      } else {
+        var regExp = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}$/;
+        if (!regExp.test(pass)) {
+          this.mostrarError(
+            `La contrasena es poco segura. Al menos 6 caracteres usando numeros y letras.`
+          );
         } else {
-          this.mostrarError('Ya existe un usario con ese Gametag');
+          await this.database.userGametag(gametag).then(async (response) => {
+            if (response == '') {
+              await this.auth
+                .registro(usuario, pass)
+                .then((response) => {
+                  /* if (response.user) {
+                      sendEmailVerification(response.user).then(() => {
+                        console.log('confirma correo');
+                        this.database.registrarUsuario(response.user.uid, gametag);
+                        this.mostrarError(
+                          `Te hemos enviado un correo a ${usuario} para verificar el email`
+                        );
+                      });
+                    } */
+                  this.database.registrarUsuario(response.user.uid, gametag);
+                  this.router.navigate(['/menu/Juegos/misJuegos']);
+                })
+                .catch((error) => {
+                  console.log(error);
+                  this.mostrarError(
+                    'Error al registrarse, el correo ya existe'
+                  );
+                });
+            } else {
+              this.mostrarError('Ya existe un usario con ese Gametag');
+            }
+          });
         }
-      });
+      }
     } else {
       this.mostrarError('Rellena todos los campos');
     }
