@@ -8,25 +8,23 @@ import { Component } from '@angular/core';
 export class AppComponent {}
 
 /*
-          IMPORTANCIA
-          documentacion 8
-
           "EDITAR PERFIL"
           1. Que el usuario pueda cambiar su gametag -->que salga alert o algo que indique que se ha cambiado
-          - buscar paquete de iconos
-          - que pueda cambiarse la foto  (string de la ruta de la imagen, como los juegos)
-          - modificar tarjeta
+          2. modificar tarjeta
 
           "PREMIOS"
-          2. que en algun lado muestre los codigos de los premiso guardados en la base de datos
+          3. Que en algun lado muestre los codigos de los premiso guardados en la base de datos
 
           "COMENTAR CODIGO"
 
-          "CONFIRMACION CORREO"
-          2. Descomentar el codigo y dejarlo bien antes de entregarlo
-
           "SI SOBRA TIEMPO"
-          3. Si es asi lo canjea y le envia email o le sale un alert con el codigo
-          4. Iconos > comprar iconos
-          5. Cambiar la forma en la que te da el codigo del premio --> alert es un poco feo
+          4. Si es asi lo canjea y le envia email o le sale un alert con el codigo
+          5. Iconos > comprar iconos
+            - buscar paquete de iconos
+            - que pueda cambiarse la foto  (string de la ruta de la imagen, como los juegos)
+          6. Cambiar la forma en la que te da el codigo del premio --> alert es un poco feo
+
+
+          "CONFIRMACION CORREO"
+          7. Descomentar el codigo y dejarlo bien antes de entregarlo
           */
