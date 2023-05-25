@@ -1,4 +1,10 @@
-<div style="display: flex; margin-top: 5%;">
+<div class="col-sm" style="font-family: '8BIT WONDER', sans-serif; color: white; font-size: 16px; position: absolute; ">
+  <p style="font-family: '8BIT WONDER', sans-serif; margin-bottom: 10px; margin-left: 45px; margin-top: 100px; color: black; background-color: orange; text-align: center;">Premios canjeados</p>
+  <ul style="margin-left: 5px; list-style-type:none;" *ngFor="let item of premios">
+    <li style="font-family: '8BIT WONDER', sans-serif;  font-size: 12px; margin-bottom: 5px;">Codigo: {{item}}</li>
+   </ul>
+</div>
+<div style="display: flex; margin-top: 20%;">
 <div class="route"></div>
 <section class="giftcard">
   <section class="giftcard-cover">

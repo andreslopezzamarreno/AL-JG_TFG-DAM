@@ -13,6 +13,7 @@ export class EdicionComponent {
   editando = false;
   error = false;
   success = false;
+  mensaje = "";
   constructor(private auth: AuthService, private database: DatabaseService) {
     this.obtenerDatosUser();
   }
@@ -36,21 +37,29 @@ export class EdicionComponent {
   async cambiarGameTag(texto: string) {
     try {
 
-      await this.database.cambiarNombre(this.auth.currentUser()!.uid, texto);
-      this.database.setgametag = texto;
-      this.mostrarSuccess()
-
+      this.database.userGametag(texto).then((response) => {
+        if(response == ""){
+          this.database.cambiarNombre(this.auth.currentUser()!.uid, texto);
+          this.database.setgametag = texto;
+          this.mostrarSuccess()
+        } else {
+          this.mostrarError("Ese gametag ya existe")
+        }
+      });
     } catch(error){
-      this.mostrarError()
+      this.mostrarError("Error cambiando el gametag")
     }
   }
 
   // Muestra el alert con el mensaje pasado
-  mostrarError() {
+  mostrarError(mensaje: string) {
+    this.success = false
     this.error = true;
+    this.mensaje = mensaje
   }
   // Muestra el alert con el mensaje pasado
   mostrarSuccess() {
+    this.error = false
     this.success = true;
   }
 }

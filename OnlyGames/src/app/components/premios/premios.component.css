@@ -12,9 +12,7 @@ html {
 .route {
   display: none;
 }
-
 .giftcard {
-  margin-top: 12%;
   height: 250px;
   width: 450px;
   font-family: PT Sans, sans-serif;

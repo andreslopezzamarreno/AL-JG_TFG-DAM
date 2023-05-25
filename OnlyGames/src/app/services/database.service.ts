@@ -275,7 +275,7 @@ export class DatabaseService {
           premios: usuario.premios,
         });
         this.setcoins = usuario.coins;
-        alert('Tu codigo es: ' + codigoPremio.slice(0, -1));
+        alert('Tu codigo es: ' + codigoPremio);
       }
     });
     return monedas;

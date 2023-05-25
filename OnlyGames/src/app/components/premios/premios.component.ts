@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { database } from 'firebase-admin';
 import { AuthService } from 'src/app/services/auth.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { Usuario } from 'src/app/utils/usuario';
@@ -9,20 +10,35 @@ import { Usuario } from 'src/app/utils/usuario';
 })
 export class PremiosComponent {
   code = '';
-
-  constructor(private auth: AuthService, private db: DatabaseService) {}
+  premios: string[] = [];
+  constructor(private auth: AuthService, private db: DatabaseService) {
+    this.db
+        .recuperarUsuario(this.auth.currentUser()!.uid)
+        .then((response) => {
+          var usuario: Usuario = JSON.parse(response);
+          this.premios = usuario.premios
+        });
+  }
 
   async canjearPremio() {
     this.code = '';
     for (let i = 0; i < 4; i++) {
       this.generarCodigo();
     }
+    this.code = this.code.slice(0, -1);
 
     await this.db.comprarPremio(
       this.auth.currentUser()!.uid,
       this.code,
       200000
     );
+
+    this.db
+        .recuperarUsuario(this.auth.currentUser()!.uid)
+        .then((response) => {
+          var usuario: Usuario = JSON.parse(response);
+          this.premios = usuario.premios
+        });
   }
 
   generarCodigo() {
