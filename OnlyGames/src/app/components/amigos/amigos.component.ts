@@ -31,11 +31,12 @@ export class AmigosComponent {
   async Aceptar(gametag_solicitante: string) {
     this.Eliminar(gametag_solicitante);
     // Conseguir uid del gametag que ha enviado la solicitud
-    await this.database
-      .aniadirAmigo(this.auth.currentUser()!.uid, gametag_solicitante)
-      .then((amigos) => {
-        this.amigos = amigos;
-      });
+      await this.database
+        .aniadirAmigo(this.auth.currentUser()!.uid, gametag_solicitante)
+        .then((amigos) => {
+            this.amigos = amigos;
+        });
+
   }
 
   Eliminar(gametag_solicitante: string) {
@@ -60,19 +61,18 @@ export class AmigosComponent {
   async enviarSolicitud(gametag_solicitado: string) {
     var amigos: string[] = [];
     await this.database
-      .recuperarUsuario(this.auth.currentUser()!.uid)
-      .then((user) => {
-        var usuario: Usuario = JSON.parse(user);
-        amigos = usuario.amigos;
+    .recuperarUsuario(this.auth.currentUser()!.uid)
+    .then((user) => {
+      var usuario: Usuario = JSON.parse(user);
+      amigos = usuario.amigos;
       });
 
-    if (gametag_solicitado != this.currentuser_gametag) {
-      if (!amigos.includes(gametag_solicitado)) {
-
-        this.database.obtenerSolicitudes(
+      if (gametag_solicitado != this.currentuser_gametag) {
+        if (!amigos.includes(gametag_solicitado)) {
+          this.database.obtenerSolicitudes(
           gametag_solicitado,
           this.currentuser_gametag
-        );
+          );
       }
     }
   }

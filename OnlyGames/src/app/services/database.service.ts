@@ -156,15 +156,22 @@ export class DatabaseService {
   async obtenerSolicitudes(gameTag: string, gametagCuerrentUser: string) {
     var uid_usuario: string = '';
     var solicitudes: string[] = [];
-    await this.userGametag(gameTag).then((user) => {
-      var usuario: Usuario = JSON.parse(user);
-      solicitudes = usuario.solicitudes;
-      solicitudes.push(gametagCuerrentUser);
-      uid_usuario = usuario.id;
-    });
-    await updateDoc(doc(this.db, 'users/' + uid_usuario), {
-      solicitudes: solicitudes,
-    });
+
+    try {
+
+      await this.userGametag(gameTag).then((user) => {
+        var usuario: Usuario = JSON.parse(user);
+        solicitudes = usuario.solicitudes;
+        solicitudes.push(gametagCuerrentUser);
+        uid_usuario = usuario.id;
+      });
+      await updateDoc(doc(this.db, 'users/' + uid_usuario), {
+        solicitudes: solicitudes,
+      });
+      alert("Solicitud enviada")
+    } catch (error) {
+      alert("Ese gametag no existe")
+    }
     return solicitudes;
   }
   async eliminarSolicitudes(uid: string, solicitud_eliminar: string) {
@@ -187,25 +194,30 @@ export class DatabaseService {
     var gametagCuerrentUser: string;
     var idSolicitud;
 
-    await this.recuperarUsuario(uid).then((user) => {
-      var usuario: Usuario = JSON.parse(user);
-      gametagCuerrentUser = usuario.gametag;
-      amigos = usuario.amigos;
-      amigos.push(solicitud);
-    });
-    await updateDoc(doc(this.db, 'users/' + uid), {
-      amigos: amigos,
-    });
+    try {
+      await this.recuperarUsuario(uid).then((user) => {
+        var usuario: Usuario = JSON.parse(user);
+        gametagCuerrentUser = usuario.gametag;
+        amigos = usuario.amigos;
+        amigos.push(solicitud);
+      });
+      await updateDoc(doc(this.db, 'users/' + uid), {
+        amigos: amigos,
+      });
 
-    await this.userGametag(solicitud).then((user) => {
-      var usuario: Usuario = JSON.parse(user);
-      idSolicitud = usuario.id;
-      amigos_solicitante = usuario.amigos;
-      amigos_solicitante.push(gametagCuerrentUser);
-    });
-    await updateDoc(doc(this.db, 'users/' + idSolicitud), {
-      amigos: amigos_solicitante,
-    });
+      await this.userGametag(solicitud).then((user) => {
+        var usuario: Usuario = JSON.parse(user);
+        idSolicitud = usuario.id;
+        amigos_solicitante = usuario.amigos;
+        amigos_solicitante.push(gametagCuerrentUser);
+      });
+      await updateDoc(doc(this.db, 'users/' + idSolicitud), {
+        amigos: amigos_solicitante,
+      });
+
+    } catch (error) {
+      return amigos
+    }
 
     return amigos;
   }
