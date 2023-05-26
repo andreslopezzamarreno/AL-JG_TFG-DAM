@@ -17,7 +17,7 @@
         <div class="only_logo">
           <img src=".\assets\output-onlinepngtools.png" alt="" />
         </div>
-        <div class="container" style="margin-left: 13px; margin-bottom: 50px">
+        <div class="container" style="margin-left: 45px; width: fit-content; height: fit-content; position: absolute;">
           <div class="row"></div>
           <div class="carta_info">
             <div
@@ -25,22 +25,22 @@
                 font-family: '8BIT WONDER', sans-serif;
                 color: white;
                 font-size: 16px;
-                margin-right: 120px;
+                display: inline-flex;
               "
             >
               <img
                 src=".\assets\alien-space-character-of-pixels-for-a-game.png"
-                alt=""
+                alt="" style="width: 23px; height: 23px; margin-top: 20px;"
               />
-              <p style="font-family: '8BIT WONDER', sans-serif">Gametag:</p>
-              <div style="display: flex">
+              <p style="font-family: '8BIT WONDER', sans-serif; margin-left: 5px; margin-top: 8px;">Gametag:</p>
+              <div style="display: inline-flex; margin-left: 60px;">
                 <img
                   (click)="habilitarEdicion()"
                   src=".\assets\edit.png"
                   style="
                     width: 15px;
                     height: 15px;
-                    margin-top: 15px;
+                    margin-top: 23px;
                     margin-right: 8px;
                   "
                 />
@@ -49,7 +49,7 @@
                   type="text"
                   id="input"
                   value="{{ currentUserGameTag }}"
-                  style="font-family: '8BIT WONDER', sans-serif"
+                  style="font-family: '8BIT WONDER', sans-serif; width: 100px; margin-top: 8px;"
                   #miInput
                   (click)="habilitarEdicion()"
                 />
@@ -65,7 +65,7 @@
                   font-size: 12px;
                   position: relative;
                   text-align: center;
-                  margin-top: 5px;
+                  margin-top: 15px;
                   height: fit-content;
                 "
                 (click)="cambiarGameTag(miInput.value)"
@@ -84,9 +84,9 @@
         font-family: '8BIT WONDER', sans-serif;
         font-size: smaller;
         color: white;
-        width: 600px;
+        width: 500px;
         text-align: center;
-        margin-left: 660px;
+        margin-left: 710px;
         margin-top: 10px;
         background-color: {{ color }}
       "
