@@ -8,17 +8,16 @@ import { Component } from '@angular/core';
 export class AppComponent {}
 
 /*
-          "EDITAR PERFIL"
-          1. modificar tarjeta
+"IMPORTANTE"
+1. Comentar todo el codigo y dejarlo limbio
+2. Documentacion
 
-          "COMENTAR CODIGO"
+"AMIGOS"
+3. comprobar que si ya son amigos o le ha enviado la solicitud, no deje enviarla
+4. si compras un juego se podria poner una pestaña de confirmacion, o algun mensaje, muy soso el comprar juegos
 
-          "SI SOBRA TIEMPO"
-          2. Si es asi lo canjea y le envia email o le sale un alert con el codigo
+"SI SOBRA TIEMPO"
+5. Si es asi lo canjea y le envia email o le sale un alert con el codigo
+6. Cambiar la forma en la que te da el codigo del premio --> alert es un poco feo
 
-          3. Cambiar la forma en la que te da el codigo del premio --> alert es un poco feo
-
-
-          "CONFIRMACION CORREO"
-          4. Descomentar el codigo y dejarlo bien antes de entregarlo
-          */
+*/
