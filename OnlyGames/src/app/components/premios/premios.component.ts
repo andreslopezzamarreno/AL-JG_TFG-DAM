@@ -3,7 +3,6 @@ import { database } from 'firebase-admin';
 import { AuthService } from 'src/app/services/auth.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { Usuario } from 'src/app/utils/usuario';
-import { EmailService } from 'src/app/services/email.service';
 @Component({
   selector: 'app-premios',
   templateUrl: './premios.component.html',
@@ -13,11 +12,7 @@ export class PremiosComponent {
   code = '';
   premios: string[] = [];
   error = false;
-  constructor(
-    private auth: AuthService,
-    private db: DatabaseService,
-    private email: EmailService
-  ) {
+  constructor(private auth: AuthService, private db: DatabaseService) {
     this.db.recuperarUsuario(this.auth.currentUser()!.uid).then((response) => {
       var usuario: Usuario = JSON.parse(response);
       this.premios = usuario.premios;
@@ -48,24 +43,9 @@ export class PremiosComponent {
     for (let i = 0; i < 4; i++) {
       const randomIndex = Math.floor(Math.random() * characters.length);
       this.code += characters.charAt(randomIndex);
-      //this.sendEmail();
     }
     return (this.code += '-');
   }
 
-  sendEmail() {
-    const toEmail = 'lopez.zama@gmail';
-    const subject = '¡Hola!';
-    const content =
-      'Hola, este es un correo electrónico automático enviado desde SendGrid.';
-
-    this.email.sendEmail(toEmail, subject, content).subscribe(
-      (response) => {
-        console.log('Correo electrónico enviado correctamente.');
-      },
-      (error) => {
-        console.error('Error al enviar el correo electrónico:', error);
-      }
-    );
-  }
+  sendEmail() {}
 }
