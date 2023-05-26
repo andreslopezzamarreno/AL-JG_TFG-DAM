@@ -40,9 +40,9 @@ export class InicioComponent {
       await this.auth
         .login(usuario, pass)
         .then((user) => {
-          //if (user.user.emailVerified) {
-          this.router.navigate(['/menu/Juegos/misJuegos']);
-          //}
+          if (user.user.emailVerified) {
+            this.router.navigate(['/menu/Juegos/misJuegos']);
+          }
         })
         .catch((error) => {
           this.mostrarError(
@@ -56,7 +56,10 @@ export class InicioComponent {
   // Control de las pulsaciondes del teclado
   onKeydown(event: any, usuario: string, pass: string) {
     if (event.key === 'Enter') {
-      if (location.href.includes('login') || location.href == "http://localhost:4200/") {
+      if (
+        location.href.includes('login') ||
+        location.href == 'http://localhost:4200/'
+      ) {
         this.loguearse(usuario, pass);
       } else {
         this.registro(usuario, pass);
@@ -83,17 +86,20 @@ export class InicioComponent {
               await this.auth
                 .registro(usuario, pass)
                 .then((response) => {
-                  /* if (response.user) {
-                      sendEmailVerification(response.user).then(() => {
-                        console.log('confirma correo');
-                        this.database.registrarUsuario(response.user.uid, gametag);
-                        this.mostrarError(
-                          `Te hemos enviado un correo a ${usuario} para verificar el email`
-                        );
-                      });
-                    } */
-                  this.database.registrarUsuario(response.user.uid, gametag);
-                  this.router.navigate(['/menu/Juegos/misJuegos']);
+                  if (response.user) {
+                    sendEmailVerification(response.user).then(() => {
+                      console.log('confirma correo');
+                      this.database.registrarUsuario(
+                        response.user.uid,
+                        gametag
+                      );
+                      this.mostrarError(
+                        `Te hemos enviado un correo a ${usuario} para verificar el email`
+                      );
+                    });
+                  }
+                  /* this.database.registrarUsuario(response.user.uid, gametag);
+                  this.router.navigate(['/menu/Juegos/misJuegos']); */
                 })
                 .catch((error) => {
                   console.log(error);
