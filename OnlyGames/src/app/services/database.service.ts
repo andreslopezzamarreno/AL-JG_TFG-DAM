@@ -235,6 +235,8 @@ export class DatabaseService {
         });
         this.setcoins = usuario.coins;
         chequeo = true;
+      } else {
+        alert("No tienes suficientes monedas");
       }
     });
     return chequeo;
