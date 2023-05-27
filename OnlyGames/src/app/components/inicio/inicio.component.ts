@@ -4,7 +4,6 @@ import { AuthService } from 'src/app/services/auth.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { ActivatedRoute } from '@angular/router';
 import { sendEmailVerification } from 'firebase/auth';
-import { emailVerified } from '@angular/fire/auth-guard';
 
 @Component({
   selector: 'app-inicio',
@@ -15,6 +14,7 @@ export class InicioComponent {
   tipo = '';
   error = false;
   mensaje = '';
+  color = ""
 
   constructor(
     private auth: AuthService,
@@ -35,6 +35,7 @@ export class InicioComponent {
   // Metodo de login
   async loguearse(usuario: string, pass: string) {
     if (usuario == '' || pass == '') {
+      this.color = "red"
       this.mostrarError('Algun campo esta vacio');
     } else {
       await this.auth
@@ -45,6 +46,7 @@ export class InicioComponent {
           }
         })
         .catch((error) => {
+          this.color = "red"
           this.mostrarError(
             'Error al iniciar sesion, Asegurate de escribir bien correo y contrasena'
           );
@@ -73,10 +75,12 @@ export class InicioComponent {
     if (usuario != '' && pass != '' && gametag != '') {
       var regExp = /^[\w.-]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,})+$/;
       if (!regExp.test(usuario)) {
+        this.color = "red"
         this.mostrarError(`Introduce correctamente el correo`);
       } else {
         var regExp = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}$/;
         if (!regExp.test(pass)) {
+          this.color = "red"
           this.mostrarError(
             `La contrasena es poco segura. Al menos 6 caracteres usando numeros y letras.`
           );
@@ -88,11 +92,11 @@ export class InicioComponent {
                 .then((response) => {
                   if (response.user) {
                     sendEmailVerification(response.user).then(() => {
-                      console.log('confirma correo');
                       this.database.registrarUsuario(
                         response.user.uid,
                         gametag
                       );
+                      this.color = "#519c05"
                       this.mostrarError(
                         `Te hemos enviado un correo a ${usuario} para verificar el email`
                       );
@@ -102,18 +106,20 @@ export class InicioComponent {
                   this.router.navigate(['/menu/Juegos/misJuegos']); */
                 })
                 .catch((error) => {
-                  console.log(error);
+                  this.color = "red"
                   this.mostrarError(
                     'Error al registrarse, el correo ya existe'
                   );
                 });
             } else {
+              this.color = "red"
               this.mostrarError('Ya existe un usario con ese Gametag');
             }
           });
         }
       }
     } else {
+      this.color = "red"
       this.mostrarError('Rellena todos los campos');
     }
   }
