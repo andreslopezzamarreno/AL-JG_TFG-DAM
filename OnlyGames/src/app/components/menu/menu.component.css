@@ -1,6 +1,6 @@
 body{
   min-height: 100vh;
-  background: url(src\app\images\fondo_menu.jpg) 0 0 no-repeat;
+  background: url(src\assets\images\fondo_menu.jpg) 0 0 no-repeat;
   background-size: cover;
 }
 

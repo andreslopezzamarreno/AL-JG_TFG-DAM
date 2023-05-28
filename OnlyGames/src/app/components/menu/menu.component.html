@@ -19,9 +19,9 @@
     <title>Menu</title>
   </head>
   <body>
-    <div class="menu-top" style="user-select: none;">
+    <div class="menu-top" style="user-select: none">
       <p class="gametag">
-        <img src="./assets/users.png" />
+        <img src="./assets/images/users.png" />
         {{ currentUserGameTag }}
       </p>
       <ul class="menu cf">
@@ -63,7 +63,7 @@
           "
         >
           <img
-            src=".\assets\coin.png"
+            src=".\assets\images\coin.png"
             style="margin-right: 5px"
             id="coins_menu"
           />{{ currentUserCoins }}
@@ -77,7 +77,7 @@
           user-select: none;
         "
         (click)="cerrarSesion()"
-        ><img src=".\assets\logout.png"
+        ><img src=".\assets\images\logout.png"
       /></a>
     </div>
     <router-outlet></router-outlet>
