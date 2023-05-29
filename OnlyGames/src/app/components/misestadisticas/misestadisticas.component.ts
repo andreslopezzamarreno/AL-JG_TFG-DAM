@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { DatabaseService } from 'src/app/services/database.service';
-import { Usuario } from 'src/app/utils/usuario';
+import { Usuario } from 'src/app/utils/Usuario';
 
 @Component({
   selector: 'app-misestadisticas',
@@ -26,7 +26,7 @@ export class MisestadisticasComponent {
       .recuperarUsuario(this.auth.currentUser()!.uid)
       .then((response) => {
         var usuario: Usuario = JSON.parse(response);
-        this.usuario = usuario
+        this.usuario = usuario;
       });
   }
 }

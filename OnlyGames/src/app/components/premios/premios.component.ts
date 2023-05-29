@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { database } from 'firebase-admin';
 import { AuthService } from 'src/app/services/auth.service';
 import { DatabaseService } from 'src/app/services/database.service';
-import { Usuario } from 'src/app/utils/usuario';
+import { Usuario } from 'src/app/utils/Usuario';
 @Component({
   selector: 'app-premios',
   templateUrl: './premios.component.html',

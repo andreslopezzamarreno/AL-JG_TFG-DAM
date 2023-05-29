@@ -13,7 +13,7 @@ import {
   updateDoc,
   getDoc,
 } from 'firebase/firestore';
-import { Usuario } from '../utils/usuario';
+import { Usuario } from '../utils/Usuario';
 import { user } from '@angular/fire/auth';
 import { MenuComponent } from '../components/menu/menu.component';
 import { BehaviorSubject } from 'rxjs';

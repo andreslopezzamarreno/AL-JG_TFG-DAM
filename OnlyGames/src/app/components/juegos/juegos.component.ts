@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DatabaseService } from 'src/app/services/database.service';
 import { Juego } from 'src/app/utils/Juego';
 import { AuthService } from 'src/app/services/auth.service';
-import { Usuario } from 'src/app/utils/usuario';
+import { Usuario } from 'src/app/utils/Usuario';
 import { MenuComponent } from '../menu/menu.component';
 
 @Component({
@@ -18,7 +18,7 @@ export class JuegosComponent {
   todosLosJuegos: Juego[] = [];
   juegos: Juego[] = [];
   juegosRestantes: Juego[] = [];
-  mostrar = false
+  mostrar = false;
 
   constructor(
     private db: DatabaseService,
@@ -26,23 +26,23 @@ export class JuegosComponent {
     private auth: AuthService,
     private router: Router,
     private menu: MenuComponent
-    ) {
-      actroute.params.subscribe((cosas) => {
-        this.tipo = cosas['tipo'];
-        this.todosLosJuegos = [];
-        this.juegos = [];
-        this.juegosRestantes = [];
-        this.verTodosLosJuegos(this.currentuser!.uid);
+  ) {
+    actroute.params.subscribe((cosas) => {
+      this.tipo = cosas['tipo'];
+      this.todosLosJuegos = [];
+      this.juegos = [];
+      this.juegosRestantes = [];
+      this.verTodosLosJuegos(this.currentuser!.uid);
 
-        if (this.tipo == undefined) {
-          this.tipo = 'misJuegos';
-        }
+      if (this.tipo == undefined) {
+        this.tipo = 'misJuegos';
+      }
 
       if (this.tipo == 'misJuegos') {
         this.todos = false;
       } else {
         this.todos = true;
-        this.mostrar = false
+        this.mostrar = false;
       }
     });
   }
@@ -75,8 +75,8 @@ export class JuegosComponent {
         }
       });
     });
-    if (this.juegos.length == 0 && !location.href.includes("todosJuegos")) {
-      this.mostrar = true
+    if (this.juegos.length == 0 && !location.href.includes('todosJuegos')) {
+      this.mostrar = true;
     }
   }
   // Ir a juego deseado
@@ -91,8 +91,8 @@ export class JuegosComponent {
         if (data) {
           this.juegosRestantes = this.juegosRestantes.filter(
             (game) => game != this.todosLosJuegos[idJuego]
-            );
-            this.mostrar = false
+          );
+          this.mostrar = false;
           this.juegos.push(this.todosLosJuegos[idJuego]);
         }
       });

@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { DatabaseService } from 'src/app/services/database.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { Usuario } from 'src/app/utils/usuario';
+import { Usuario } from 'src/app/utils/Usuario';
 
 @Component({
   selector: 'app-edicion',

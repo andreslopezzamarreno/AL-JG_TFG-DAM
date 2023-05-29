@@ -16,4 +16,21 @@ export class AppComponent {}
 2. Si compras un juego se podria poner una pestaña de confirmacion, o algun mensaje, muy soso el comprar juegos
 3. Cambiar la forma en la que te da el codigo del premio --> alert es un poco feo
 
+
+"COMENTAR"
+componentes
+  - breakout
+  - bubbleshoot
+  - edicion
+  - flappy-bird
+  - inicio
+  - juegos
+  - menu
+  - misestadisticas
+  - premios
+  - snake
+servicio
+  - auth
+  - cargaScripts
+  - database
 */

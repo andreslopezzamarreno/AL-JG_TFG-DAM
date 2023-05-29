@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatabaseService } from 'src/app/services/database.service';
-import { Usuario } from 'src/app/utils/usuario';
+import { Usuario } from 'src/app/utils/Usuario';
 
 @Component({
   selector: 'app-menu',
