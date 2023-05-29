@@ -24,11 +24,16 @@
     <div class="circle circle-2"></div>
   </div>
   <div class="card">
-    <img src=".\assets\close.png" style="width: 24px; position: absolute;" alt="" (click)="ocultarCarta()"/>
+    <img
+      src=".\assets\images\close.png"
+      style="width: 24px; position: absolute"
+      alt=""
+      (click)="ocultarCarta()"
+    />
     <div class="only_logo">
-      <img src=".\assets\output-onlinepngtools.png" alt="" />
+      <img src=".\assets\images\onlygames.png" alt="" />
     </div>
-    <div class="container" style="left: 30px; margin-top: 30px;">
+    <div class="container" style="left: 30px; margin-top: 30px">
       <div class="row"></div>
       <div class="carta_info">
         <div
@@ -39,17 +44,14 @@
             margin-right: 20px;
           "
         >
-          <img
-            src=".\assets\alien-space-character-of-pixels-for-a-game.png"
-            alt=""
-          />
+          <img src=".\assets\images\alien.png" alt="" />
           <p style="font-family: '8BIT WONDER', sans-serif">
             TagName: {{ usuario_amigo?.gametag }}
           </p>
           <p style="font-family: '8BIT WONDER', sans-serif">
             Monedas: {{ usuario_amigo?.coins
             }}<img
-              src=".\assets\coin.png"
+              src=".\assets\images\coin.png"
               style="width: 18px; height: 18px; margin-left: 2px"
             />
           </p>
@@ -81,7 +83,7 @@
               margin-bottom: 5px;
             "
           >
-            Flappy Bird: {{records_amigo[2]}}
+            Flappy Bird: {{ records_amigo[2] }}
           </li>
           <li
             style="
@@ -90,7 +92,7 @@
               margin-bottom: 5px;
             "
           >
-            Snake: {{records_amigo[3]}}
+            Snake: {{ records_amigo[3] }}
           </li>
           <li
             style="
@@ -99,7 +101,7 @@
               margin-bottom: 5px;
             "
           >
-            Breakout: {{records_amigo[0]}}
+            Breakout: {{ records_amigo[0] }}
           </li>
           <li
             style="
@@ -108,7 +110,7 @@
               margin-bottom: 5px;
             "
           >
-            BubbleShoot: {{records_amigo[1]}}
+            BubbleShoot: {{ records_amigo[1] }}
           </li>
         </ul>
       </div>
@@ -155,17 +157,14 @@
   </div>
   <div class="col" style="align-items: center; text-align: center">
     <form>
-      <p
-        style="
-          font-family: '8BIT WONDER', sans-serif;
-        "
+      <p style="font-family: '8BIT WONDER', sans-serif">Agregar amigo</p>
+      <div
+        class="form-group"
+        style="width: fit-content; margin-left: 188px; display: flex"
       >
-        Agregar amigo
-      </p>
-      <div class="form-group" style="width: fit-content; margin-left: 188px; display: flex;">
         <input
           type="text"
-          style="width: fit-content;"
+          style="width: fit-content"
           class="form-control"
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
@@ -173,23 +172,23 @@
           #gametagAmigo
         />
         <div
-        type="submit"
-        class="btn btn-primary"
-        style="
-          border-color: transparent;
-          background-color: rgb(211, 54, 250);
-          font-family: '8BIT WONDER', sans-serif;
-          font-size: 12px;
-          margin-left: 5px;
-          position: relative;
-          text-align: center;
-          margin-top: 5px;
-          height: fit-content;
-        "
-        (click)="enviarSolicitud(gametagAmigo.value)"
-      >
-        Enviar
-      </div>
+          type="submit"
+          class="btn btn-primary"
+          style="
+            border-color: transparent;
+            background-color: rgb(211, 54, 250);
+            font-family: '8BIT WONDER', sans-serif;
+            font-size: 12px;
+            margin-left: 5px;
+            position: relative;
+            text-align: center;
+            margin-top: 5px;
+            height: fit-content;
+          "
+          (click)="enviarSolicitud(gametagAmigo.value)"
+        >
+          Enviar
+        </div>
       </div>
     </form>
     <div *ngIf="success">
@@ -204,11 +203,11 @@
           text-align: center;
           margin-top: 10px;
           left: 40%;
-          background-color: {{colorAlert}};
+          background-color: {{ colorAlert }};
           font-size: 10px;
         "
       >
-        {{mensaje}}
+        {{ mensaje }}
       </div>
     </div>
   </div>
@@ -219,11 +218,7 @@
       *ngFor="let item of amigos"
       style="margin-top: 35px; left: 28%"
     >
-      <img
-        id="fb img"
-        src=".\assets\alien-space-character-of-pixels-for-a-game.png"
-        style="width: 50px"
-      />
+      <img id="fb img" src=".\assets\images\alien.png" style="width: 50px" />
       <p
         id="infoamigo"
         style="

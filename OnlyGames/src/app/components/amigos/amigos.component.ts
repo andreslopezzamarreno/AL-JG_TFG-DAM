@@ -72,7 +72,18 @@ export class AmigosComponent {
       .recuperarUsuario(this.auth.currentUser()!.uid)
       .then((user) => {
         var usuario: Usuario = JSON.parse(user);
-        amigos = usuario.amigos;
+        if (usuario.gametag == gametag_solicitado) {
+          this.success = true;
+          this.mensaje = 'No puedes enviarte solicitud a ti mismo';
+          this.colorAlert = 'red';
+          setTimeout(() => {
+            this.success = false;
+          }, 5000);
+          return;
+        } else if (false) {
+        } else {
+          amigos = usuario.amigos;
+        }
       });
 
     if (gametag_solicitado != this.currentuser_gametag) {
@@ -89,7 +100,7 @@ export class AmigosComponent {
               this.mensaje = 'Solicitud enviada';
               this.colorAlert = '#519c05';
             } else {
-              this.mensaje = 'El gametag no existe';
+              this.mensaje = 'La solicitud no ha podido ser enviada';
               this.colorAlert = 'red';
             }
           });

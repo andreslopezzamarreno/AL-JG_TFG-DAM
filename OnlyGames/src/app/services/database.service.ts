@@ -156,21 +156,24 @@ export class DatabaseService {
   async obtenerSolicitudes(gameTag: string, gametagCuerrentUser: string) {
     var uid_usuario: string = '';
     var solicitudes: string[] = [];
-
+    //!solicitudes.includes(gametagCuerrentUser) ||
     try {
-
       await this.userGametag(gameTag).then((user) => {
         var usuario: Usuario = JSON.parse(user);
         solicitudes = usuario.solicitudes;
-        solicitudes.push(gametagCuerrentUser);
-        uid_usuario = usuario.id;
+        if (!usuario.solicitudes.includes(gametagCuerrentUser)) {
+          if (!usuario.amigos.includes(gametagCuerrentUser)) {
+            solicitudes.push(gametagCuerrentUser);
+            uid_usuario = usuario.id;
+          }
+        }
       });
       await updateDoc(doc(this.db, 'users/' + uid_usuario), {
         solicitudes: solicitudes,
       });
-      return true
+      return true;
     } catch (error) {
-      return false
+      return false;
     }
   }
   async eliminarSolicitudes(uid: string, solicitud_eliminar: string) {
@@ -213,9 +216,8 @@ export class DatabaseService {
       await updateDoc(doc(this.db, 'users/' + idSolicitud), {
         amigos: amigos_solicitante,
       });
-
     } catch (error) {
-      return amigos
+      return amigos;
     }
 
     return amigos;
@@ -236,7 +238,7 @@ export class DatabaseService {
         this.setcoins = usuario.coins;
         chequeo = true;
       } else {
-        alert("No tienes suficientes monedas");
+        alert('No tienes suficientes monedas');
       }
     });
     return chequeo;
@@ -290,7 +292,7 @@ export class DatabaseService {
         this.setcoins = usuario.coins;
         alert('Tu codigo es: ' + codigoPremio);
       } else {
-        alert("No tienes suficientes monedas");
+        alert('No tienes suficientes monedas');
       }
     });
     return monedas;

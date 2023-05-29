@@ -36,18 +36,22 @@ export class EdicionComponent {
   }
 
   async cambiarGameTag(texto: string) {
-    try {
-      this.database.userGametag(texto).then((response) => {
-        if (response == '') {
-          this.database.cambiarNombre(this.auth.currentUser()!.uid, texto);
-          this.database.setgametag = texto;
-          this.mostrarSuccess();
-        } else {
-          this.mostrarError('Ese gametag ya existe');
-        }
-      });
-    } catch (error) {
-      this.mostrarError('Error cambiando el gametag');
+    if (texto != '') {
+      try {
+        this.database.userGametag(texto).then((response) => {
+          if (response == '') {
+            this.database.cambiarNombre(this.auth.currentUser()!.uid, texto);
+            this.database.setgametag = texto;
+            this.mostrarSuccess();
+          } else {
+            this.mostrarError('Ese gametag ya existe');
+          }
+        });
+      } catch (error) {
+        this.mostrarError('Error cambiando el gametag');
+      }
+    } else {
+      this.mostrarError('El gametag no puede estar vacio');
     }
   }
 

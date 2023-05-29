@@ -15,9 +15,17 @@
 
       <div class="card">
         <div class="only_logo">
-          <img src=".\assets\output-onlinepngtools.png" alt="" />
+          <img src=".\assets\images\onlygames.png" alt="" />
         </div>
-        <div class="container" style="margin-left: 15px; width: fit-content; height: fit-content; position: absolute;">
+        <div
+          class="container"
+          style="
+            margin-left: 15px;
+            width: fit-content;
+            height: fit-content;
+            position: absolute;
+          "
+        >
           <div class="row"></div>
           <div class="carta_info">
             <div
@@ -29,14 +37,23 @@
               "
             >
               <img
-                src=".\assets\alien-space-character-of-pixels-for-a-game.png"
-                alt="" style="width: 23px; height: 23px; margin-top: 20px;"
+                src=".\assets\images\alien.png"
+                alt=""
+                style="width: 23px; height: 23px; margin-top: 20px"
               />
-              <p style="font-family: '8BIT WONDER', sans-serif; margin-left: 5px; margin-top: 8px;">Gametag:</p>
-              <div style="display: inline-flex; margin-left: 60px;">
+              <p
+                style="
+                  font-family: '8BIT WONDER', sans-serif;
+                  margin-left: 5px;
+                  margin-top: 8px;
+                "
+              >
+                Gametag:
+              </p>
+              <div style="display: inline-flex; margin-left: 60px">
                 <img
                   (click)="habilitarEdicion()"
-                  src=".\assets\edit.png"
+                  src=".\assets\images\edit.png"
                   style="
                     width: 15px;
                     height: 15px;
@@ -49,7 +66,12 @@
                   type="text"
                   id="input"
                   value="{{ currentUserGameTag }}"
-                  style="font-family: '8BIT WONDER', sans-serif; width: 175px; margin-top: 8px; margin-right: 10px;"
+                  style="
+                    font-family: '8BIT WONDER', sans-serif;
+                    width: 175px;
+                    margin-top: 8px;
+                    margin-right: 10px;
+                  "
                   #miInput
                   (click)="habilitarEdicion()"
                 />
