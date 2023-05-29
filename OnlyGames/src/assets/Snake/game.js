@@ -4,6 +4,7 @@ var playBoard = document.querySelector(".play-board");
 var scoreElement = document.querySelector(".score");
 var highScoreElement = document.querySelector(".high-score");
 var controls = document.querySelectorAll(".controls i");
+var btnStart = document.getElementById("btnplay");
 var gameOver = false;
 var foodX, foodY;
 var snakeX = 5,
@@ -26,6 +27,10 @@ var highScore = localStorage.getItem("high-score_snake");
 highScoreElement.innerText = `High Score: ${highScore}`;
 START.play();
 
+btnStart.addEventListener("click", function (evt) {
+  handleGameOver();
+});
+
 // Posicion de comida aleatoria
 var updateFoodPosition = () => {
   foodX = Math.floor(Math.random() * 30) + 1;
@@ -37,7 +42,6 @@ var cambioPuntos = (puntos) => {
 };
 // Resetear pagina al morir
 var handleGameOver = () => {
-  DEATH.play();
   var numMonedas = cambioPuntos(score);
   window.postMessage(
     {
