@@ -1,92 +1,91 @@
-#fb{
-  width:400px;
-  border:1px solid gray;
-  border-radius:5px;
-  position:relative;
-  height:100px;
+#fb {
+  width: 400px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  position: relative;
+  height: 100px;
   background-color: rgb(228, 233, 216);
 }
 
-#fb p{
-  font-family:sans-serif;
+#fb p {
+  font-family: sans-serif;
   margin: 0 0 0 10px;
-  line-height:30px;
+  line-height: 30px;
 }
 
-#fb-top span{
-  float:right;
-  margin-right:10px;
+#fb-top span {
+  float: right;
+  margin-right: 10px;
 }
-#fb-top{
-  background-color:#e4a7fc;
-  height:30px;
-  width:400px;
-  border-radius:5px 5px 0 0;
-  position:relative;
-  top:-1px;
-  left:-1px;
-  border:1px solid gray;
-}
-
-#fb img{
-  position:absolute;
-  left:10px;
-  top:28px;
+#fb-top {
+  background-color: #e4a7fc;
+  height: 30px;
+  width: 400px;
+  border-radius: 5px 5px 0 0;
+  position: relative;
+  top: -1px;
+  left: -1px;
+  border: 1px solid gray;
 }
 
-#info{
-  position:absolute;
-  top:38px;
-  line-height:25px;
+#fb img {
+  position: absolute;
+  left: 10px;
+  top: 28px;
 }
 
-#info span{
-  color:#777;
-  font-size:14px;
+#info {
+  position: absolute;
+  top: 38px;
+  line-height: 25px;
 }
 
-#button-block{
-  position:absolute;
-  right:10px;
-  top:55px;
+#info span {
+  color: #777;
+  font-size: 14px;
 }
 
-#button-block div{
-  display:inline-block;
+#button-block {
+  position: absolute;
+  right: 10px;
+  top: 55px;
 }
 
-#aceptar, #eliminar{
-  background-color:#519c05;
-  color:white;
-  padding:7px;
-  border-radius:2px;
-  margin-right:10px;
-  font-family:sans-serif;
+#button-block div {
+  display: inline-block;
 }
 
-#eliminar{
-  color:white;
-  background-color:#ca1c2a;
-  border:1px solid #d11a2a;
-  padding:6px;
-  margin-right:0;
+#aceptar,
+#eliminar {
+  background-color: #519c05;
+  color: white;
+  padding: 7px;
+  border-radius: 2px;
+  margin-right: 10px;
+  font-family: sans-serif;
 }
 
-#verEstadisticas{
-  color:white;
-  border-radius:2px;
-  background-color:#163e54;
-  border:1px solid #163e54;
-  padding:6px;
-  margin-right:0;
+#eliminar {
+  color: white;
+  background-color: #ca1c2a;
+  border: 1px solid #d11a2a;
+  padding: 6px;
+  margin-right: 0;
 }
 
-#button-block div:hover{
-  opacity:.8;
-  cursor:pointer;
+#verEstadisticas {
+  color: white;
+  border-radius: 2px;
+  background-color: #163e54;
+  border: 1px solid #163e54;
+  padding: 6px;
+  margin-right: 0;
 }
 
-
+#button-block div:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
 
 .container {
   padding: 0;
@@ -100,7 +99,6 @@
   left: 38%;
   top: 30%;
 }
-
 
 .card {
   width: 480px;
@@ -133,9 +131,6 @@
   display: flex;
   font-size: 12px;
 }
-.lista{
-    float: right;
+.lista {
+  float: right;
 }
-
-
-

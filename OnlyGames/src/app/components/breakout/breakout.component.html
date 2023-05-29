@@ -1,31 +1,51 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BreakOut</title>
-    <meta
-    />
-    <meta name="msapplication-TileColor" content="#da532c">
-    </head>
-<body>
-    <div class="wrapper" style="position: absolute; top: 18%; left: 29.5%; user-select: none;">
+    <meta />
+    <meta name="msapplication-TileColor" content="#da532c" />
+  </head>
+  <body>
+    <div
+      class="wrapper"
+      style="position: absolute; top: 18%; left: 29.5%; user-select: none"
+    >
       <div class="game-details">
-        <span class="score" style="font-family: '8BIT WONDER', sans-serif; color: white;"
+        <span
+          class="score"
+          style="font-family: '8BIT WONDER', sans-serif; color: white"
           >Score: 0</span
         >
         <span
           #miSpan
           class="high-score"
-          style="font-family: '8BIT WONDER', sans-serif; margin-left: 20px; color: white;"
+          style="
+            font-family: '8BIT WONDER', sans-serif;
+            margin-left: 20px;
+            color: white;
+          "
           >High Score: {{ highScore }}</span
         >
       </div>
     </div>
-    <canvas id="breakout" width="800" height="600" style="font-family: '8BIT WONDER', sans-serif"></canvas>
-    <br/>
-    <button id="play-button" style="font-family: '8BIT WONDER', sans-serif; background-color: rgb(228, 118, 238);" onclick="play()">START</button>
-
-</body>
+    <canvas
+      id="breakout"
+      width="800"
+      height="600"
+      style="font-family: '8BIT WONDER', sans-serif"
+    ></canvas>
+    <br />
+    <button
+      id="play-button"
+      style="
+        font-family: '8BIT WONDER', sans-serif;
+        background-color: rgb(228, 118, 238);
+      "
+      onclick="play()"
+    >
+      START
+    </button>
+  </body>
 </html>
-

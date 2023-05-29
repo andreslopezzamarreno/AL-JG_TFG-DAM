@@ -8,9 +8,8 @@ describe('BreakoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BreakoutComponent ]
-    })
-    .compileComponents();
+      declarations: [BreakoutComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BreakoutComponent);
     component = fixture.componentInstance;

@@ -19,18 +19,19 @@ export class AppComponent {}
 
 "COMENTAR"
 componentes
-  - breakout
-  - bubbleshoot
-  - edicion
-  - flappy-bird
   - inicio
   - juegos
   - menu
   - misestadisticas
   - premios
-  - snake
+
 servicio
   - auth
-  - cargaScripts
-  - database
+  - database --> zama
+
+assets -->game.js
+  - breakout
+  - bubbleshoot
+  - flppybird
+  - snake
 */

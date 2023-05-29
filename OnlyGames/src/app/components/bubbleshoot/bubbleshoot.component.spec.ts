@@ -8,9 +8,8 @@ describe('BubbleshootComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BubbleshootComponent ]
-    })
-    .compileComponents();
+      declarations: [BubbleshootComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BubbleshootComponent);
     component = fixture.componentInstance;

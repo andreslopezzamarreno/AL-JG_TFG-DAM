@@ -1,6 +1,6 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap"); */
 body {
-    background: transparent;
+  background: transparent;
 }
 * {
   padding: 0;
@@ -53,21 +53,21 @@ body {
 }
 .carta_info input {
   width: 40%;
-  background-color:transparent;
+  background-color: transparent;
   border: none;
   color: #ffffff;
 }
 .carta_info input {
   padding: 10px 0;
-  background-color:transparent;
+  background-color: transparent;
   border: none;
   color: #ffffff;
   display: flex;
 }
-.lista{
-    float: right;
+.lista {
+  float: right;
 }
 
-input{
+input {
   border: none;
 }

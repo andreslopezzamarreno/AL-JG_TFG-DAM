@@ -8,9 +8,8 @@ describe('FlappyBirdComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FlappyBirdComponent ]
-    })
-    .compileComponents();
+      declarations: [FlappyBirdComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FlappyBirdComponent);
     component = fixture.componentInstance;
