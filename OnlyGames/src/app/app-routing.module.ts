@@ -14,7 +14,8 @@ import { AmigosComponent } from './components/amigos/amigos.component';
 import { EdicionComponent } from './components/edicion/edicion.component';
 
 const routes: Routes = [
-  { path: '', component: InicioComponent },
+  { path: '', redirectTo: '/menu/Juegos/misJuegos', pathMatch: 'full' },
+  //{ path: '', component: InicioComponent },
   { path: 'inicio', component: InicioComponent },
   { path: 'inicio/:tipo', component: InicioComponent },
   {

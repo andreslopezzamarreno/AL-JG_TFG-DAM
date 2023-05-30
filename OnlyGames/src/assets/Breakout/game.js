@@ -382,6 +382,7 @@ function gameOverBreakout() {
       action: "datosBreackout",
       data: {
         monedas: numMonedas,
+        record: game.highScore,
       },
     },
     "*"

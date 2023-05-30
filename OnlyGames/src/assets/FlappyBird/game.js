@@ -232,6 +232,7 @@ var bird = {
               action: "datosFlappy",
               data: {
                 monedas: numMonedas,
+                record: score.best,
               },
             },
             "*"
@@ -364,6 +365,7 @@ var pipes = {
             action: "datosFlappy",
             data: {
               monedas: numMonedas,
+              record: score.best,
             },
           },
           "*"
@@ -384,6 +386,7 @@ var pipes = {
             action: "datosFlappy",
             data: {
               monedas: numMonedas,
+              record: score.best,
             },
           },
           "*"

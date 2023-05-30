@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { CargarScriptsService } from 'src/app/services/cargar-scripts.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { Usuario } from 'src/app/utils/Usuario';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bubbleshoot',
@@ -12,25 +14,45 @@ export class BubbleshootComponent {
   //id del juego para controlar bd
   IDJUEGO = 1;
   highScore = 0;
+  desbloqueado = false;
 
   constructor(
     private _CargarScripts: CargarScriptsService,
     private db: DatabaseService,
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router
   ) {
-    this.db
-      .obtenerRecord(this.auth.currentUser()!.uid, this.IDJUEGO)
-      .then((rec) => {
-        //recupero el record de la base de datos
-        this.highScore = rec;
-        //asigno record a la variable del localHost para que la lea el script
-        localStorage.setItem(
-          'high-score_bubbleshoot',
-          this.highScore.toString()
-        );
-        //ejecuto script desde servicio --> explicacion en cargar-scriptService
-        _CargarScripts.carga('BubbleShoot/game');
+    this.inicio();
+  }
+
+  async inicio() {
+    //metodo para restringir si el usuario puede o no juegar al juego
+    await this.db
+      .recuperarUsuario(this.auth.currentUser()!.uid)
+      .then((user) => {
+        var usuario: Usuario = JSON.parse(user);
+        if (usuario.juegos[this.IDJUEGO]) {
+          this.desbloqueado = true;
+        }
       });
+    //si no puede redirige a mis juegos
+    if (!this.desbloqueado) {
+      this.router.navigate(['menu/Juegos', 'misJuegos']);
+    } else {
+      this.db
+        .obtenerRecord(this.auth.currentUser()!.uid, this.IDJUEGO)
+        .then((rec) => {
+          //recupero el record de la base de datos
+          this.highScore = rec;
+          //asigno record a la variable del localHost para que la lea el script
+          localStorage.setItem(
+            'high-score_bubbleshoot',
+            this.highScore.toString()
+          );
+          //ejecuto script desde servicio --> explicacion en cargar-scriptService
+          this._CargarScripts.carga('BubbleShoot/game');
+        });
+    }
   }
 
   ngOnInit(): void {
@@ -43,6 +65,12 @@ export class BubbleshootComponent {
     if (event.data && event.data.action === 'datosBubbleShoot') {
       console.log('muere');
       const scriptData = event.data.data;
+      //actualizo si ha habido record
+      this.db.actualizarRecord(
+        this.auth.currentUser()!.uid,
+        parseInt(scriptData.record),
+        this.IDJUEGO
+      );
       //actualizo monedas ganadas en la partida
       this.db
         .aniadirMoneda(this.auth.currentUser()!.uid, scriptData.monedas)
@@ -50,28 +78,6 @@ export class BubbleshootComponent {
           this.db.setcoins = coins;
         });
     }
-  }
-
-  //escucho el cambio del high-score y al cambiar actualizo la base de datos
-  //El cambio se produce en assets/BubbleShoot/game.js
-  @ViewChild('miSpan', { static: false }) miSpan: any;
-  ngAfterViewInit() {
-    const observer = new MutationObserver((mutations) => {
-      this.highScore = parseInt(
-        localStorage.getItem('high-score_bubbleshoot')!
-      );
-      this.db.actualizarRecord(
-        this.auth.currentUser()!.uid,
-        this.highScore,
-        this.IDJUEGO
-      );
-    });
-    //detecto cambio
-    observer.observe(this.miSpan.nativeElement, {
-      childList: true,
-      characterData: true,
-      subtree: true,
-    });
   }
 
   ngOnDestroy(): void {

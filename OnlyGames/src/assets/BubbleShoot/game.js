@@ -237,6 +237,7 @@ function stopGame() {
       action: "datosBubbleShoot",
       data: {
         monedas: numMonedas,
+        record: highest,
       },
     },
     "*"

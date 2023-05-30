@@ -7,7 +7,6 @@
       href="https://fonts.googleapis.com/css?family=Teko:700"
       rel="stylesheet"
     />
-
     <style>
       canvas {
         border: 1px solid #000;
@@ -17,7 +16,7 @@
       }
     </style>
   </head>
-  <body>
+  <body *ngIf="desbloqueado">
     <div
       class="wrapper"
       style="position: absolute; top: 14.5%; left: 44%; user-select: none"

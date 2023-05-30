@@ -44,7 +44,7 @@ export class InicioComponent {
       await this.auth
         .login(usuario, pass)
         .then((user) => {
-          //comprobar si el mail ha sido verivicado
+          //comprobar si el mail ha sido verificado
           if (user.user.emailVerified) {
             this.router.navigate(['/menu/Juegos/misJuegos']);
           } else {
@@ -62,8 +62,8 @@ export class InicioComponent {
     }
   }
 
-  // Control de las pulsaciondes del teclado
   onKeydown(event: any, usuario: string, pass: string) {
+    // Control de las pulsaciondes del teclado
     if (event.key === 'Enter') {
       if (
         location.href.includes('login') ||
@@ -76,15 +76,18 @@ export class InicioComponent {
     }
   }
 
-  // Regitro de usuario con usuario y contraseña añadiendo ademas gametag
   async registro(usuario: string, pass: string): Promise<void> {
+    // Regitro de usuario con usuario y contraseña añadiendo ademas gametag
     var gametag = (<HTMLInputElement>document.getElementById('gametag')).value;
+    //comprobar que ningun campo esta vacio
     if (usuario != '' && pass != '' && gametag != '') {
+      //re para el correo
       var regExp = /^[\w.-]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,})+$/;
       if (!regExp.test(usuario)) {
         this.color = 'red';
         this.mostrarError(`Introduce correctamente el correo`);
       } else {
+        //re para la contraseñ
         var regExp = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}$/;
         if (!regExp.test(pass)) {
           this.color = 'red';
@@ -92,25 +95,28 @@ export class InicioComponent {
             `La contrasena es poco segura. Al menos 6 caracteres usando numeros y letras.`
           );
         } else {
+          //recupero gametag a ver si existe
           await this.database.userGametag(gametag).then(async (response) => {
             if (response == '') {
+              //si no existe hago el registro
               await this.auth
                 .registro(usuario, pass)
                 .then((response) => {
                   if (response.user) {
+                    //emvia correo de verificacion si es correcto
                     sendEmailVerification(response.user).then(() => {
+                      //añado los datos del usuario a la base de datos
                       this.database.registrarUsuario(
                         response.user.uid,
                         gametag
                       );
+                      //mensaje de exito
                       this.color = '#519c05';
                       this.mostrarError(
                         `Te hemos enviado un correo a ${usuario} para verificar el email`
                       );
                     });
                   }
-                  /* this.database.registrarUsuario(response.user.uid, gametag);
-                  this.router.navigate(['/menu/Juegos/misJuegos']); */
                 })
                 .catch((error) => {
                   this.color = 'red';
@@ -131,13 +137,13 @@ export class InicioComponent {
     }
   }
 
-  // Metodo para hacer el cambio entre login y registro
   navegar(tipo: string) {
+    // Metodo para hacer el cambio entre login y registro
     this.router.navigate(['inicio', tipo]);
   }
 
-  // Muestra el alert con el mensaje pasado
   mostrarError(mensaje: string) {
+    // Muestra el alert con el mensaje pasado
     this.error = true;
     this.mensaje = mensaje;
   }
