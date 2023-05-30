@@ -1,5 +1,5 @@
 body {
-  font-family: 'Muli', sans-serif;
+  font-family: "Muli", sans-serif;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   overflow-x: hidden;
@@ -69,7 +69,6 @@ body {
   transform: translate3d(50px, 0, 0);
 }
 
-
 .carousel__container:hover .carousel-item:hover {
   -webkit-transform: scale(1.2);
   transform: scale(1.2);
@@ -130,10 +129,9 @@ body {
   margin: auto;
   margin-bottom: 10px;
 }
-.carousel-item__details--title{
+.carousel-item__details--title {
   font-size: 25px;
 }
 .carousel-item__details--subtitle {
   font-size: 15px;
 }
-

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { Usuario } from 'src/app/utils/Usuario';
@@ -12,16 +11,8 @@ import { Usuario } from 'src/app/utils/Usuario';
 export class MisestadisticasComponent {
   usuario: Usuario | undefined;
 
-  constructor(
-    private auth: AuthService,
-    private router: Router,
-    private database: DatabaseService,
-    private actroute: ActivatedRoute
-  ) {
-    this.obtenerDatosUser();
-  }
-  // Obtener gametag del usuario que ha iniciado sesion
-  obtenerDatosUser() {
+  constructor(private auth: AuthService, private database: DatabaseService) {
+    //obtengo el usuario para mostrar en el html sus estadisticas
     this.database
       .recuperarUsuario(this.auth.currentUser()!.uid)
       .then((response) => {

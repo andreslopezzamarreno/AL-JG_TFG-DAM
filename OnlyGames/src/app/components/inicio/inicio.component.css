@@ -1,8 +1,8 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
-body{
+body {
   display: flex;
   justify-content: center;
   align-items: top;
@@ -10,12 +10,12 @@ body{
   background: url(src\assets\images\fondo_web.jpg) 0 0 no-repeat;
   background-size: cover;
 }
-.wavy{
+.wavy {
   position: relative;
   margin-top: 8%;
 }
 .wavy span {
-  font-family: '8BIT WONDER', sans-serif;
+  font-family: "8BIT WONDER", sans-serif;
   position: relative;
   display: inline-block;
   color: #fff;
@@ -25,30 +25,28 @@ body{
   animation-delay: calc(0.1s * var(--i));
 }
 @keyframes animate {
-  0%
-  {
+  0% {
     transform: translateY(0px);
   }
-  20%
-  {
+  20% {
     transform: translateY(-20px);
   }
-  40%,100%
-  {
+  40%,
+  100% {
     transform: translateY(0px);
   }
 }
-#btn-login{
+#btn-login {
   position: relative;
-  font-family: '8BIT WONDER', sans-serif;
+  font-family: "8BIT WONDER", sans-serif;
   width: 200px;
   height: 40px;
   margin-right: 60px;
   font-size: x-large;
 }
 
-#btn-register{
-  font-family: '8BIT WONDER', sans-serif;
+#btn-register {
+  font-family: "8BIT WONDER", sans-serif;
   width: 200px;
   height: 40px;
   font-size: x-large;
@@ -62,27 +60,19 @@ body{
   background-color: #bbb4b4;
 }
 
-.btns{
+.btns {
   display: flex;
   flex-direction: column;
   padding: auto;
   margin-right: 30%;
   margin-left: 30%;
 }
-.btnes{
+.btnes {
   display: inline-flex;
   padding: auto;
 }
 
-.form-login{
+.form-login {
   position: absolute;
   margin-top: 18%;
 }
-
-
-
-
-
-
-
-

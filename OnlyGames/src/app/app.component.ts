@@ -20,14 +20,6 @@ export class AppComponent {}
 "COMENTAR"
 componentes
   - inicio
-  - juegos
-  - menu
-  - misestadisticas
-  - premios
-
-servicio
-  - auth
-  - database --> zama
 
 assets -->game.js
   - breakout

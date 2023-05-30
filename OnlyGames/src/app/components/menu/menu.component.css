@@ -1,21 +1,21 @@
-body{
+body {
   min-height: 100vh;
   background: url(src\assets\images\fondo_menu.jpg) 0 0 no-repeat;
   background-size: cover;
 }
 
-.menu-top{
+.menu-top {
   display: inline-flex;
   align-content: center;
 }
-.gametag{
+.gametag {
   position: relative;
-  font-family: '8BIT WONDER', sans-serif;
+  font-family: "8BIT WONDER", sans-serif;
   font-size: 32px;
   margin: auto;
   padding: 5px;
 }
-.menu{
+.menu {
   position: fixed;
 }
 
@@ -43,7 +43,6 @@ body{
   margin: auto;
   width: 800px;
   width: fit-content;
-
 }
 
 .menu > li {
@@ -52,10 +51,10 @@ body{
   position: relative;
   transform: skewX(25deg);
 }
-#btn-cerrar-sesion{
+#btn-cerrar-sesion {
   background: #ed5c53;
 }
-#btn-cerrar-sesion a:hover{
+#btn-cerrar-sesion a:hover {
   font-size: 15px;
 }
 .menu a {
@@ -65,10 +64,10 @@ body{
   text-decoration: none;
   font-family: Arial, Helvetica;
   font-size: 14px;
-  font-family: '8BIT WONDER', sans-serif;
+  font-family: "8BIT WONDER", sans-serif;
 }
 
-.submenu li{
+.submenu li {
   width: max-content;
   height: max-content;
 }
@@ -78,8 +77,7 @@ body{
 }
 
 .menu li:hover {
-  background: #48C9B0;
-
+  background: #48c9b0;
 }
 
 .menu > li > a {
@@ -100,7 +98,6 @@ body{
   background-color: #34495e;
   position: relative;
   overflow: hidden;
-
 }
 
 .submenu > li > a {
@@ -108,15 +105,15 @@ body{
 }
 
 .submenu > li::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -125%;
   height: 100%;
   width: 100%;
-  box-shadow: 0 0 50px rgba(0, 0, 0, .9);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
 }
 
-.submenu > li:nth-child(odd){
+.submenu > li:nth-child(odd) {
   transform: skewX(-25deg) translateX(0);
 }
 
@@ -129,7 +126,7 @@ body{
   transform: skewX(-25deg) rotate(3deg);
 }
 
-.submenu > li:nth-child(even){
+.submenu > li:nth-child(even) {
   transform: skewX(25deg) translateX(0);
 }
 
@@ -149,7 +146,7 @@ body{
 }
 
 .submenu li {
-  transition: .2s ease transform;
+  transition: 0.2s ease transform;
 }
 
 .menu > li:hover .submenu,
@@ -158,11 +155,10 @@ body{
   visibility: visible;
 }
 
-.menu > li:hover .submenu li:nth-child(even){
+.menu > li:hover .submenu li:nth-child(even) {
   transform: skewX(25deg) translateX(15px);
 }
 
-.menu > li:hover .submenu li:nth-child(odd){
+.menu > li:hover .submenu li:nth-child(odd) {
   transform: skewX(-25deg) translateX(-15px);
 }
-

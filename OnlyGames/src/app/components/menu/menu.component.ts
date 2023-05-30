@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { DatabaseService } from 'src/app/services/database.service';
 import { Usuario } from 'src/app/utils/Usuario';
 
@@ -18,22 +18,23 @@ export class MenuComponent {
     private router: Router,
     private database: DatabaseService
   ) {
-    this.database.asignarDatos(this.auth.currentUser()!.uid);
+    //obtengo gametag y monedas --> metodos databaseService
+    this.database.asignarDatosMenu(this.auth.currentUser()!.uid);
   }
 
   ngOnInit() {
+    //obtengo la variable gametag y las monedas de database service
+    //se ha hecho de esta forma porque para actualizar la parte grafica desde diferentes sitios no encontramos otra
     this.database.getgametag.subscribe((value) => {
       this.currentUserGameTag = value;
-      // Aquí puedes realizar cualquier acción que desees cuando la variable cambie
     });
     this.database.getcoins.subscribe((value) => {
       this.currentUserCoins = value;
-      // Aquí puedes realizar cualquier acción que desees cuando la variable cambie
     });
   }
 
-  // Cerrar sesion
   cerrarSesion() {
+    // Cerrar sesion -->metodo de authService
     this.auth
       .logout()
       .then(() => {
