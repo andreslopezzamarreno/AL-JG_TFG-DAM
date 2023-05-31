@@ -42,21 +42,7 @@ var cambioPuntos = (puntos) => {
   return puntos * 6;
 };
 
-var handleGameOver = () => {
-  var numMonedas = cambioPuntos(score);
-  //envia mensaje el window para que el escuchador del componente del snake
-  //las monedas y las ponga en la base de datos
-  window.postMessage(
-    {
-      action: "datosSnake",
-      data: {
-        monedas: numMonedas,
-        record: highScore,
-      },
-    },
-    "*"
-  );
-};
+var handleGameOver = () => {};
 
 var changeDirection = (e) => {
   // Control de juego
@@ -108,6 +94,19 @@ var initGame = () => {
   // Comprobar si el snake se ha chocado
   if (snakeX <= 0 || snakeX > 30 || snakeY <= 0 || snakeY > 30) {
     DEATH.play();
+    var numMonedas = cambioPuntos(score);
+    //envia mensaje el window para que el escuchador del componente del snake
+    //las monedas y las ponga en la base de datos
+    window.postMessage(
+      {
+        action: "datosSnake",
+        data: {
+          monedas: numMonedas,
+          record: highScore,
+        },
+      },
+      "*"
+    );
     return (gameOver = true);
   }
 
@@ -121,6 +120,19 @@ var initGame = () => {
       snakeBody[0][0] === snakeBody[i][0]
     ) {
       gameOver = true;
+      var numMonedas = cambioPuntos(score);
+      //envia mensaje el window para que el escuchador del componente del snake
+      //las monedas y las ponga en la base de datos
+      window.postMessage(
+        {
+          action: "datosSnake",
+          data: {
+            monedas: numMonedas,
+            record: highScore,
+          },
+        },
+        "*"
+      );
     }
   }
   playBoard.innerHTML = html;
